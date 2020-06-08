@@ -64,7 +64,7 @@
       process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
       this.coverShow = true
       this.boxReveals = true
-      axios.get('https://carus.serveo.net/hina/payload?name=' + encodeURI($nuxt.$route.query[name])).then(response => (this.info = response.data)).catch(error => console.log(error))
+      axios.get('https://handled-guestbook-gdp-none.trycloudflare.com/hina/payload?name=' + encodeURI($nuxt.$route.query[name])).then(response => (this.info = response.data)).catch(error => console.log(error))
       console.log(encodeURI($nuxt.$route.path.replace('/', '')))
       this.$nextTick(function() {
         window.setInterval(() => {
