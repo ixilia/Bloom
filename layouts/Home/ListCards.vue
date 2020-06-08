@@ -48,7 +48,7 @@
       busy: false
     }),
     mounted() {
-      axios.get('https://carus.serveo.net/hina?op=50').then(response => (this.datas = response.data)).catch(error => console.log(error))
+      axios.get('https://handled-guestbook-gdp-none.trycloudflare.com/hina?op=50').then(response => (this.datas = response.data)).catch(error => console.log(error))
       this.GetScrol()
     },
     methods: {
