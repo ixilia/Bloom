@@ -48,7 +48,7 @@
       busy: false
     }),
     mounted() {
-      axios.get('http://localhost:8080/hina?op=50').then(response => (this.datas = response.data)).catch(error => console.log(error))
+      axios.get('https://carus.serveo.net/hina?op=50').then(response => (this.datas = response.data)).catch(error => console.log(error))
       this.GetScrol()
     },
     methods: {
@@ -61,7 +61,7 @@
       GetScrol() {
         this.scrold++
         this.busy = true
-        axios.get('http://localhost:8080/hina?op=50&page=' + this.scrold).then(response => (this.datae = response.data)).catch(error => console.log(error))
+        axios.get('https://carus.serveo.net/hina?op=50&page=' + this.scrold).then(response => (this.datae = response.data)).catch(error => console.log(error))
         //this.datas = this.datas.concat(this.datae)
         Array.prototype.push.apply(this.datas, this.datae)
         this.busy = false

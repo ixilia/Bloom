@@ -80,7 +80,7 @@
       process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
       this.coverShow = true
       this.boxReveals = true
-      axios.get('http://localhost:8080/hina/payload?name=' + encodeURI($nuxt.$route.query['name'])).then(response => (this.info = response.data)).catch(error => console.log(error))
+      axios.get('https://carus.serveo.net/hina/payload?name=' + encodeURI($nuxt.$route.query['name'])).then(response => (this.info = response.data)).catch(error => console.log(error))
       console.log(encodeURI($nuxt.$route.query['name']))
       setInterval(() => {
         this.change(true)

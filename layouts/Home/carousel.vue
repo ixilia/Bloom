@@ -42,7 +42,7 @@
       bgImage: 'https://c.xme.net/0c442221.jpg'
     }),
     beforeCreate() {
-      axios.get('http://localhost:8080/hina/carousel').then(response => (this.info = response.data)).catch(error => console.log(error))
+      axios.get('https://carus.serveo.net/hina/carousel').then(response => (this.info = response.data)).catch(error => console.log(error))
     },
     beforeMount() {
 
