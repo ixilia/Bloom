@@ -65,7 +65,7 @@
       :fixed="fixed"
       app
     >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>Matsujo Hibiki&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>
