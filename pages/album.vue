@@ -43,7 +43,7 @@
         <v-row>
           <div id="Duv" v-for="(da, n) in info.gliphs" :key="n" class="ma-6"
                v-ripple>
-            <v-img :src="da" width="20rem" height="25rem" v-on:click="Overy(n)"/>
+            <v-img :lazy-src="enload" :src="da" width="20rem" height="25rem" v-on:click="Overy(n)"/>
           </div>
         </v-row>
       </v-container>
@@ -73,6 +73,7 @@
       name: 'Dillion Harper',
       image,
       image2: 'https://c.xme.net/8c324155.jpg',
+      enload: 'https://cdn.discordapp.com/attachments/488810702190936075/720249804281610260/len.jpg',
       overlay: false,
       idex: 1
     }),
