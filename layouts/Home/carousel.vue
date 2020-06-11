@@ -42,7 +42,7 @@
       bgImage: 'https://c.xme.net/0c442221.jpg'
     }),
     beforeCreate() {
-      axios.get('https://handled-guestbook-gdp-none.trycloudflare.com/hina/carousel').then(response => (this.info = response.data)).catch(error => console.log(error))
+      axios.get('https://api.ixil.cc/hina/carousel').then(response => (this.info = response.data)).catch(error => console.log(error))
     },
     beforeMount() {
 
