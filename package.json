@@ -23,6 +23,7 @@
     "vue-gallery": "^2.0.1",
     "vue-infinite-scroll": "^2.0.2",
     "vue-lazyload": "^1.3.3",
+    "vue-meta": "^2.4.0",
     "vue-preview": "^1.1.3"
   },
   "devDependencies": {

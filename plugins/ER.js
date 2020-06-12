@@ -1,4 +1,4 @@
-import VueGallery from 'vue-gallery'
+import Vue from 'vue'
+import VueMeta from 'vue-meta'
 
-
-Vue.use(VueGallery)
+Vue.use(VueMeta)

@@ -77,6 +77,18 @@
       overlay: false,
       idex: 1
     }),
+    head() {
+      return {
+        title: this.info.name,
+        meta: [
+          // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+          { name: this.info.source, content: '( ͡° ͜ʖ ͡°)' },
+          { property: 'og:image', content: this.info.thumb },
+          { property: 'og:image:width', content: '1000' },
+          { property: 'og:image:height', content: '1000' }
+        ]
+      }
+    },
     mounted() {
       process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
       this.coverShow = true
