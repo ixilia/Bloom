@@ -80,19 +80,25 @@
     }),
     head() {
       return {
-        title: this.info.name,
+        title: $nuxt.$route.query['name'],
 
         meta: [
           // facebook
-          { property: 'og:title', content: this.info.name },
-          { property: 'og:image', content: this.info.thumb },
+          { property: 'og:title', content: $nuxt.$route.query['name'] },
+          {
+            property: 'og:image',
+            content: 'https://api.ixil.cc/hina/' + encodeURI($nuxt.$route.query['name']) + 'thumb'
+          },
           // google
-          { itemprop: 'image', content: this.info.thumb },
-          { itemprop: 'name', content: this.info.name },
+          { itemprop: 'image', content: 'https://api.ixil.cc/hina/' + encodeURI($nuxt.$route.query['name']) + 'thumb' },
+          { itemprop: 'name', content: $nuxt.$route.query['name'] },
           // twitter
           { name: 'twitter:card', content: 'summary_large_image' },
-          { name: 'twitter:title', content: this.info.name },
-          { name: 'twitter:image', content: this.info.thumb }
+          { name: 'twitter:title', content: $nuxt.$route.query['name'] },
+          {
+            name: 'twitter:image',
+            content: 'https://api.ixil.cc/hina/' + encodeURI($nuxt.$route.query['name']) + 'thumb'
+          }
 
         ]
       }
