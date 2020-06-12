@@ -107,12 +107,6 @@
       setInterval(() => {
         this.change(true)
       }, 8000)
-
-      // Force Load Data
-      var refreshId = setInterval(() => {
-        this.change(true)
-        clearInterval(refreshId)
-      }, 5)
     },
     methods: {
       Overy(e) {
