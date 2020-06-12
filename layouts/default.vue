@@ -82,11 +82,6 @@
             icon: 'mdi-apps',
             title: 'Welcome',
             to: '/'
-          },
-          {
-            icon: 'mdi-magnify',
-            title: 'search',
-            to: '/inspire'
           }
         ],
         miniVariant: true,
