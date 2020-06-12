@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link prefetch :to="'/album?name='+url">
+  <nuxt-link prefetch :to="'/'+url">
     <v-img id="Cardlso-Image" :src="image" height="20rem" width="16rem"/>
   </nuxt-link>
 </template>

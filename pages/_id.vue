@@ -56,49 +56,44 @@
 <script>
   import axios from 'axios'
 
-  let image = 'https://c.xme.net/8c324155.jpg'
-  let info = []
   export default {
     name: 'album',
-    props: {
-      info: {
-        type: Array,
-        default: []
-      }
-    },
+    props: {},
+
     data: () => ({
       coverShow: false,
       boxReveals: false,
       //info: [],
       name: 'Dillion Harper',
-      image,
       image2: 'https://c.xme.net/8c324155.jpg',
       enload: 'https://cdn.discordapp.com/attachments/488810702190936075/720249804281610260/len.jpg',
       overlay: false,
-      idex: 1,
-      info
+      idex: 1
     }),
+    asyncData({ params }) {
+      return axios.get(`https://api.ixil.cc/hina/payload?name=${encodeURI(params.id)}`)
+        .then((res) => {
+          return { info: res.data }
+        })
+    },
     head() {
       return {
-        title: $nuxt.$route.query['name'],
+        title: this.info.name,
 
         meta: [
           // facebook
-          { property: 'og:title', content: $nuxt.$route.query['name'] },
+          { property: 'og:title', content: this.info.name },
           {
             property: 'og:image',
-            content: 'https://api.ixil.cc/hina/' + encodeURI($nuxt.$route.query['name']) + 'thumb'
+            content: this.info.thumb
           },
           // google
-          { itemprop: 'image', content: 'https://api.ixil.cc/hina/' + encodeURI($nuxt.$route.query['name']) + 'thumb' },
-          { itemprop: 'name', content: $nuxt.$route.query['name'] },
+          { itemprop: 'image', content: this.info.thumb },
+          { itemprop: 'name', content: this.info.name },
           // twitter
           { name: 'twitter:card', content: 'summary_large_image' },
-          { name: 'twitter:title', content: $nuxt.$route.query['name'] },
-          {
-            name: 'twitter:image',
-            content: 'https://api.ixil.cc/hina/' + encodeURI($nuxt.$route.query['name']) + 'thumb'
-          }
+          { name: 'twitter:title', content: this.info.name },
+          { name: 'twitter:image', content: this.info.thumb }
 
         ]
       }
@@ -107,7 +102,7 @@
       process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
       this.coverShow = true
       this.boxReveals = true
-      axios.get('https://api.ixil.cc/hina/payload?name=' + encodeURI($nuxt.$route.query['name'])).then(response => (this.info = response.data)).catch(error => console.log(error))
+      //axios.get('https://api.ixil.cc/hina/payload?name=' + encodeURI($nuxt.$route.query['name'])).then(response => (this.info = response.data)).catch(error => console.log(error))
       //console.log(encodeURI($nuxt.$route.query['name']))
       setInterval(() => {
         this.change(true)
