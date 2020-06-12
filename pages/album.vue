@@ -83,11 +83,17 @@
         title: this.info.name,
 
         meta: [
-          // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-          { content: '( ͡° ͜ʖ ͡°)' },
+          // facebook
+          { property: 'og:title', content: this.info.name },
           { property: 'og:image', content: this.info.thumb },
-          { property: 'og:image:width', content: '1000' },
-          { property: 'og:image:height', content: '1000' }
+          // google
+          { itemprop: 'image', content: this.info.thumb },
+          { itemprop: 'name', content: this.info.name },
+          // twitter
+          { name: 'twitter:card', content: 'summary_large_image' },
+          { name: 'twitter:title', content: this.info.name },
+          { name: 'twitter:image', content: this.info.thumb }
+
         ]
       }
     },
