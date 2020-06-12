@@ -29,7 +29,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~plugins/3DCOR', ssr: false }
+    { src: '~plugins/3DCOR', ssr: false },
+    { src: '~plugins/ER' }
   ],
   /*
   ** Nuxt.js dev-modules

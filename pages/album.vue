@@ -56,7 +56,7 @@
 <script>
   import axios from 'axios'
 
-  let image = ''
+  let image = 'https://c.xme.net/8c324155.jpg'
   let info = []
   export default {
     name: 'album',
@@ -75,14 +75,16 @@
       image2: 'https://c.xme.net/8c324155.jpg',
       enload: 'https://cdn.discordapp.com/attachments/488810702190936075/720249804281610260/len.jpg',
       overlay: false,
-      idex: 1
+      idex: 1,
+      info
     }),
-    head() {
+    metaInfo() {
       return {
         title: this.info.name,
+
         meta: [
           // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-          { name: this.info.source, content: '( ͡° ͜ʖ ͡°)' },
+          { content: '( ͡° ͜ʖ ͡°)' },
           { property: 'og:image', content: this.info.thumb },
           { property: 'og:image:width', content: '1000' },
           { property: 'og:image:height', content: '1000' }
@@ -94,7 +96,7 @@
       this.coverShow = true
       this.boxReveals = true
       axios.get('https://api.ixil.cc/hina/payload?name=' + encodeURI($nuxt.$route.query['name'])).then(response => (this.info = response.data)).catch(error => console.log(error))
-      console.log(encodeURI($nuxt.$route.query['name']))
+      //console.log(encodeURI($nuxt.$route.query['name']))
       setInterval(() => {
         this.change(true)
       }, 8000)
@@ -114,6 +116,11 @@
         let g = Math.floor(Math.random() * this.info.gliphs.length)
         this.image2 = this.info.gliphs[g]
         if (er) this.image = this.info.thumb
+      },
+      GetImage() {
+        let limage = ''
+        axios.get('https://api.ixil.cc/hina/payload?name=' + encodeURI($nuxt.$route.query['name'])).then(response => (limage = response.data.thumb)).catch(error => console.log(error))
+        return limage
       }
     }
   }
