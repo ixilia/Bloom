@@ -78,7 +78,7 @@
       idex: 1,
       info
     }),
-    metaInfo() {
+    head() {
       return {
         title: this.info.name,
 
