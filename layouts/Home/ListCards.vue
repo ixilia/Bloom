@@ -5,7 +5,7 @@
         <v-row>
           <div id="Duv" v-for="(da, n) in datas" :key="n" class="ma-6"
                v-ripple>
-            <cards :image="da.thumb" :url="da.name"/>
+            <cards :image="da.thumb" :url="da.iid"/>
           </div>
         </v-row>
         <v-row align-content="center" style="width: 100vw; padding-bottom: 10rem;">
