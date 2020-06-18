@@ -128,7 +128,7 @@
   $primary-color: #2196F3;
 
   #body {
-    margin-top: 10.2rem;
+    margin-top: 40vw;
     padding-top: 0;
     position: relative;
 
