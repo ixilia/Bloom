@@ -12,7 +12,8 @@
       <div class="album-header-meta">
         <div class="album-header-image box-reveal-model">
           <span class="box" :class="{ slideLeft: boxReveals }"></span>
-          <img class="elevation-5" :class="{ show: boxReveals }" :src="image">
+          <v-img class="elevation-5" :class="{ show: boxReveals }" :src="info.thumb"
+                 lazy-src="https://cdn.discordapp.com/attachments/511430724553801729/717380658942705724/FB_IMG_15910454082683811.jpg"/>
         </div>
 
         <div class="album-header-info">
@@ -71,7 +72,7 @@
       idex: 1
     }),
     asyncData({ params }) {
-      return axios.get(`https://api.ixil.cc/hina/payload?name=${encodeURI(params.id)}`)
+      return axios.get(`https://api.ixil.cc/hina/payload?id=${params.id}`)
         .then((res) => {
           return { info: res.data }
         })
@@ -102,8 +103,6 @@
       process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
       this.coverShow = true
       this.boxReveals = true
-      //axios.get('https://api.ixil.cc/hina/payload?name=' + encodeURI($nuxt.$route.query['name'])).then(response => (this.info = response.data)).catch(error => console.log(error))
-      //console.log(encodeURI($nuxt.$route.query['name']))
       setInterval(() => {
         this.change(true)
       }, 8000)
@@ -117,11 +116,6 @@
         let g = Math.floor(Math.random() * this.info.gliphs.length)
         this.image2 = this.info.gliphs[g]
         if (er) this.image = this.info.thumb
-      },
-      GetImage() {
-        let limage = ''
-        axios.get('https://api.ixil.cc/hina/payload?name=' + encodeURI($nuxt.$route.query['name'])).then(response => (limage = response.data.thumb)).catch(error => console.log(error))
-        return limage
       }
     }
   }

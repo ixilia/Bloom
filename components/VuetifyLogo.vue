@@ -1,13 +1,13 @@
 <template>
   <img
-    class="VuetifyLogo"
-    alt="Vuetify Logo"
-    src="/vuetify-logo.svg"
+    class="HinaLogo"
+    alt="Hina Logo"
+    src="https://cdn.discordapp.com/attachments/488810702190936075/721268079451177050/logo.png"
   >
 </template>
 
 <style>
-  .VuetifyLogo {
+  .HinaLogo {
     height: 180px;
     width: 180px;
     transform: rotateY(560deg);
