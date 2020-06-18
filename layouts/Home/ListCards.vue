@@ -99,7 +99,6 @@
       GetSr() {
         this.scrold = 1
         this.busy = true
-        console.log(this.sdata)
         axios.get('https://localhost:5001/hina/search?op=50&query=' + encodeURI(this.sdata)).then(response => (this.datas = response.data)).catch(error => console.log(error))
         //this.datas = this.datas.concat(this.datae)
         //this.datas.length = 0;
