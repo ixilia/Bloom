@@ -87,7 +87,7 @@
       GetScrol() {
         this.busy = true
         if (this.sdata !== '') {
-          axios.get('https://localhost:5001/hina/search?query=' + encodeURI(this.sdata) + '&op=50&page=' + this.scrold).then(response => (this.datae = response.data)).catch(error => console.log(error))
+          axios.get('https://api.ixil.cc/hina/search?query=' + encodeURI(this.sdata) + '&op=50&page=' + this.scrold).then(response => (this.datae = response.data)).catch(error => console.log(error))
         } else {
           axios.get('https://api.ixil.cc/hina?op=50&page=' + this.scrold).then(response => (this.datae = response.data)).catch(error => console.log(error))
         }
@@ -99,7 +99,7 @@
       GetSr() {
         this.scrold = 1
         this.busy = true
-        axios.get('https://localhost:5001/hina/search?op=50&query=' + encodeURI(this.sdata)).then(response => (this.datas = response.data)).catch(error => console.log(error))
+        axios.get('https://api.ixil.cc/hina/search?op=50&query=' + encodeURI(this.sdata)).then(response => (this.datas = response.data)).catch(error => console.log(error))
         //this.datas = this.datas.concat(this.datae)
         //this.datas.length = 0;
         //Array.prototype.push.apply(this.datas, this.datae)
