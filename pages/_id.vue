@@ -128,10 +128,9 @@
   $primary-color: #2196F3;
 
   #body {
-    margin-top: 40vw;
+    margin-top: 40rem;
     padding-top: 0;
-    position: relative;
-
+    position: center;
   }
 
   .ctorlmp {

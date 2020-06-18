@@ -1,7 +1,7 @@
 <template>
   <div class="Container">
     <carousel/>
-    <ListCards :datas="datar"/>
+    <ListCards :datau="datar"/>
   </div>
 </template>
 
