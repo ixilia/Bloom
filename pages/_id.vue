@@ -39,16 +39,18 @@
       </div>
     </header>
 
-    <v-responsive>
-      <v-container>
-        <v-row>
-          <div id="Duv" v-for="(da, n) in info.gliphs" :key="n" class="ma-6"
-               v-ripple>
-            <v-img :lazy-src="enload" :src="da" width="20rem" height="25rem" v-on:click="Overy(n)"/>
-          </div>
-        </v-row>
-      </v-container>
-    </v-responsive>
+    <div id="body">
+      <v-responsive>
+        <v-container>
+          <v-row>
+            <div id="Duv" v-for="(da, n) in info.gliphs" :key="n" class="ma-6"
+                 v-ripple>
+              <v-img class="ctorlmp" :lazy-src="enload" :src="da" width="20rem" height="25rem" v-on:click="Overy(n)"/>
+            </div>
+          </v-row>
+        </v-container>
+      </v-responsive>
+    </div>
 
     <VGallery :images="info.gliphs" :index="idex"></VGallery>
   </div>
@@ -125,12 +127,34 @@
   $link-color: #4FC3F7;
   $primary-color: #2196F3;
 
+  #body {
+    margin-top: 10.2rem;
+    padding-top: 0;
+    position: relative;
+
+  }
+
+  .ctorlmp {
+    box-shadow: -1px 3px 12px 2px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: -1px 3px 12px 2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 3px 12px 2px rgba(0, 0, 0, 0.75);
+    transition: all 200ms ease 200ms;
+    -webkit-transition: all 200ms ease 200ms;
+  }
+
+  .ctorlmp:hover {
+    box-shadow: -1px 8px 19px 2px rgba(0, 0, 0, 0.87);
+    -webkit-box-shadow: -1px 8px 19px 2px rgba(0, 0, 0, 0.87);
+    -moz-box-shadow: -1px 8px 19px 2px rgba(0, 0, 0, 0.87);
+    transform: translateY(-0.5px);
+  }
+
   .album-header {
     background: rgb(150, 150, 150);
     height: 95vh;
     width: 100vw;
     overflow: hidden;
-    position: relative;
+    position: absolute;
     top: -4rem;
     display: flex;
     flex-direction: column;
@@ -173,7 +197,7 @@
       height: 100px;
       z-index: 3;
       background: rgb(0, 0, 0);
-      background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(5, 5, 10, 0.16039919385723034) 51%, rgba(0, 212, 255, 0) 100%);
+      background: linear-gradient(0deg, rgba(18, 18, 18, 1) 0%, rgba(18, 18, 18, 0.16039919385723034) 51%, rgba(18, 18, 18, 0) 100%);
     }
 
     .album-header-meta {

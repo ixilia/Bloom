@@ -1,7 +1,7 @@
 <template>
   <div class="Container">
     <carousel/>
-    <ListCards/>
+    <ListCards :datas="datar"/>
   </div>
 </template>
 
@@ -11,6 +11,7 @@
   import Head from '~/layouts/Global/Head'
   import Carousel from '~/layouts/Home/carousel'
   import ListCards from '~/layouts/Home/ListCards'
+  import axios from 'axios'
 
   export default {
     components: {
@@ -19,6 +20,12 @@
       Head,
       Logo,
       VuetifyLogo
+    },
+    asyncData({ params }) {
+      return axios.get('https://api.ixil.cc/hina?op=50')
+        .then((res) => {
+          return { datar: res.data }
+        })
     }
   }
 </script>

@@ -30,7 +30,6 @@
   import Cards from '~/layouts/Home/cards'
   import axios from 'axios'
 
-  let datas = []
   let datae = []
   export default {
     name: 'ListCards',
@@ -39,17 +38,19 @@
       page: {
         type: String,
         default: ''
+      },
+      datas: {
+        type: Array,
+        default: []
       }
     },
     data: () => ({
       image: 'https://cdn.discordapp.com/attachments/488810702190936075/698503798905110579/45.png',
-      datas,
       scrold: 1,
       busy: false
     }),
+
     mounted() {
-      axios.get('https://api.ixil.cc/hina?op=50').then(response => (this.datas = response.data)).catch(error => console.log(error))
-      this.GetScrol()
     },
     methods: {
       onScroll({ target: { scrollTop, clientHeight, scrollHeight } }) {
