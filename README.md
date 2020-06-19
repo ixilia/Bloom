@@ -2,6 +2,15 @@
 
 > Hina APP
 
+#  A advert free prono/idol gallery sourced from the 30+ Websites (More incoming) 
+
+
+## Please contribute to the Repository in fixing and adding features as I have 0 knowledge on Web Development 
+
+
+##### Database API is public and anyone can use it free of charge 
+
+
 ## Build Setup
 
 ```bash
