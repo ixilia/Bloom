@@ -6,7 +6,7 @@
 
 ## Please contribute to the Repository in fixing and adding features as I have 0 knowledge on Web Development 
 
-# Supported Sources: 
+# 55 - Supported Sources: 
 | Name                  |  Idol name  | Tags  |  Hina Server (Image) |
 | --------------------- |:-----------:| -----:|  -------------------:| 
 | babesandgirls.com     |   ✓         |   ✓  |           full  ✓    |
@@ -31,6 +31,39 @@
 | silkengirl.net        |   ✓         |   ✓  |           full   ✓   |
 | babesinporn.com       |   ✓         |   ✓  |           full   ✓   |
 | pbabes.com            |   ✓         |   ✓  |           full   ✓   |
+| nakedneighbour.com    |   ✘         |   ✓  |           full   ✓   |
+| babeuniversum.com     |   ✘         |   ✘  |           full   ✓   |
+| novoerotica.com       |   ✓         |   ✘  |           full   ✓   |
+| curvyerotic.com       |   ✘         |   ✘  |           full   ✓   |
+| silkengirl.com        |   ✘         |   ✓  |           full   ✓   |
+| babesmachine.com      |   ✘         |   ✘  |           full   ✓   |
+| hqbabes.com           |   ✘         |   ✘  |           Orgin  ✘   |
+| wantedbabes.com       |   ✓         |   ✓  |           full   ✓   |
+| rabbitsfun.com        |   ✓         |   ✓  |           full   ✓   |
+| babepedia.com         |   ✓         |   ✓  |    CF -   Orgin  ✘   |
+| hotstunners.com       |   ✓         |   ✓  |           full   ✓   |
+| 8boobs.com            |   ✓         |   ✓  |           full   ✓   |
+| pleasuregirl.net      |   ✓         |   ✓  |           full   ✓   |
+| chickteases.com       |   ✘         |   ✘  |           full   ✓   |
+| tribute-to.com        |   ✘         |   ✘  |           full   ✓   |
+| grabpussy.com         |   ✓         |   ✓  |           full   ✓   |
+| exgirlfriendmarket.com|   ✘         |   ✘  |           full   ✓   |
+| livejasminbabes.net   |   ✘         |   ✘  |           full   ✓   |
+| mainbabes.com         |   ✓         |   ✓  |           full   ✓   |
+| babesaround.com       |   ✓         |   ✘  |           full   ✓   |
+| vibraporn.com         |   ✘         |   ✓  |           full   ✓   |
+| novostrong.com        |   ✘         |   ✓  |           full   ✓   |
+| nakedbabes.club       |   ✓         |   ✓  |           full   ✓   |
+| babesandbitches.net   |   ✓         |   ✓  |           full   ✓   |
+| fooxybabes.com        |   ✓         |   ✓  |           full   ✓   |
+| redpornblog.com       |   ✓         |   ✘  |           full   ✓   |
+| glam0ur.com           |   ✓         |   ✘  |           full   ✓   |
+| rossoporn.com         |   ✓         |   ✘  |           full   ✓   |
+| nudity911.com         |   ✘         |   ✘  |           full   ✓   |
+| baberoad.com          |   ✘         |   ✘  |           full   ✓   |
+| nudepmates.com        |   ✓         |   ✓  |           full   ✓   |
+| nakedanatomy.com      |   ✓         |   ✘  |           full   ✓   |
+| fooxybabes.com        |   ✓         |   ✓  |           full   ✓   |
 
 
 ##### Database API is public and anyone can use it free of charge 
