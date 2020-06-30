@@ -8,7 +8,17 @@ module.exports = {
   head: {
     titleTemplate: '%s - ' + process.env.npm_package_name,
     meta: [
-      { charset: 'utf-8' }
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'robots', content: 'index, follow' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Advert Free Porno/Idol Image Gallery sourced from 50+ websites'
+      }
+    ],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   /*
