@@ -6,6 +6,17 @@
 
 ## Please contribute to the Repository in fixing and adding features as I have 0 knowledge on Web Development 
 
+# API: 
+
+  Base:  https://api.ixil.cc
+  Sub: /hina
+
+  ##### Routes
+  /        -    Get Scroll-able data    Params: page (int)  |  op  (int)   [Objects per page]     
+  /search  -    Search   paramas:   query (text) |  page (int)  |   op  (int) [Objects per page]
+  /payload -    Get Album  by ID   params:  id (string) 
+  
+
 # 55 - Supported Sources: 
 | Name                  |  Idol name  | Tags  |  Hina Server (Image) |
 | --------------------- |:-----------:| -----:|  -------------------:| 
