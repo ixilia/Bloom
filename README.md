@@ -8,13 +8,15 @@
 
 # API: 
 
-  Base:  https://api.ixil.cc
-  Sub: /hina
+  ### Base:  https://api.ixil.cc
+  ### Sub: /hina
 
-  ##### Routes
-  /        -    Get Scroll-able data    Params: page (int)  |  op  (int)   [Objects per page]     
-  /search  -    Search   paramas:   query (text) |  page (int)  |   op  (int) [Objects per page]
-  /payload -    Get Album  by ID   params:  id (string) 
+  ## Routes
+  ###### /        -    Get Scroll-able data    Params: page (int)  |  op  (int)   [Objects per page]     
+  
+  ###### /search  -    Search   paramas:   query (text) |  page (int)  |   op  (int) [Objects per page]
+  
+  ###### /payload -    Get Album  by ID   params:  id (string) 
   
 
 # 55 - Supported Sources: 
