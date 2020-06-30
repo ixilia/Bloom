@@ -84,6 +84,9 @@
         title: this.info.name,
 
         meta: [
+          { property: 'title', content: this.info.name },
+          { name: 'description', content: this.info.edata },
+
           // facebook
           { property: 'og:title', content: this.info.name },
           {
