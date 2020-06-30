@@ -1,333 +1,123 @@
 <template>
-  <div>
-    <header class="album-header">
-      <div class="album-header-background-slope"/>
-      <img
-        class="album-header-cover"
-        :class="{ coverShow: coverShow }"
-        :src="image2"
-      >
-      <div class="album-header-overlay" :class="{ coverShow: coverShow }"></div>
+  <v-col>
+    <ListCards :datau="datar"/>
+    <div class="text-center">
+      <v-col>
+        <nuxt-link :prefetch="true"
+                   :to=" query !== '' ? '/'+ (parseInt(page)- 1) + '?q='+ query : '/'+ (parseInt(page)+ 1) "
+                   style="text-decoration: none">
+          <v-btn>
+            <v-icon>mdi-chevron-left</v-icon>
+          </v-btn>
+        </nuxt-link>
+        <v-dialog
+          v-model="dialog"
+          width="500"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              color="red lighten-2"
+              dark
+              v-bind="attrs"
+              v-on="on"
+            >
+              <h2>{{page}}</h2>
+            </v-btn>
+          </template>
 
-      <div class="album-header-meta">
-        <div class="album-header-image box-reveal-model">
-          <span class="box" :class="{ slideLeft: boxReveals }"></span>
-          <v-img class="elevation-5" :class="{ show: boxReveals }" :src="info.thumb"
-                 lazy-src="https://cdn.discordapp.com/attachments/511430724553801729/717380658942705724/FB_IMG_15910454082683811.jpg"/>
-        </div>
+          <v-card color="">
+            <v-card-title
+              class="headline grey lighten-2"
+              primary-title
+              style="color: black"
+            >
+              Select Page
+            </v-card-title>
 
-        <div class="album-header-info">
-          <h1>
-            <div class="box-reveal-model">
-              <span class="box" :class="{ slideRight: boxReveals}"></span>
-              <span
-                class="box-reveal-model-content"
-                :class="{ show: boxReveals }"
-              >{{info.name}}</span>
-            </div>
-          </h1>
-          <h2>
-            <div class="box-reveal-model">
-              <span class="box" :class="{ slideRight: boxReveals}"></span>
-              <span
-                class="box-reveal-model-content"
-                :class="{ show: boxReveals }"
-              >{{info.source}}</span>
-            </div>
-          </h2>
-        </div>
-      </div>
-    </header>
+            <v-row style="width: 60%; padding-left: 40%">
+              <v-text-field style="width: 50%" :rules="rules" v-model="text"></v-text-field>
+            </v-row>
 
-    <div id="body">
-      <v-responsive>
-        <v-container>
-          <v-row>
-            <div id="Duv" v-for="(da, n) in info.gliphs" :key="n" class="ma-6"
-                 v-ripple>
-              <v-img class="ctorlmp" :lazy-src="enload" :src="da" width="20rem" height="25rem" v-on:click="Overy(n)"/>
-            </div>
-          </v-row>
-        </v-container>
-      </v-responsive>
+            <v-divider></v-divider>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <nuxt-link :prefetch="true"
+                         :to=" query !== '' ? '/'+ (parseInt(text)) + '?q='+ query : '/'+ (parseInt(text)) "
+                         style="text-decoration: none">
+                <v-btn
+                  color="primary"
+                  text
+                  @click="dialog = false"
+                >
+                  Let's go!
+                </v-btn>
+              </nuxt-link>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <nuxt-link :prefetch="true"
+                   :to=" query !== '' ? '/'+ (parseInt(page)+ 1) + '?q='+ query : '/'+ (parseInt(page)+ 1)   "
+                   style="text-decoration: none">
+          <v-btn>
+            <v-icon>mdi-chevron-right</v-icon>
+          </v-btn>
+        </nuxt-link>
+      </v-col>
     </div>
-
-    <VGallery :images="info.gliphs" :index="idex"></VGallery>
-  </div>
+  </v-col>
 </template>
 
 <script>
+  import Logo from '~/components/Logo.vue'
+  import VuetifyLogo from '~/components/VuetifyLogo.vue'
+  import Head from '~/layouts/Global/Head'
+  import Carousel from '~/layouts/Home/carousel'
+  import ListCards from '~/layouts/Home/ListCards'
   import axios from 'axios'
 
   export default {
-    name: 'album',
-    props: {},
-
-    data: () => ({
-      coverShow: false,
-      boxReveals: false,
-      //info: [],
-      name: 'Dillion Harper',
-      image2: 'https://c.xme.net/8c324155.jpg',
-      enload: 'https://cdn.discordapp.com/attachments/488810702190936075/720249804281610260/len.jpg',
-      overlay: false,
-      idex: 1
-    }),
-    asyncData({ params }) {
-      return axios.get(`https://api.ixil.cc/hina/payload?id=${params.id}`)
-        .then((res) => {
-          return { info: res.data }
-        })
+    components: {
+      ListCards,
+      Carousel,
+      Head,
+      Logo,
+      VuetifyLogo
     },
-    head() {
-      return {
-        title: this.info.name,
-
-        meta: [
-          // facebook
-          { property: 'og:title', content: this.info.name },
-          {
-            property: 'og:image',
-            content: this.info.thumb
-          },
-          // google
-          { itemprop: 'image', content: this.info.thumb },
-          { itemprop: 'name', content: this.info.name },
-          // twitter
-          { name: 'twitter:card', content: 'summary_large_image' },
-          { name: 'twitter:title', content: this.info.name },
-          { name: 'twitter:image', content: this.info.thumb }
-
-        ]
+    data: () => ({
+      text: '',
+      rules: [
+        value => !!value || 'Required.',
+        value => {
+          const pattern = /^[0-9]*$/
+          return pattern.test(value) || 'Invalid page number.'
+        }
+      ]
+    }),
+    asyncData({ params, query }) {
+      if (query.q === undefined) {
+        return axios.get(`https://api.ixil.cc/hina?op=50&page=${params.id === undefined ? 1 : params.id}`)
+          .then((res) => {
+            return { datar: res.data, page: params.id, query: '' }
+          })
+      } else {
+        return axios.get(`https://api.ixil.cc/hina/search?op=50&page=${params.id === undefined ? 1 : params.id}&query=${encodeURI(query.q)}`)
+          .then((res) => {
+            return { datar: res.data, page: params.id, query: encodeURI(query.q) }
+          })
       }
     },
     mounted() {
-      process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
-      this.coverShow = true
-      this.boxReveals = true
-      setInterval(() => {
-        this.change(true)
-      }, 8000)
-    },
-    methods: {
-      Overy(e) {
-        this.overlay = !this.overlay
-        this.idex = e
-      },
-      change(er) {
-        let g = Math.floor(Math.random() * this.info.gliphs.length)
-        this.image2 = this.info.gliphs[g]
-        if (er) this.image = this.info.thumb
-      }
     }
   }
 </script>
 
-<style scoped lang="scss">
-  $link-color: #4FC3F7;
-  $primary-color: #2196F3;
+<style>
 
-  #body {
-    margin-top: 40rem;
-    padding-top: 0;
-    position: center;
-  }
-
-  .ctorlmp {
-    box-shadow: -1px 3px 12px 2px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: -1px 3px 12px 2px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: -1px 3px 12px 2px rgba(0, 0, 0, 0.75);
-    transition: all 200ms ease 200ms;
-    -webkit-transition: all 200ms ease 200ms;
-  }
-
-  .ctorlmp:hover {
-    box-shadow: -1px 8px 19px 2px rgba(0, 0, 0, 0.87);
-    -webkit-box-shadow: -1px 8px 19px 2px rgba(0, 0, 0, 0.87);
-    -moz-box-shadow: -1px 8px 19px 2px rgba(0, 0, 0, 0.87);
-    transform: translateY(-0.5px);
-  }
-
-  .album-header {
-    background: rgb(150, 150, 150);
-    height: 95vh;
+  .Container {
     width: 100vw;
-    overflow: hidden;
-    position: absolute;
-    top: -4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .album-header-cover {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-      z-index: 1;
-      opacity: 1;
-
-      transform: scale(1.4, 1.4);
-      transition: transform 3s ease-in-out, image 3s ease-in-out;
-
-      &.coverShow {
-        transform: scale(1, 1);
-      }
-    }
-
-    .album-header-overlay {
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      background: rgb(0, 0, 0);
-      opacity: 1;
-      z-index: 2;
-      transition: opacity 1s ease;
-
-      &.coverShow {
-        opacity: .7;
-      }
-    }
-
-    .album-header-background-slope {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 100px;
-      z-index: 3;
-      background: rgb(0, 0, 0);
-      background: linear-gradient(0deg, rgba(18, 18, 18, 1) 0%, rgba(18, 18, 18, 0.16039919385723034) 51%, rgba(18, 18, 18, 0) 100%);
-    }
-
-    .album-header-meta {
-      height: 450px;
-      width: 70vw;
-      position: absolute;
-      bottom: 0;
-
-      z-index: 4;
-
-      display: grid;
-      grid-template-columns: 30% 70%;
-
-      .album-header-image {
-        height: 400px;
-        width: 300px;
-        width: 100%;
-
-        display: flex;
-
-        img {
-          height: inherit;
-          width: inherit;
-          border-radius: 5px;
-          opacity: 0;
-          transition: opacity 0s ease 0.5s;
-
-          &.show {
-            opacity: 1;
-          }
-        }
-      }
-
-      .album-header-info {
-        padding-left: 50px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        h1 {
-          font-size: 4rem;
-          line-height: 1;
-          color: rgb(255, 255, 255);
-        }
-
-        h2 {
-          font-size: 2rem;
-          color: rgb(230, 230, 230);
-        }
-
-        h3 {
-          font-size: 1.5rem;
-          margin-top: 1em;
-          font-weight: normal;
-        }
-      }
-    }
+    height: 2000px;
+    background-color: #000000;
+    transform: translateY(-3%);
   }
-
-
-  $primary-color: #2196F3;
-
-
-  .box-reveal-model {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-
-    .box {
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      background: $primary-color;
-      z-index: 100;
-      transform: translateX(105%);
-
-      &.slideLeft {
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-        animation-name: boxReveal-slideLeft;
-        animation-timing-function: ease;
-      }
-
-      &.slideRight {
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-        animation-name: boxReveal-slideRight;
-        animation-timing-function: ease;
-      }
-    }
-
-    .box-reveal-model-content {
-      opacity: 0;
-      transition: opacity 0s ease 0.5s;
-
-      &.show {
-        opacity: 1;
-      }
-    }
-  }
-
-  @keyframes boxReveal-slideLeft {
-    0% {
-      transform: translateX(105%);
-    }
-    40% {
-      transform: translateX(0%);
-    }
-    60% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-105%);
-    }
-  }
-
-  @keyframes boxReveal-slideRight {
-    0% {
-      transform: translateX(-105%);
-    }
-    40% {
-      transform: translateX(0%);
-    }
-    60% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(105%);
-    }
-  }
-
-
 </style>

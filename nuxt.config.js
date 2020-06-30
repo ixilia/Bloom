@@ -29,7 +29,11 @@ module.exports = {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-171149582-1'
+    }]
+
   ],
   /*
   ** Nuxt.js modules
@@ -37,7 +41,8 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    ['@nuxtjs/google-tag-manager', { id: 'GTM-M5725Q3' }]
   ],
   /*
   ** Axios module configuration
@@ -65,6 +70,14 @@ module.exports = {
       }
     }
   },
+
+  /*
+  ** Router configuration
+  */
+  router: {
+    mode: 'hash'
+  },
+
   /*
   ** Build configuration
   */

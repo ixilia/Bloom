@@ -1,31 +1,19 @@
 <template>
   <v-col>
-    <v-row justify="center" align-content="center">
-      <div style="width: 30rem">
-        <v-text-field
-          prepend-icon="mdi-magnify"
-          single-line
-          dense
-          clearable
-
-          v-model="sdata"
-          :loading="busy"
-          v-on:keyup.enter="GetSr()"
-        ></v-text-field>
-      </div>
-    </v-row>
     <ListCards :datau="datar"/>
     <div class="text-center">
       <v-col>
-        <nuxt-link :to=" '/'+ 1" style="text-decoration: none">
+        <nuxt-link prefetch
+                   :to=" '/?page='+ (this.$route.query.page === undefined ? 1 : parseInt(this.$route.query.page)-1)">
           <v-btn>
             <v-icon>mdi-chevron-left</v-icon>
           </v-btn>
         </nuxt-link>
         <v-btn>
-          <h2>{{this.$route.q === undefined ? 1 : this.$route.q.page}}</h2>
+          <h2>{{this.$route.query.page === undefined ? 1 : this.$route.query.page}}</h2>
         </v-btn>
-        <nuxt-link :to=" '/'+ 2" style="text-decoration: none">
+        <nuxt-link prefetch
+                   :to=" '/?page='+ (this.$route.query.page === undefined ? 1 + 1 : parseInt(this.$route.query.page)+ 1)">
           <v-btn>
             <v-icon>mdi-chevron-right</v-icon>
           </v-btn>
@@ -52,22 +40,16 @@
       VuetifyLogo
     },
     data: () => ({
-      page: 0,
-      sdata: '',
-      busy: false
+      page: 0
     }),
-    asyncData({}) {
-      return axios.get(`https://api.ixil.cc/hina?op=50&page=1`)
+    asyncData({ params }) {
+      return axios.get(`https://api.ixil.cc/hina?op=30&page=${params.page === undefined ? 1 : params.page}`)
         .then((res) => {
           return { datar: res.data }
         })
     },
     mounted() {
-    },
-    methods: {
-      GetSr() {
-        this.$router.push({ path: '1', query: { q: this.sdata } })
-      }
+      console.log(this.$route.query.page)
     }
   }
 </script>
