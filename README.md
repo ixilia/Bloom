@@ -1,7 +1,7 @@
 # hina APP
 
-#  A advert free porno/idol gallery sourced from the 30+ Websites (More incoming) 
-####            Gallery website:                     https://app.ixil.cc/
+#  A advert free porno/idol gallery sourced from the 50+ Websites (More incoming) 
+###            Gallery website:                     https://app.ixil.cc/
 
 
 ## Please contribute to the Repository in fixing and adding features as I have 0 knowledge on Web Development 
