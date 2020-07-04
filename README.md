@@ -1,6 +1,6 @@
 # hina APP
 
-#  A advert free porno/idol gallery sourced from the 50+ Websites (More incoming) 
+#  A advert free porn/idol gallery sourced from the 50+ Websites (More incoming) 
 ###            Gallery website:                     https://app.ixil.cc/
 
 
@@ -36,7 +36,7 @@
 | primecurves.com       |   ✘         |   ✓  |           Orgin  ✘   |
 | sexyandfunny.com      |   ✓         |   ✓  |           Orgin  ✘   |
 | primecurves.com       |   ✘         |   ✓  |           Orgin  ✘   |
-| hqsluts.com           |   ✓         |   ✘  |           Orgin  ✘   |
+| hqsluts.com           |   ✓         |   ✘  |           full   ✓   |
 | babeimpact.com        |   ✓         |   ✓  |           full   ✓   |
 | wildfanny.com         |   ✘         |   ✓  |           full   ✓   |
 | nightdreambabe.com    |   ✘         |   ✓  |           full   ✓   |
@@ -50,7 +50,7 @@
 | curvyerotic.com       |   ✘         |   ✘  |           full   ✓   |
 | silkengirl.com        |   ✘         |   ✓  |           full   ✓   |
 | babesmachine.com      |   ✘         |   ✘  |           full   ✓   |
-| hqbabes.com           |   ✘         |   ✘  |           Orgin  ✘   |
+| hqbabes.com           |   ✘         |   ✘  |           full   ✓   |
 | wantedbabes.com       |   ✓         |   ✓  |           full   ✓   |
 | rabbitsfun.com        |   ✓         |   ✓  |           full   ✓   |
 | babepedia.com         |   ✓         |   ✓  |    CF -   Orgin  ✘   |
