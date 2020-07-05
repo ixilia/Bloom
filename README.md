@@ -10,8 +10,9 @@
   Visit the gallery: https://app.ixil.cc/
 </h3>
 
-
-## Please contribute to the Repository in fixing and adding features as I have 0 knowledge on Web Development 
+<h4 align="center">
+  Please contribute to the Repository in fixing and adding features as I have 0 knowledge on Web Development 
+</h4>
 
 <h1 align="center">
   API:
