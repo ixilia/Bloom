@@ -29,12 +29,12 @@
 | cherrynudes.com       |   ✘         |   ✓  |           Orgin  ✘   |
 | foxhq                 |   ✘         |   ✓  |           Partial  ✘ |
 | sensualgirls.org      |   ✘         |   ✓  |           full  ✓    |
-| brdteengal.com        |   ✓         |   ✓  |           Orgin  ✘   |
+| brdteengal.com        |   ✓         |   ✓  |           full   ✓   |
 | hottystop.com         |   ✘         |   ✘  |           Orgin  ✘   |
 | bunnylust.com         |   ✘         |   ✓  |           Orgin  ✘   |
 | sexykittenporn.com    |   ✓         |   ✓  |           full  ✓    |
 | primecurves.com       |   ✘         |   ✓  |           Orgin  ✘   |
-| sexyandfunny.com      |   ✓         |   ✓  |           Orgin  ✘   |
+| sexyandfunny.com      |   ✓         |   ✓  |           full   ✓   |
 | primecurves.com       |   ✘         |   ✓  |           full   ✓   |
 | hqsluts.com           |   ✓         |   ✘  |           full   ✓   |
 | babeimpact.com        |   ✓         |   ✓  |           full   ✓   |
