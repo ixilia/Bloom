@@ -1,25 +1,37 @@
-# hina APP
+<h1 align="center">
+  Hina APP/API
+  
+</h1>
+<h2 align="center">
+  A advert free porn/idol gallery/API sourced from the 50+ Websites (More incoming)
+</h2>
 
-#  A advert free porn/idol gallery/API sourced from the 50+ Websites (More incoming) 
-###            Gallery website:                     https://app.ixil.cc/
+<h3 align="center">
+  Visit the gallery: https://app.ixil.cc/
+</h3>
 
 
 ## Please contribute to the Repository in fixing and adding features as I have 0 knowledge on Web Development 
 
-# API: 
+<h1 align="center">
+  API:
+</h1>
 
   ### Base:  https://api.ixil.cc
   ### Sub: /hina
 
-  ## Routes
+  <h2 align="center">
+   Routes:
+  </h2>
   ###### /        -    Get Scroll-able data    Params: page (int)  |  op  (int)   [Objects per page]     
   
   ###### /search  -    Search   paramas:   query (text) |  page (int)  |   op  (int) [Objects per page]
   
   ###### /payload -    Get Album  by ID   params:  id (string) 
   
-
-# 55 - Supported Sources: 
+<h1 align="center">
+  55 - Supported Sources: 
+</h1>
 | Name                  |  Idol name  | Tags  |  Hina Server (Image) |
 | --------------------- |:-----------:| -----:|  -------------------:| 
 | babesandgirls.com     |   ✓         |   ✓  |           full  ✓    |
