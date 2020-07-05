@@ -35,7 +35,7 @@
 | sexykittenporn.com    |   ✓         |   ✓  |           full  ✓    |
 | primecurves.com       |   ✘         |   ✓  |           Orgin  ✘   |
 | sexyandfunny.com      |   ✓         |   ✓  |           Orgin  ✘   |
-| primecurves.com       |   ✘         |   ✓  |           Orgin  ✘   |
+| primecurves.com       |   ✘         |   ✓  |           full   ✓   |
 | hqsluts.com           |   ✓         |   ✘  |           full   ✓   |
 | babeimpact.com        |   ✓         |   ✓  |           full   ✓   |
 | wildfanny.com         |   ✘         |   ✓  |           full   ✓   |
