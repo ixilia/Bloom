@@ -21,8 +21,10 @@
   API:
 </h1>
 
-  ### Base:  https://api.ixil.cc
-  ### Sub: /hina
+  ## Full Documentation available for [insomnia.rest](https://insomnia.rest)   Download the Export 
+  ### [insomnia v4](https://cdn.discordapp.com/attachments/438412792588926998/730182542711586977/Insomnia_2020-07-08.json)      ||       [HAR - HTTP Archive format](https://cdn.discordapp.com/attachments/438412792588926998/730182542711586977/Insomnia_2020-07-08.json)
+  #### Base:  https://api.ixil.cc
+  #### Sub: /hina
 
   <h2 align="center">
    Routes:
