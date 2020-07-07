@@ -1,6 +1,9 @@
-<p align="center">
-  <img width="460" height="300" href="https://app.ixil.cc" src="https://repository-images.githubusercontent.com/270517085/193a0f80-c07a-11ea-8164-c6cfb5cd92d0">
-</p>
+<a href="https://app.ixil.cc">
+   <p align="center">
+      <img width="460" height="300" src="https://repository-images.githubusercontent.com/270517085/193a0f80-c07a-11ea-8164-c6cfb5cd92d0" />  
+   </p>
+</a>
+
 <h1 align="center">
   Hina APP/API
   
@@ -9,8 +12,8 @@
   A advert free porn/idol gallery/API sourced from the 50+ Websites
 </h2>
 
-<h3 align="center">
-  Visit the gallery: https://app.ixil.cc/
+<h3 align="center"  >
+  <a href="https://app.ixil.cc">Visit the Gallery</a>
 </h3>
 
 <h4 align="center">
