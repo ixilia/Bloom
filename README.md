@@ -6,7 +6,7 @@
   
 </h1>
 <h2 align="center">
-  A advert free porn/idol gallery/API sourced from the 50+ Websites (More incoming)
+  A advert free porn/idol gallery/API sourced from the 50+ Websites
 </h2>
 
 <h3 align="center">
