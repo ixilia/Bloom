@@ -4,10 +4,10 @@
       <v-lazy>
         <v-container fluid>
           <v-row>
-            <div id="Duv" v-for="(da, n) in datas" :key="n" class="ma-6"
+            <div id="Duv" v-for="(da, n) in datas.data" :key="n" class="ma-6"
                  v-ripple>
-              <nuxt-link :to="'/a/'+da.iid">
-                <v-img class="ctorlmps" :src="da.thumb" :url="da.iid"/>
+              <nuxt-link :to="'/a/'+da.id">
+                <v-img class="ctorlmps" :src="da.thumb" :url="da.id"/>
               </nuxt-link>
             </div>
           </v-row>
