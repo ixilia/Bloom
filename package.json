@@ -17,7 +17,7 @@
     "cross-env": "^5.2.0",
     "fastify": "^1.13.3",
     "less": "^3.11.3",
-    "less-loader": "^6.1.0",
+    "less-loader": "^6.2.0",
     "nuxt": "^2.0.0",
     "vue-carousel-3d": "https://github.com/Wlada/vue-carousel-3d.git",
     "vue-flip-toolkit": "^1.6.0",
