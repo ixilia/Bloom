@@ -40,7 +40,7 @@
   ###### /payload -    Get Album  by ID   params:  id (string) 
   
 <h1 align="center">
-  55 - Supported Sources: 
+  58 - Supported Sources: 
 </h1>
 
 | Name                  |  Idol name  | Tags  |  Hina Server (Image) |
@@ -100,6 +100,8 @@
 | nudepmates.com        |   ✓         |   ✓  |           full   ✓   |
 | nakedanatomy.com      |   ✓         |   ✘  |           full   ✓   |
 | fooxybabes.com        |   ✓         |   ✓  |           full   ✓   |
+| jjgirls.com           |   ✓         |   ✓  |           full   ✓   |
+| yespornpics.com       |   ✓         |   ✓  |           full   ✓   |
 
 
 ##### Database API is public and anyone can use it free of charge 
