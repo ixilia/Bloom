@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/vuetify": "^1.0.0",
     "@nuxtjs/google-tag-manager": "^2.3.2",
     "@nuxtjs/now-builder": "^0.17.3",
     "@nuxtjs/pwa": "^3.0.0-0",
