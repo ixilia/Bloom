@@ -57,7 +57,7 @@
       busy: false
     }),
     asyncData({}) {
-      return axios.get(`https://api.ixil.cc/hina?op=50&page=1`)
+      return axios.get(`https://api.ixil.cc/bloom/hina?op=50&page=1`)
         .then((res) => {
           return { datar: res.data }
         })

@@ -1,48 +1,12 @@
-<a href="https://app.ixil.cc">
-   <p align="center">
-      <img width="460" height="300" src="https://repository-images.githubusercontent.com/270517085/193a0f80-c07a-11ea-8164-c6cfb5cd92d0" />  
-   </p>
-</a>
+# hina APP
 
-<h1 align="center">
-  Hina APP/API
-  
-</h1>
-<h2 align="center">
-  A advert free porn/idol gallery/API sourced from the 50+ Websites
-</h2>
+#  A advert free porno/idol gallery sourced from the 30+ Websites (More incoming) 
+####            Gallery website:                     https://app.ixil.cc/
 
-<h3 align="center"  >
-  <a href="https://app.ixil.cc">Visit the Gallery</a>
-</h3>
 
-<h4 align="center">
-  Please contribute to the Repository in fixing and adding features as I have 0 knowledge on Web Development 
-</h4>
+## Please contribute to the Repository in fixing and adding features as I have 0 knowledge on Web Development 
 
-<h1 align="center">
-  API:
-</h1>
-
-  ## Full Documentation available for [insomnia.rest](https://insomnia.rest)   Download the Export 
-  ### [insomnia v4](https://cdn.discordapp.com/attachments/438412792588926998/739701157009555496/Insomnia_2020-08-03.json)      ||       [HAR - HTTP Archive format](https://cdn.discordapp.com/attachments/438412792588926998/739701275138195466/Insomnia_2020-08-03.har)
-  #### Base:  https://api.ixil.cc
-  #### Sub: /hina
-
-  <h2 align="center">
-   Routes:
-  </h2>
-  
-  ###### /        -    Get Scroll-able data    Params: page (int)  |  op  (int)   [Objects per page]     
-  
-  ###### /search  -    Search   paramas:   query (text) |  page (int)  |   op  (int) [Objects per page]
-  
-  ###### /payload -    Get Album  by ID   params:  id (string) 
-  
-<h1 align="center">
-  58 - Supported Sources: 
-</h1>
-
+# 55 - Supported Sources: 
 | Name                  |  Idol name  | Tags  |  Hina Server (Image) |
 | --------------------- |:-----------:| -----:|  -------------------:| 
 | babesandgirls.com     |   ✓         |   ✓  |           full  ✓    |
@@ -52,14 +16,14 @@
 | cherrynudes.com       |   ✘         |   ✓  |           Orgin  ✘   |
 | foxhq                 |   ✘         |   ✓  |           Partial  ✘ |
 | sensualgirls.org      |   ✘         |   ✓  |           full  ✓    |
-| brdteengal.com        |   ✓         |   ✓  |           full   ✓   |
+| brdteengal.com        |   ✓         |   ✓  |           Orgin  ✘   |
 | hottystop.com         |   ✘         |   ✘  |           Orgin  ✘   |
 | bunnylust.com         |   ✘         |   ✓  |           Orgin  ✘   |
 | sexykittenporn.com    |   ✓         |   ✓  |           full  ✓    |
 | primecurves.com       |   ✘         |   ✓  |           Orgin  ✘   |
-| sexyandfunny.com      |   ✓         |   ✓  |           full   ✓   |
-| primecurves.com       |   ✘         |   ✓  |           full   ✓   |
-| hqsluts.com           |   ✓         |   ✘  |           full   ✓   |
+| sexyandfunny.com      |   ✓         |   ✓  |           Orgin  ✘   |
+| primecurves.com       |   ✘         |   ✓  |           Orgin  ✘   |
+| hqsluts.com           |   ✓         |   ✘  |           Orgin  ✘   |
 | babeimpact.com        |   ✓         |   ✓  |           full   ✓   |
 | wildfanny.com         |   ✘         |   ✓  |           full   ✓   |
 | nightdreambabe.com    |   ✘         |   ✓  |           full   ✓   |
@@ -73,7 +37,7 @@
 | curvyerotic.com       |   ✘         |   ✘  |           full   ✓   |
 | silkengirl.com        |   ✘         |   ✓  |           full   ✓   |
 | babesmachine.com      |   ✘         |   ✘  |           full   ✓   |
-| hqbabes.com           |   ✘         |   ✘  |           full   ✓   |
+| hqbabes.com           |   ✘         |   ✘  |           Orgin  ✘   |
 | wantedbabes.com       |   ✓         |   ✓  |           full   ✓   |
 | rabbitsfun.com        |   ✓         |   ✓  |           full   ✓   |
 | babepedia.com         |   ✓         |   ✓  |    CF -   Orgin  ✘   |
@@ -100,8 +64,6 @@
 | nudepmates.com        |   ✓         |   ✓  |           full   ✓   |
 | nakedanatomy.com      |   ✓         |   ✘  |           full   ✓   |
 | fooxybabes.com        |   ✓         |   ✓  |           full   ✓   |
-| jjgirls.com           |   ✓         |   ✓  |           full   ✓   |
-| yespornpics.com       |   ✓         |   ✓  |           full   ✓   |
 
 
 ##### Database API is public and anyone can use it free of charge 

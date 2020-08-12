@@ -96,12 +96,12 @@
     }),
     asyncData({ params, query }) {
       if (query.q === undefined) {
-        return axios.get(`https://api.ixil.cc/hina?op=50&page=${params.id === undefined ? 1 : params.id}`)
+        return axios.get(`https://api.ixil.cc/bloom/hina?op=50&page=${params.id === undefined ? 1 : params.id}`)
           .then((res) => {
             return { datar: res.data, page: params.id, query: '' }
           })
       } else {
-        return axios.get(`https://api.ixil.cc/hina/search?op=50&page=${params.id === undefined ? 1 : params.id}&query=${encodeURI(query.q)}`)
+        return axios.get(`https://api.ixil.cc/bloom/hina/search?op=50&page=${params.id === undefined ? 1 : params.id}&query=${encodeURI(query.q)}`)
           .then((res) => {
             return { datar: res.data, page: params.id, query: encodeURI(query.q) }
           })

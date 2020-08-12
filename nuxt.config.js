@@ -84,9 +84,9 @@ module.exports = {
   /*
   ** Router configuration
   */
-  //router: {
-  //  mode: 'hash'
-  //},
+  router: {
+    mode: 'hash'
+  },
 
   /*
   ** Build configuration
