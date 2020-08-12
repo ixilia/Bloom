@@ -16,10 +16,6 @@
   <a href="https://app.ixil.cc">Visit the Gallery</a>
 </h3>
 
-<h3 align="center"  >
-  <a href="https://discord.gg/TR7BS5z">Join Discord Server</a>
-</h3>
-
 <h4 align="center">
   Please contribute to the Repository in fixing and adding features as I have 0 knowledge on Web Development 
 </h4>
