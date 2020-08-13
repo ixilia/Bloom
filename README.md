@@ -27,21 +27,30 @@
 <h1 align="center">
   API:
 </h1>
-
-  ## Full Documentation available for [insomnia.rest](https://insomnia.rest)   Download the Export 
-  ### [insomnia v4](https://cdn.discordapp.com/attachments/438412792588926998/739701157009555496/Insomnia_2020-08-03.json)      ||       [HAR - HTTP Archive format](https://cdn.discordapp.com/attachments/438412792588926998/739701275138195466/Insomnia_2020-08-03.har)
-  #### Base:  https://api.ixil.cc
-  #### Sub: /hina
-
   <h2 align="center">
-   Routes:
+  <a href="https://app.swaggerhub.com/apis-docs/assintates/bloom/1.0#/">Swagger Documentaion</a>   
   </h2>
+  <h1>
+    SDKs
+  </h1>
   
-  ###### /        -    Get Scroll-able data    Params: page (int)  |  op  (int)   [Objects per page]     
-  
-  ###### /search  -    Search   paramas:   query (text) |  page (int)  |   op  (int) [Objects per page]
-  
-  ###### /payload -    Get Album  by ID   params:  id (string) 
+| Framework              |  Version    | Download| 
+| :---------------------:|:-----------:| :-------:| 
+| Android - Java         |   1.0       |   [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743376504175460352/android-client-generated.zip)      |       
+| Kotlin                 |   1.0       |   [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743376972939526204/kotlin-client-generated.zip)         |     
+| Python                 |   1.0       |   [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743377219409412196/python-client-generated.zip)         |   
+| PhP                    |   1.0       |   [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743377521445437440/php-client-generated.zip)          |      
+| CSharp (.Net)          |   1.0       |   [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743377846910713966/csharp-client-generated.zip)         |    
+| CSharp (.Net Core 2.1) |   1.0       |   [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743378305755119646/csharp-dotnet2-client-generated.zip) |  
+| JavaScript             |   1.0       |   [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743379075669950474/javascript-client-generated.zip)     | 
+| C++  (CPPRest)         |   1.0       |   [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743378881381400624/cpprest-client-generated.zip)        | 
+| Dart                   |   1.0       |   [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743379333535498281/dart-client-generated.zip)           | 
+| Java                   |   1.0       |   [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743379634061705236/java-client-generated.zip)           | 
+| TypeScript (fetch)   |   1.0       |   [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743379918049640468/typescript-fetch-client-generated.zip) | 
+| TypeScript (Node)    |   1.0       |   [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743380254139088936/typescript-node-client-generated.zip)  | 
+| Swift                |   1.0       |   [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743380795854422066/swift-client-generated.zip)            | 
+| Swift 5              |   1.0       | [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743381030894960710/swift5-client-generated.zip)             |
+| Ruby                   |   1.0       | [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743380481646788668/ruby-client-generated.zip)             |
   
 <h1 align="center">
   58 - Supported Sources: 
