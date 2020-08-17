@@ -9,15 +9,18 @@ on:
       - master
 
 jobs:
-  build-and-test:
+  install:
     runs-on: ubuntu-latest
-    name: Build and test
+    name: setup
     steps:
       - uses: actions/checkout@v1      
-      - name: install  
       - uses: bahmutov/npm-install@v1
       - run: yarn
-      - name: Build
+  Build:
+    runs-on: ubuntu-latest
+    name: Build
+    needs: install
+    steps:
+      - uses: actions/checkout@v1      
       - uses: bahmutov/npm-install@v1
       - run: yarn build
-    
