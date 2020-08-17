@@ -8,6 +8,9 @@
   Hina APP/API
   
 </h1>
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fixilia%2Fhina.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2Fixilia%2Fhina?ref=badge_small) ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m785771901-f2303c39f2f953cb089f79de?label=Web%20APP%20Uptime&style=for-the-badge) ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m785740725-973cd330b847899dc0fbd6d2?label=API%20Uptime&style=for-the-badge) ![Discord](https://img.shields.io/discord/740741623389880380?color=%23005cb2&label=Discord&style=for-the-badge) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ixilia/hina/test?style=for-the-badge)
+
 <h2 align="center">
   A advert free porn/idol gallery/API sourced from the 50+ Websites
 </h2>
