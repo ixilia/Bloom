@@ -121,6 +121,8 @@
 
 
 ## Build Setup
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fixilia%2Fhina.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fixilia%2Fhina?ref=badge_shield)
+
 
 ```bash
 # install dependencies
@@ -138,3 +140,7 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fixilia%2Fhina.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fixilia%2Fhina?ref=badge_large)
