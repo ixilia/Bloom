@@ -13,7 +13,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/google-tag-manager": "^2.3.2",
-    "@nuxtjs/pwa": "^3.0.0-0",
+    "@nuxtjs/pwa": "^3.0.1",
     "cross-env": "^5.2.0",
     "fastify": "^1.13.3",
     "less": "^3.11.3",
