@@ -33,6 +33,6 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "nodemon": "^1.18.9",
-    "prettier": "^1.19.1"
+    "prettier": "^2.1.1"
   }
 }
