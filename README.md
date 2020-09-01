@@ -20,7 +20,11 @@
 </h3>
 
 <h3 align="center"  >
-  <a href="https://discord.gg/TR7BS5z">Join Discord Server</a>
+  <a href="https://discord.gg/TR7BS5z"> Join Discord Server</a>
+</h3>
+
+<h3 align="center"  >
+  <a href="https://patreon.com/bloom_services"> :exclamation: Donate to keep the service alive for everyone :exclamation:</a>
 </h3>
 
 <h4 align="center">
