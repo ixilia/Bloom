@@ -20,6 +20,10 @@
 </h3>
 
 <h3 align="center"  >
+  <a href="https://github.com/RobbWatershed/GalleryCherry">Download the mobile app</a>
+</h3>
+
+<h3 align="center"  >
   <a href="https://discord.gg/TR7BS5z"> Join Discord Server</a>
 </h3>
 
