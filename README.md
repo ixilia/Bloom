@@ -69,7 +69,7 @@
 
 | Name                  |  Idol name  | Tags  |  Hina Server (Image) |
 | --------------------- |:-----------:| -----:|  -------------------:| 
-| www.jkforum.net       |   ✘         |   ✓  |           full  ✘    |
+| jkforum.net           |   ✘         |   ✓  |           full  ✘    |
 | babesandgirls.com     |   ✓         |   ✓  |           full  ✓    |
 | girlsofdesire.org     |   ✘         |   ✓  |           full  ✓    |
 | morazzia.com          |   ✘         |   ✓  |           full  ✓    |
