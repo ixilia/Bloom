@@ -14,10 +14,10 @@
         ></v-text-field>
       </div>
     </v-row>
-    <ListCards :datau="datar"/>
+    <ListCards :datau="this.datar"/>
     <div class="text-center">
       <v-col>
-        <nuxt-link :to=" '/'+ 1" style="text-decoration: none">
+        <nuxt-link :to=" '/?page='+ prev" style="text-decoration: none">
           <v-btn>
             <v-icon>mdi-chevron-left</v-icon>
           </v-btn>
@@ -25,7 +25,7 @@
         <v-btn>
           <h2>{{this.$route.q === undefined ? 1 : this.$route.q.page}}</h2>
         </v-btn>
-        <nuxt-link :to=" '/'+ 2" style="text-decoration: none">
+        <nuxt-link :to=" '/?page='+ next" style="text-decoration: none">
           <v-btn>
             <v-icon>mdi-chevron-right</v-icon>
           </v-btn>
@@ -43,6 +43,8 @@
   import ListCards from '~/layouts/Home/ListCards'
   import axios from 'axios'
 
+  let datar;
+  var query;
   export default {
     components: {
       ListCards,
@@ -54,19 +56,47 @@
     data: () => ({
       page: 0,
       sdata: '',
-      busy: false
+      busy: false,
+      next: 0,
+      prev: 0,
+      datar,
+      query
     }),
-    asyncData({}) {
-      return axios.get(`https://api.ixil.cc/hina?op=50&page=1`)
-        .then((res) => {
-          return { datar: res.data }
-        })
-    },
     mounted() {
+
+      this.page = this.$route.params.page === undefined ? 0 : this.$route.params.page
+      this.next = this.page+1
+      this.prev = this.page === 0 ? 0 : this.page-1
+
+      if (this.$route.query.q === undefined) {
+        return axios.get(`https://api.ixil.cc/hina?op=50&page=${this.$route.query.page === undefined ? 0 : this.$route.query.page}`)
+          .then((res) => {
+            this.datar = res.data
+            this.page = this.$route.query.page
+          })
+      } else {
+        return axios.get(`https://api.ixil.cc/hina/search?op=50&page=${this.$route.query.page === undefined ? 0 : this.$route.query.page}&query=${encodeURI(this.$route.query.q)}`)
+          .then((res) => {
+            this.datar = res.data
+            this.page =  this.$route.query.page
+            this.query = encodeURI(this.$route.query.q)
+          })
+      }
     },
+    watch: { '$route'() { this.getNext(); }, },
     methods: {
       GetSr() {
         this.$router.push({ path: '1', query: { q: this.sdata } })
+      },
+      getNext() {
+        if(!this.busy) {
+          this.busy = true;
+          this.$router.go()
+        }
+      },
+      GoAt(paged)
+      {
+        this.$router.push({query: {page: paged}});
       }
     }
   }
