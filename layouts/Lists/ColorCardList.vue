@@ -1,8 +1,9 @@
 <template>
-  <v-row>
+  <v-row style="overflow: hidden;">
 
+    <!-- explicitly disable overflow because of tablets and nav -->
     <!-- Default header  -->
-    <v-row v-if="$vuetify.breakpoint.mdAndUp" justify="space-between" class="pl-1 pr-6 ml-1 mr-6">
+    <v-row v-if="$vuetify.breakpoint.mdAndUp && !parax" justify="space-between" class="pl-1 pr-6 ml-1 mr-6">
       <h1 style="align-self: center" v-text="GetNS(name)"></h1>
       <div class="" style="align-self: center">
         <v-btn color="rgba(0,0,0,0)" depressed>
@@ -19,9 +20,102 @@
         </v-btn>
       </div>
     </v-row>
+    <!-- END Default header  -->
+
+
+    <!-- Default header for parallax tab and pc -->
+    <div v-if="parax && $vuetify.breakpoint.mdAndUp" class="pl-1 pr-6 ml-1 mr-6 pt-12" style="width: 100%">
+      <v-row justify="space-between">
+        <div>
+          <v-col justify="space-between">
+            <v-avatar tile size="10rem"
+                      style="box-shadow:  0 0.9px 2.2px rgba(0, 0, 0, 0.051),  0 2.1px 5.3px rgba(0, 0, 0, 0.073),  0 3.9px 10px rgba(0, 0, 0, 0.09),  0 6.9px 17.9px rgba(0, 0, 0, 0.107),  0 13px 33.4px rgba(0, 0, 0, 0.129),  0 31px 80px rgba(0, 0, 0, 0.18)">
+              <v-img
+                src="https://cdn.discordapp.com/attachments/511430724553801729/758421861305811004/unknown.png"></v-img>
+            </v-avatar>
+            <h1 v-text="`秀人網系列`"/>
+            <div class="" style="align-self: center">
+              <v-btn color="rgba(0,0,0,0)" depressed large>
+                <v-row>
+                  <h1 style="align-self: center; text-transform: none !important;">View</h1>
+                  <v-icon class="pl-1" style="align-self: center">
+                    mdi-arrow-right-circle
+                  </v-icon>
+                </v-row>
+              </v-btn>
+            </div>
+          </v-col>
+        </div>
+        <div>
+          <v-col>
+            <h1
+              style="align-self: center; font-family: 'Playfair Display', serif; font-size: 5rem;  text-shadow: -2px 5px 9px rgba(0,0,0,0.42);"
+              v-text="GetNS(name)"/>
+            <v-row justify="end">
+              <v-btn color="rgba(0,0,0,0)" depressed large>
+                <v-row style="width: inherit" justify="space-around">
+                  <h1 style="align-self: center; text-transform: none !important; ">Visit source</h1>
+                  <v-icon class="pl-3" style="align-self: center">
+                    mdi-arrow-right-circle
+                  </v-icon>
+                </v-row>
+              </v-btn>
+            </v-row>
+          </v-col>
+        </div>
+      </v-row>
+    </div>
+    <!-- END parallax MD  -->
+
+
+    <!-- Default header for parallax Mobile -->
+    <div v-if="parax && $vuetify.breakpoint.smAndDown" class="pl-1 pr-6 ml-1 mr-6" style="width: 100%">
+      <div :style="`transform: translateY(${ $vuetify.breakpoint.xs ? '1.2rem' : '-0.4rem'}) translateX(-0.5rem)`">
+        <v-col justify="space-between">
+          <v-avatar tile size="10rem"
+                    style="box-shadow:  0 0.9px 2.2px rgba(0, 0, 0, 0.051),  0 2.1px 5.3px rgba(0, 0, 0, 0.073),  0 3.9px 10px rgba(0, 0, 0, 0.09),  0 6.9px 17.9px rgba(0, 0, 0, 0.107),  0 13px 33.4px rgba(0, 0, 0, 0.129),  0 31px 80px rgba(0, 0, 0, 0.18)">
+            <v-img
+              src="https://cdn.discordapp.com/attachments/511430724553801729/758421861305811004/unknown.png"></v-img>
+          </v-avatar>
+          <h1 v-text="`秀人網系列`"/>
+          <div class="" style="align-self: center">
+            <v-btn color="rgba(0,0,0,0)" depressed large>
+              <v-row>
+                <h1 style="align-self: center; text-transform: none !important;">View</h1>
+                <v-icon class="pl-1" style="align-self: center">
+                  mdi-arrow-right-circle
+                </v-icon>
+              </v-row>
+            </v-btn>
+          </div>
+        </v-col>
+      </div>
+      <v-row justify="space-around">
+
+        <div>
+          <v-col>
+            <h1
+              style="align-self: center; font-family: 'Playfair Display', serif; font-size: 4rem;  text-shadow: -2px 5px 9px rgba(0,0,0,0.42);"
+              v-text="GetNS(name)"/>
+            <v-row justify="end">
+              <v-btn color="rgba(0,0,0,0)" depressed large>
+                <v-row style="width: inherit" justify="space-around">
+                  <h1 style="align-self: center; text-transform: none !important; ">Visit source</h1>
+                  <v-icon class="pl-3" style="align-self: center">
+                    mdi-arrow-right-circle
+                  </v-icon>
+                </v-row>
+              </v-btn>
+            </v-row>
+          </v-col>
+        </div>
+      </v-row>
+    </div>
+    <!-- END parallax SM -->
+
 
     <!-- Mobile only header  -->
-    <v-btn color="rgba(0,0,0,0)" depressed v-if="$vuetify.breakpoint.smAndDown" width="100%" height="3rem"
+    <v-btn color="rgba(0,0,0,0)" depressed v-if="$vuetify.breakpoint.smAndDown && !parax" width="100%" height="3rem"
            style="border-radius: 0;">
       <v-row justify="space-between" class="pl-0 pr-6 ml-0 mr-6">
         <h2 style="align-self: center" v-text="GetNS(name)"></h2>
@@ -35,13 +129,36 @@
         </div>
       </v-row>
     </v-btn>
+    <!-- END Mobile only header  -->
 
-    <!-- List content  -->
-    <vue-horizontal-list style=" width: 99%" :items="data" :options="options">
-      <template v-slot:default="{item}">
-        <color-card class="pb-5" :shadow="parax" :album="item" style="display: inline-block"/>
-      </template>
-    </vue-horizontal-list>
+
+    <!-- Default List content  -->
+    <section v-if="($vuetify.breakpoint.mdAndUp && parax) || !($vuetify.breakpoint.smAndDown && parax)" style="overflow: hidden; height: 19rem">
+      <vue-horizontal-list style="" :items="data" :options="options">
+        <template v-slot:default="{item}">
+          <color-card class="" :shadow="parax" :album="item" style="" />
+        </template>
+      </vue-horizontal-list>
+    </section>
+    <!-- END Default List content  -->
+
+
+    <!-- List content for parallax mobile  -->
+    <v-responsive v-if="$vuetify.breakpoint.smAndDown && parax" align="center" style="padding-top: 5rem;">
+      <div v-if="$vuetify.breakpoint.smOnly" style="width: 100%;height: 22rem; display: flex; flex-flow: row wrap;">
+        <div v-if="$vuetify.breakpoint.smOnly" v-for="(item, n) in data.slice(0, 6)" :key="n" class="mb-4" style=" flex: 1 0 11%; border-radius: 5px; width: fit-content; height: fit-content;"  >
+          <v-img class=""  height="10rem" width="15rem" style="border-radius: 5px; box-shadow:  0 0.9px 2.2px rgba(0, 0, 0, 0.051),  0 2.1px 5.3px rgba(0, 0, 0, 0.073),  0 3.9px 10px rgba(0, 0, 0, 0.09),  0 6.9px 17.9px rgba(0, 0, 0, 0.107),  0 13px 33.4px rgba(0, 0, 0, 0.129),  0 31px 80px rgba(0, 0, 0, 0.18);" :src="item.thumb" v-ripple>
+          </v-img>
+        </div>
+      </div>
+      <div v-if="$vuetify.breakpoint.xsOnly" style="width: 100%;height: 26rem; display: flex; flex-flow: row wrap;">
+        <div v-for="(item, n) in data.slice(0, 6)" :key="n" class="mb-4" style=" flex: 1 0 11%; border-radius: 5px; width: fit-content; height: fit-content;"  >
+          <v-img class=""  height="7rem" width="10rem" style="border-radius: 5px; box-shadow:  0 0.9px 2.2px rgba(0, 0, 0, 0.051),  0 2.1px 5.3px rgba(0, 0, 0, 0.073),  0 3.9px 10px rgba(0, 0, 0, 0.09),  0 6.9px 17.9px rgba(0, 0, 0, 0.107),  0 13px 33.4px rgba(0, 0, 0, 0.129),  0 31px 80px rgba(0, 0, 0, 0.18);" :src="item.thumb" v-ripple>
+          </v-img>
+        </div>
+      </div>
+    </v-responsive>
+
   </v-row>
 </template>
 
@@ -85,7 +202,7 @@
             windowed: 1200,
 
             // Because: #app {padding: 80px 24px;}
-            padding: 0.1
+            padding: 0
           },
           item: {
             // css class to inject into each individual item
@@ -95,12 +212,10 @@
           },
           navigation: {
             // when to show navigation
-            start: 768,
+            start: 1025,
             color: '#000'
           }
         },
-
-
 
 
       }
@@ -111,19 +226,19 @@
        * @return {string}
        */
       GetNS(str) {
-        if(str.includes('.'))
-        {
+        if (str.includes('.')) {
           let st = str.replace(/.[a-zA-Z]*$/, '')
           if (st.includes('.')) return st.replace(/^[0-9a-zA-Z]*./, '').toUpperCase()
           else return st.toUpperCase()
-        }
-        else return str
+        } else return str
       }
     }
   }
 </script>
 
 <style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
   .cc-list {
     overflow-x: scroll;
     white-space: nowrap;

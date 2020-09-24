@@ -1,13 +1,19 @@
 <template>
   <v-col justify="space-between">
-    <color-card-list :data="items" name="New Albums" class=""/>
-    <color-card-list :data="items" name="www.jkforum.net" class=""/>
+    <color-card-list :data="items" name="New Albums" class="pt-3 pb-6"/>
+    <color-card-list :data="items" name="www.jkforum.net" class="pb-6"/>
 
-    <v-parallax class="pa-0 mr-0"
-                src="https://cdn.discordapp.com/attachments/511430724553801729/758422767183462401/unknown.png"
-                style="width: 100%">
-      <color-card-list :data="itemsd" :parax="true" name="www.jkforum.net" class=""/>
+    <v-parallax
+                class=""
+                src="https://cdn.discordapp.com/attachments/511430724553801729/758510816344801322/unknown.png"
+                style="width: 100%; height: fit-content">
+      <div>
+        <color-card-list :data="itemsd" :parax="true" name="www.jkforum.net" class=""/>
+      </div>
     </v-parallax>
+
+
+
     <color-card-list :data="items" name="www.jkforum.net" class=""/>
   </v-col>
 </template>
@@ -90,7 +96,7 @@
             "id": "vMwxOLp7",
             "name": "曉美媽 – 惡墮★快感之牢 [33P]",
             "idol": "Unknown",
-            "thumb": "https://www.mymypic.net/data/attachment/forum/threadcover/9f/8c/ae7cc7a2.jpg",
+            "thumb": "https://www.mymypic.net/data/attachment/forum/202006/25/08010043hl8999o91u3099.jpg",
             "source": "www.jkforum.net",
             "color": ["#fc1c64", "#f87a75", "#760624", "#974c4c", "#bc796e", "#5c3c34"]
           },
@@ -98,7 +104,7 @@
             "id": "vMwxOLp7",
             "name": "曉美媽 – 惡墮★快感之牢 [33P]",
             "idol": "Unknown",
-            "thumb": "https://www.mymypic.net/data/attachment/forum/threadcover/9f/8c/ae7cc7a2.jpg",
+            "thumb": "https://www.mymypic.net/data/attachment/forum/202006/25/080122jd5fejh3ijz6jdfd.jpg",
             "source": "www.jkforum.net",
             "color": ["#fc1c64", "#f87a75", "#760624", "#974c4c", "#bc796e", "#5c3c34"]
           },
@@ -106,7 +112,7 @@
             "id": "vMwxOLp7",
             "name": "曉美媽 – 惡墮★快感之牢 [33P]",
             "idol": "Unknown",
-            "thumb": "https://www.mymypic.net/data/attachment/forum/threadcover/9f/8c/ae7cc7a2.jpg",
+            "thumb": "https://www.mymypic.net/data/attachment/forum/202006/25/0801215otqb3jz6k5qka3z.jpg",
             "source": "www.jkforum.net",
             "color": ["#fc1c64", "#f87a75", "#760624", "#974c4c", "#bc796e", "#5c3c34"]
           },

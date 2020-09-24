@@ -4,25 +4,29 @@
       class="ccard-md"
       v-if="$vuetify.breakpoint.mdAndUp && !shadow"
       style="height: 16rem; width: 30rem;  border-radius: 5px; transition: all ease-in 300ms;"
-      :style="`background: linear-gradient(289deg, ${hexToRgb(album.color[1], 0.4553571770505077)} 3%, ${hexToRgb(album.color[1], 0.010343171448266806)} 19%,   ${hexToRgb(album.color[0], 0.3699230033810399)} 80%, ${hexToRgb(album.color[0], 1)} 99%), url(${album.thumb}) center center no-repeat; background-size: cover;`">
+      :style="`background: linear-gradient(289deg, ${hexToRgb(album.color[1], 0.4553571770505077)} 3%, ${hexToRgb(album.color[1], 0.010343171448266806)} 19%,   ${hexToRgb(album.color[0], 0.3699230033810399)} 80%, ${hexToRgb(album.color[0], 1)} 99%), url(${album.thumb}) center center no-repeat; background-size: cover;`"
+      v-ripple>
     </div>
     <div
       class="ccard-md"
       v-if="$vuetify.breakpoint.mdAndUp && shadow"
       style="height: 16rem; width: 30rem;  border-radius: 5px; transition: all ease-in 300ms; background-position: center center; background-size: 30rem 16rem; "
-      :style="GetShadow() + `background-image: url(${album.thumb}); ` ">
+      :style="GetShadow() + `background-image: url(${album.thumb}); `"
+      v-ripple>
     </div>
     <div
       class="ccard-sm"
       v-if="$vuetify.breakpoint.smOnly"
       style="height: 10rem; width: 19rem;  border-radius: 5px;"
-      :style="`background: linear-gradient(289deg, ${hexToRgb(album.color[1], 0.4553571770505077)} 3%, ${hexToRgb(album.color[1], 0.010343171448266806)} 19%,   ${hexToRgb(album.color[0], 0.3699230033810399)} 80%, ${hexToRgb(album.color[0], 1)} 99%), url(${album.thumb}) right no-repeat; background-size: 19rem 10rem;`">
+      :style="`background: linear-gradient(289deg, ${hexToRgb(album.color[1], 0.4553571770505077)} 3%, ${hexToRgb(album.color[1], 0.010343171448266806)} 19%,   ${hexToRgb(album.color[0], 0.3699230033810399)} 80%, ${hexToRgb(album.color[0], 1)} 99%), url(${album.thumb}) right no-repeat; background-size: 19rem 10rem;`"
+      v-ripple>
     </div>
     <div
       class="ccard-xs"
       v-if="$vuetify.breakpoint.xsOnly"
       style="height: 7rem; width: 11rem;  border-radius: 5px;"
-      :style="`background: linear-gradient(300deg, ${hexToRgb(album.color[1], 0.4553571770505077)} 3%, ${hexToRgb(album.color[1], 0.010343171448266806)} 19%,   ${hexToRgb(album.color[0], 0.3699230033810399)} 80%, ${hexToRgb(album.color[0], 1)} 99%), url(${album.thumb}) right no-repeat; background-size: 11rem 8rem`">
+      :style="`background: linear-gradient(300deg, ${hexToRgb(album.color[1], 0.4553571770505077)} 3%, ${hexToRgb(album.color[1], 0.010343171448266806)} 19%,   ${hexToRgb(album.color[0], 0.3699230033810399)} 80%, ${hexToRgb(album.color[0], 1)} 99%), url(${album.thumb}) right no-repeat; background-size: 11rem 8rem`"
+      v-ripple>
     </div>
   </div>
 </template>
@@ -57,7 +61,7 @@
       }
     },
 
-    beforeMount() {
+    beforeMount() {  // Below code gets color palate of picture
       this.$axios.get(`https://bloom-dist.herokuapp.com/color?image=${this.album.thumb}`)
         .then((res) => {
           this.album.color = res.data
