@@ -31,9 +31,9 @@
             <v-avatar tile size="10rem"
                       style="box-shadow:  0 0.9px 2.2px rgba(0, 0, 0, 0.051),  0 2.1px 5.3px rgba(0, 0, 0, 0.073),  0 3.9px 10px rgba(0, 0, 0, 0.09),  0 6.9px 17.9px rgba(0, 0, 0, 0.107),  0 13px 33.4px rgba(0, 0, 0, 0.129),  0 31px 80px rgba(0, 0, 0, 0.18)">
               <v-img
-                src="https://cdn.discordapp.com/attachments/511430724553801729/758421861305811004/unknown.png"></v-img>
+                :src="image"></v-img>
             </v-avatar>
-            <h1 v-text="`秀人網系列`"/>
+            <h1 v-text="artist"/>
             <div class="" style="align-self: center">
               <v-btn color="rgba(0,0,0,0)" depressed large>
                 <v-row>
@@ -50,7 +50,7 @@
           <v-col>
             <h1
               style="align-self: center; font-family: 'Playfair Display', serif; font-size: 5rem;  text-shadow: -2px 5px 9px rgba(0,0,0,0.42);"
-              v-text="GetNS(name)"/>
+              v-text="GetNS(source)"/>
             <v-row justify="end">
               <v-btn color="rgba(0,0,0,0)" depressed large>
                 <v-row style="width: inherit" justify="space-around">
@@ -75,9 +75,9 @@
           <v-avatar tile size="10rem"
                     style="box-shadow:  0 0.9px 2.2px rgba(0, 0, 0, 0.051),  0 2.1px 5.3px rgba(0, 0, 0, 0.073),  0 3.9px 10px rgba(0, 0, 0, 0.09),  0 6.9px 17.9px rgba(0, 0, 0, 0.107),  0 13px 33.4px rgba(0, 0, 0, 0.129),  0 31px 80px rgba(0, 0, 0, 0.18)">
             <v-img
-              src="https://cdn.discordapp.com/attachments/511430724553801729/758421861305811004/unknown.png"></v-img>
+              :src="image"></v-img>
           </v-avatar>
-          <h1 v-text="`秀人網系列`"/>
+          <h1 v-text="artist"/>
           <div class="" style="align-self: center">
             <v-btn color="rgba(0,0,0,0)" depressed large>
               <v-row>
@@ -96,7 +96,7 @@
           <v-col>
             <h1
               style="align-self: center; font-family: 'Playfair Display', serif; font-size: 4rem;  text-shadow: -2px 5px 9px rgba(0,0,0,0.42);"
-              v-text="GetNS(name)"/>
+              v-text="GetNS(source)"/>
             <v-row justify="end">
               <v-btn color="rgba(0,0,0,0)" depressed large>
                 <v-row style="width: inherit" justify="space-around">
@@ -133,10 +133,10 @@
 
 
     <!-- Default List content  -->
-    <section v-if="($vuetify.breakpoint.mdAndUp && parax) || !($vuetify.breakpoint.smAndDown && parax)" style="overflow: hidden; height: 19rem">
+    <section v-if="($vuetify.breakpoint.mdAndUp && parax) || !($vuetify.breakpoint.smAndDown && parax)" style="overflow: hidden;">
       <vue-horizontal-list style="" :items="data" :options="options">
         <template v-slot:default="{item}">
-          <color-card class="" :shadow="parax" :album="item" style="" />
+          <color-card class="pb-5" :shadow="parax" :album="item" style="" />
         </template>
       </vue-horizontal-list>
     </section>
@@ -179,6 +179,26 @@
         type: Array,
         default: null
       },
+      iid: {
+        type: String,
+        default: `NUll`
+      },
+      image: {
+        type: String,
+        default: `NUll`
+      },
+      source: {
+        type: String,
+        default: ``
+      },
+      artist: {
+        type: String,
+        default: `NUll`
+      },
+      images: {
+        type: Array,
+        default: null
+      },
       parax: {
         type: Boolean,
         default: false
@@ -195,7 +215,9 @@
             { start: 673, end: 817, size: 2 },
             { start: 817, end: 823, size: 2 },
             { start: 823, end: 1452, size: 2 },
-            { start: 1452, size: 3 }
+            { start: 1452, end: 2352, size: 3 },
+            { start: 1452, end: 2452, size: 4 },
+            { start: 2452,  size: 5 }
           ],
           list: {
             // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode

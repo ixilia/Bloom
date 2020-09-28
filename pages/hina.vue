@@ -1,20 +1,19 @@
 <template>
   <v-col justify="space-between" style="overflow-x: hidden" >
-    <home-promotion-list class="pt-2 pb-5" />
-
-    <h1 v-if="$vuetify.breakpoint.smAndUp" class="pb-3" style="font-size: 4rem; text-align: center;  background: linear-gradient(#eee, #333);  -webkit-background-clip: text;  -webkit-text-fill-color: transparent;">From Hina</h1>
-    <h1 v-if="$vuetify.breakpoint.xsOnly" class="pb-3" style="font-size: 2.5rem; text-align: center;  background: linear-gradient(#eee, #333);  -webkit-background-clip: text;  -webkit-text-fill-color: transparent;">From Hina</h1>
-    <color-card-list :data="items" name="New Albums" class="pt-3 pb-6"/>
+    <h1 v-if="$vuetify.breakpoint.smAndUp" class="pb-3" style="font-size: 4rem; text-align: center;  background: linear-gradient(#eee, #333);  -webkit-background-clip: text;  -webkit-text-fill-color: transparent;">Welcome to Hina</h1>
+    <h1 v-if="$vuetify.breakpoint.xsOnly" class="pb-3" style="font-size: 2.5rem; text-align: center;  background: linear-gradient(#eee, #333);  -webkit-background-clip: text;  -webkit-text-fill-color: transparent;">Welcome to Hina</h1>
+    <color-card-list :data="items" name="New Albums" class="pt-3 pb-5"/>
+    <color-card-list :data="items" name="www.jkforum.net" class="pb-6"/>
     <v-parallax
-                class=""
-                src="https://cdn.discordapp.com/attachments/511430724553801729/758510816344801322/unknown.png"
-                style="width: 100%; height: fit-content;">
+      class=""
+      src="https://cdn.discordapp.com/attachments/511430724553801729/758510816344801322/unknown.png"
+      style="width: 100%; height: fit-content;">
       <div>
         <color-card-list :data="itemsd" artist="秀人網系列" source="www.jkforum.net" image="https://cdn.discordapp.com/attachments/511430724553801729/758421861305811004/unknown.png" :parax="true" name="www.jkforum.net" class=""/>
       </div>
     </v-parallax>
-    <color-card-list :data="items" name="Picks" class="pt-10 pb-5"/>
-    <color-card-list :data="items" name="AI 4x Albums" class="pb-5"/>
+    <color-card-list :data="items" name="New Albums" class="pt-10 pb-5"/>
+    <color-card-list :data="items" name="New Albums" class="pb-5"/>
   </v-col>
 </template>
 
@@ -28,6 +27,8 @@
   import HomePromotionList from '../layouts/Lists/HomePromotionList'
 
   export default {
+    name: "hina",
+
     components: {
       HomePromotionList,
       HomePromote,

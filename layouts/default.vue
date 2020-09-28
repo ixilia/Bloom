@@ -133,13 +133,13 @@
         items: [
           {
             icon: 'mdi-apps',
-            title: 'Welcome',
+            title: 'Bloom',
             to: '/'
           },
           {
-            icon: 'mdi-chart-bubble',
-            title: 'Inspire',
-            to: '/inspire'
+            icon: 'mdi-spa',
+            title: 'HINA',
+            to: '/hina'
           }
         ],
         miniVariant: false,
