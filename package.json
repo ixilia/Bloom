@@ -15,7 +15,7 @@
     "@nuxtjs/google-tag-manager": "^2.3.2",
     "@nuxtjs/pwa": "^3.0.0-0",
     "cross-env": "^5.2.0",
-    "fastify": "^1.13.3",
+    "fastify": "^3.5.0",
     "less": "^3.11.3",
     "less-loader": "^6.1.0",
     "nuxt": "^2.0.0",
