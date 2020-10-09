@@ -4,7 +4,7 @@
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
-      fixed
+      temporary
       app
     >
       <v-list>
@@ -38,12 +38,87 @@
       </v-btn>
       <v-toolbar-title v-text="title"/>
       <v-spacer/>
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
+
+      <!--  User Account menu   -->
+      <v-menu
+        :close-on-content-click="true"
+        :nudge-width="200"
+        offset-y
+        :close-on-click="true"
       >
-        <v-icon>mdi-history</v-icon>
-      </v-btn>
+        <template v-slot:activator="{ on }">
+          <v-avatar
+            dark
+            v-on="on"
+            size="35px"
+          >
+            <img v-if="$auth.loggedIn"
+              :src="$auth.user.picture"
+              alt="Kyro"
+            >
+            <v-icon v-if="!$auth.loggedIn">mdi-account-circle</v-icon>
+          </v-avatar>
+        </template>
+
+        <v-card style="background: linear-gradient(180deg, rgba(8,6,6,0.66) 0%, rgba(0,0,0,0.5995448521205357) 100%);">
+          <v-list style="background: linear-gradient(180deg, rgba(8,6,6,1) 0%, rgba(0,0,0,0.7130602582830007) 100%);">
+            <v-list-item>
+              <v-list-item-avatar>
+                <img v-if="$auth.loggedIn"
+                     :src="$auth.user.picture"
+                     alt="Kyro"
+                >
+                <v-icon v-if="!$auth.loggedIn">mdi-account-circle</v-icon>
+              </v-list-item-avatar>
+
+              <v-list-item-content>
+                <v-list-item-title>{{ $auth.loggedIn ? $auth.user.name : 'Anon' }}</v-list-item-title>
+                <v-list-item-subtitle v-if="$auth.loggedIn && !$auth.user.email_verified">Unverified ✗</v-list-item-subtitle>
+                <v-list-item-subtitle v-if="$auth.loggedIn && $auth.user.email_verified">Verified ✓</v-list-item-subtitle>
+              </v-list-item-content>
+
+              <v-list-item-action>
+                <v-btn
+                  icon
+                  @click.stop="rightDrawer = !rightDrawer"
+                >
+                  <v-icon>mdi-history</v-icon>
+                </v-btn>
+              </v-list-item-action>
+            </v-list-item>
+          </v-list>
+
+          <v-divider/>
+
+          <v-list
+            style="background: linear-gradient(180deg, rgba(8,6,6,0.81) 0%, rgba(0,0,0,0.6946008745294993) 100%);">
+            <v-list-item>
+              <v-btn  text style="width: 115%; right: 7%">
+                PROFILE
+              </v-btn>
+            </v-list-item>
+            <v-list-item>
+              <v-btn text  style="width: 115%; right: 7%">
+                FAVOURITES
+              </v-btn>
+            </v-list-item>
+          </v-list>
+
+          <v-card-actions>
+            <v-spacer/>
+
+            <v-btn text  ripple @click="$auth.login(/* .... */).then(() => this.$toast.success('Logged In!'))">
+              Login
+            </v-btn>
+            <v-btn v-if="$auth.loggedIn" text  ripple @click="$auth.logout()">
+              Logout
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-menu>
+      <!--  END User Menu  -->
+
+
     </v-app-bar>
     <v-main>
       <nuxt/>
@@ -53,7 +128,8 @@
       :right="right"
       temporary
       fixed
-      width="50%"
+      :width="ESize()"
+      style="z-index: 12;"
     >
       <div
         class="pl-4 pt-2 pb-3 transition-swing text-lg-h1-100rem font-weight-black  text-sm-h4 text-md-h3"
@@ -80,8 +156,9 @@
               align="start"
             ></div>
 
-            <p  style="padding-top: 0.5rem; font-weight: lighter;" v-text="item.idol"></p>
-            <p align="start"  style="padding-top: 1.4rem; font-weight: lighter;" v-text="item.source.replace('www.','')"></p>
+            <p style="padding-top: 0.5rem; font-weight: lighter;" v-text="item.idol"></p>
+            <p align="start" style="padding-top: 1.4rem; font-weight: lighter;"
+               v-text="item.source.replace('www.','')"></p>
           </v-col>
 
         </div>
@@ -130,6 +207,13 @@
         drawer: false,
         fixed: false,
         fixers: [],
+        userImage: 'https://i.imgur.com/43Etwuz.jpg',
+        rules: {
+          email: value => {
+            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return pattern.test(value) || 'Invalid e-mail.'
+          }
+        },
         items: [
           {
             icon: 'mdi-apps',
@@ -141,6 +225,12 @@
             title: 'HINA',
             to: '/hina'
           }
+          ,
+          {
+            icon: 'mdi-leaf',
+            title: 'MISHA',
+            to: '/misha'
+          }
         ],
         miniVariant: false,
         right: true,
@@ -151,8 +241,16 @@
 
     computed: {
       ...mapGetters({
-        RecentViews: 'history/GET_HISTORY_DATA'
-      })
+        RecentViews: 'history/GET_HISTORY_DATA',
+      }),
+
+
+      progress() {
+        return Math.min(100, this.pwvalue1.length * 10)
+      },
+      color() {
+        return ['error', 'warning', 'success'][Math.floor(this.progress / 40)]
+      },
     },
 
     created() {
@@ -163,20 +261,34 @@
       this.$store.dispatch("history/LOAD_HISTORY")
     },
 
-    watch: {
-    },
+    watch: {},
 
     mounted() {
     },
 
-    beforeDestroy(){
+    beforeDestroy() {
     },
 
     methods: {
       hexToRgb(hex, opacity) {
-        return 'rgba(' + (hex = hex.replace('#', '')).match(new RegExp('(.{' + hex.length/3 + '})', 'g')).map(function(l) { return parseInt(hex.length%2 ? l+l : l, 16) }).concat(opacity||1).join(',') + ')';
-      }
-    }
+        return 'rgba(' + (hex = hex.replace('#', '')).match(new RegExp('(.{' + hex.length / 3 + '})', 'g')).map(function(l) {
+          return parseInt(hex.length % 2 ? l + l : l, 16)
+        }).concat(opacity || 1).join(',') + ')';
+      },
 
+      /**
+       * @return {string}
+       */
+      ESize() {
+        if (this.$vuetify.breakpoint.smAndDown) return '20rem';
+        else return '48rem';
+      },
+
+      RegDialog() {
+        this.dialog = !this.dialog
+        this.dialog2 = !this.dialog2
+      },
+
+    }
   }
 </script>

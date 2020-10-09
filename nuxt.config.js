@@ -21,7 +21,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    { src: '~/plugins/vuex-persist', ssr: false }
+    { src: '~/plugins/virtual-coll', ssr: false }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -39,7 +39,50 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+
+    '@nuxtjs/auth'
   ],
+
+  router: {
+    routes: [
+      {
+        name: 'album-id',
+        path: '/a/:id?',
+        component: 'pages/a/_id.vue'
+      }
+    ]
+  },
+
+  auth: {
+    redirect: {
+      login: '/', // redirect user when not connected
+      callback: '/auth/signed-in'
+    },
+    strategies: {
+      local: false,
+      auth0: {
+        domain: 'hina.eu.auth0.com',
+        client_id: 'ogbETWao1GnRRYE7yzl5ZzD1ZMGbxD5q'
+      },
+      github: {
+        client_id: '5fc566f5603780ac8ab4',
+        client_secret: '2a381784d2ee08f76ae559abf15e6ce215c3cd04'
+      }
+    }
+  },
+
+
+  pwa: {
+    // disable the modules you don't need
+    // if you omit a module key form configuration sensible defaults will be applied
+    // manifest: false,
+
+    //workbox: {
+      // by default the workbox module will not install the service worker in dev environment to avoid conflicts with HMR
+      // only set this true for testing and remember to always clear your browser cache in development
+    //  dev: false
+    //}
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},

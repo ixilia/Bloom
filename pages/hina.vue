@@ -1,7 +1,7 @@
 <template>
   <v-col justify="space-between" style="overflow-x: hidden" >
-    <h1 v-if="$vuetify.breakpoint.smAndUp" class="pb-3" style="font-size: 4rem; text-align: center;  background: linear-gradient(#eee, #333);  -webkit-background-clip: text;  -webkit-text-fill-color: transparent;">Welcome to Hina</h1>
-    <h1 v-if="$vuetify.breakpoint.xsOnly" class="pb-3" style="font-size: 2.5rem; text-align: center;  background: linear-gradient(#eee, #333);  -webkit-background-clip: text;  -webkit-text-fill-color: transparent;">Welcome to Hina</h1>
+    <h1 v-if="$vuetify.breakpoint.smAndUp" class="pb-3" style="-webkit-touch-callout: none; -webkit-user-select: none; user-select: none; font-size: 4rem; text-align: center;  background: linear-gradient(#eee, #333);  -webkit-background-clip: text;  -webkit-text-fill-color: transparent;">Welcome to Hina</h1>
+    <h1 v-if="$vuetify.breakpoint.xsOnly" class="pb-3" style="-webkit-touch-callout: none; -webkit-user-select: none; user-select: none; font-size: 2.5rem; text-align: center;  background: linear-gradient(#eee, #333);  -webkit-background-clip: text;  -webkit-text-fill-color: transparent;">Welcome to Hina</h1>
     <color-card-list :data="items" name="New Albums" class="pt-3 pb-5"/>
     <color-card-list :data="items" name="www.jkforum.net" class="pb-6"/>
     <v-parallax
