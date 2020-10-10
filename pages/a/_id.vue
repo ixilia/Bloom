@@ -2,14 +2,17 @@
   <v-responsive>
     <div v-if="!Check43Ratio()" class="bottom disable-scrollbars"
          style=" background-image: url(https://cdn.discordapp.com/attachments/488810702190936075/761516337431707658/080116m7hp4sml9vebhhp4.jpg);  background-size: cover;">
-      <v-row style="margin-top: 6rem; margin-left: 8rem; position: fixed; z-index: -1; width: 100vw">
-        <v-img width="264px"
+
+      <!-- Medium Meta -->
+      <v-row v-if="$vuetify.breakpoint.mdAndUp" style="margin-top: 6rem; margin-left: 8rem; position: fixed; z-index: -1; width: 100vw">
+        <v-img v-if="$vuetify.breakpoint.mdAndUp"
+               width="264px"
                height="318px"
                max-height="318px"
                max-width="264px"
                style="border-radius: 5px; box-shadow:  0 0.9px 2.2px rgba(0, 0, 0, 0.051),  0 2.1px 5.3px rgba(0, 0, 0, 0.073),  0 3.9px 10px rgba(0, 0, 0, 0.09),  0 6.9px 17.9px rgba(0, 0, 0, 0.107),  0 13px 33.4px rgba(0, 0, 0, 0.129),  0 31px 80px rgba(0, 0, 0, 0.18);"
                src="https://cdn.discordapp.com/attachments/511430724553801729/758607252885864458/08010043hl8999o91u3099.png"/>
-        <v-col style="margin-left: 4rem;">
+        <v-col  style="margin-left: 4rem;">
           <h1 v-if="$vuetify.breakpoint.mdAndUp"
               style="width: 40rem;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Some bitch</h1>
           <h2 v-if="$vuetify.breakpoint.smAndDown"
@@ -50,27 +53,93 @@
               :value="3"
             />
           </div>
+          <div style="align-self: center; padding-bottom: 2rem; padding-top: 1rem;">
+            <v-btn dark depressed color="rgba(255, 242, 0, 0.79)">
+              DOWNLOAD
+            </v-btn>
+          </div>
         </v-col>
       </v-row>
+
+
+      <!-- Mobile Meta -->
+      <v-col v-if="$vuetify.breakpoint.smAndDown" style="margin-top: 6rem; margin-left: 2rem; position: fixed; z-index: -1; ">
+        <v-img width="164px"
+               height="218px"
+               max-height="218px"
+               max-width="194px"
+               style="border-radius: 5px; box-shadow:  0 0.9px 2.2px rgba(0, 0, 0, 0.051),  0 2.1px 5.3px rgba(0, 0, 0, 0.073),  0 3.9px 10px rgba(0, 0, 0, 0.09),  0 6.9px 17.9px rgba(0, 0, 0, 0.107),  0 13px 33.4px rgba(0, 0, 0, 0.129),  0 31px 80px rgba(0, 0, 0, 0.18);"
+               src="https://cdn.discordapp.com/attachments/511430724553801729/758607252885864458/08010043hl8999o91u3099.png"/>
+        <div style="padding-top: 1rem;">
+          <h2 style="width: 18rem;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Some bitch</h2>
+          <v-row justify="start" class="pl-3">
+            <v-icon>mdi-account-circle</v-icon>
+            <h4 style="padding-left: 0.5rem; width: 16rem;  overflow: hidden; text-overflow: ellipsis;">Ching Chong</h4>
+          </v-row>
+        </div>
+
+        <div>
+          <v-badge
+            color="green"
+            content="168+"
+            icon="mdi-thumb-up"
+            overlap
+            offset-y="29px"
+            offset-x="23px"
+          >
+            <v-col>
+              <v-avatar class="paper"
+                        :size=" $vuetify.breakpoint.smAndDown? `2.0rem`: `2.7rem`"
+                        v-for="(item, i) in 5"
+                        :key="i"
+                        :style=" i > 0  ? 'margin-left: -9px; transform: rotateY(11deg)' : 'margin-left: 0;' "
+                        style="box-shadow: -2px 1px 4px -3px #000000, -5px 2px 6px -2px rgba(0,0,0,0.74);">
+                <v-img size="2.2rem"
+                       src="https://cdn.discordapp.com/attachments/488810702190936075/761234831304556554/unknown.png"/>
+              </v-avatar>
+            </v-col>
+          </v-badge>
+
+          <v-rating
+            empty-icon="mdi-star-outline"
+            full-icon="mdi-star"
+            half-icon="mdi-star-half-full"
+            hover
+            :length="5"
+            size="24"
+            :value="3"
+          />
+        </div>
+        <div style="align-self: center; padding-bottom: 2rem; padding-top: 1rem;">
+          <v-btn dark depressed color="rgba(255, 242, 0, 0.79)">
+            DOWNLOAD
+          </v-btn>
+        </div>
+      </v-col>
 
 
       <!-- Body -->
       <div class="overlay fade">
         <div class="" style="margin-top: 20rem;">
-          <div >
-            <masonry
-              :cols="{default: 4, 1000: 3, 700: 2, 400: 1}"
-              :gutter="{default: '30px', 700: '15px'}"
-            >
-              <div v-for="(item, index) in items" :key="index">
-                <v-img width="17rem" max-height="20rem;" style="border-radius: 5px; margin-bottom: 2rem;" :src="item.data"/>
-              </div>
-            </masonry>
-          </div>
+          <v-row justify="space-around">
+            <div>
+              <masonry
+                :cols="{default: 4, 1000: 3, 700: 2, 400: 1}"
+                :gutter="{default: '30px', 700: '15px'}"
+              >
+                <div v-for="(item, index) in items" :key="index">
+                  <v-img v-if="$vuetify.breakpoint.mdAndUp" width="17rem" max-height="20rem;" style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;" :src="item.data"/>
+                  <v-img v-if="$vuetify.breakpoint.smAndDown" width="10rem" max-height="20rem;" style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;" :src="item.data"/>
+                </div>
+              </masonry>
+            </div>
+          </v-row>
         </div>
       </div>
     </div>
 
+
+    <!-- 4:3 Page -->
     <div v-if="Check43Ratio()" class="bottom disable-scrollbars"
          style=" background-image: url(https://cdn.discordapp.com/attachments/488810702190936075/761516337431707658/080116m7hp4sml9vebhhp4.jpg);  background-size: cover; background-position: right center">
 
@@ -115,10 +184,10 @@
             </v-col>
           </v-badge>
         </v-col>
-
       </v-row>
 
 
+      <!-- 4:3 Body -->
       <div class="overlay-daig fade-diag" style="">
         <div style="padding-left: 18rem; padding-top: 10rem;">
           <v-col>
