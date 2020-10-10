@@ -5,8 +5,7 @@
 
       <!-- Medium Meta -->
       <v-row v-if="$vuetify.breakpoint.mdAndUp" style="margin-top: 6rem; margin-left: 8rem; position: fixed; z-index: -1; width: 100vw">
-        <v-img v-if="$vuetify.breakpoint.mdAndUp"
-               width="264px"
+        <v-img width="264px"
                height="318px"
                max-height="318px"
                max-width="264px"
