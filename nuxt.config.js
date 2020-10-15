@@ -40,7 +40,9 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
 
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+
+    'vue-scrollto/nuxt',
   ],
 
   router: {

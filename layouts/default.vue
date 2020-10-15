@@ -235,7 +235,7 @@
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: 'Vuetify.js'
+        title: 'Bloom -  B.A-0.3'
       }
     },
 
