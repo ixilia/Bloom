@@ -64,7 +64,8 @@ export default {
       local: false,
       auth0: {
         domain: 'hina.eu.auth0.com',
-        client_id: 'ogbETWao1GnRRYE7yzl5ZzD1ZMGbxD5q'
+        client_id: 'ogbETWao1GnRRYE7yzl5ZzD1ZMGbxD5q',
+        audience: 'https://hina.eu.auth0.com/api/v2/'
       },
       github: {
         client_id: '5fc566f5603780ac8ab4',

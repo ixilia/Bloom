@@ -117,6 +117,7 @@
                       </v-tooltip>
                     </v-row>
                     <v-select
+                      v-if="!DownloadState"
                       v-model="selvalues"
                       :items="elvalues"
                       label="Select Images"
@@ -134,6 +135,14 @@
         </span>
                       </template>
                     </v-select>
+
+                    <v-progress-linear
+                      v-if="DownloadState"
+                      :buffer-value="DownloadProgress+1"
+                      color="success"
+                      stream
+                      :value="(DownloadProgress / DownloadTotal) * 100"
+                    />
                   </v-container>
 
                   <v-divider></v-divider>
@@ -274,6 +283,7 @@
                   </v-tooltip>
                 </v-row>
                 <v-select
+                  v-if="!DownloadState"
                   v-model="selvalues"
                   :items="elvalues"
                   label="Select Images"
@@ -291,6 +301,14 @@
         </span>
                   </template>
                 </v-select>
+
+                <v-progress-linear
+                  v-if="DownloadState"
+                  :buffer-value="DownloadProgress+1"
+                  color="success"
+                  stream
+                  :value="(DownloadProgress / DownloadTotal) * 100"
+                />
               </v-container>
 
               <v-divider></v-divider>
