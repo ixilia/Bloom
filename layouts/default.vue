@@ -36,22 +36,24 @@
       >
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
-      <v-btn
-        v-if="DownloadState"
-        icon
-      >
-        <v-progress-circular
-          :rotate="360"
-          :size="40"
-          :width="8"
-          :value="(DownloadProgress / DownloadTotal) * 100"
-          color="primary"
-        >
-          <v-icon>
-            mdi-arrow-down
-          </v-icon>
-        </v-progress-circular>
-      </v-btn>
+      <v-tooltip bottom v-if="DownloadState">
+        <template v-slot:activator="{ on, attrs }">
+          <v-progress-circular
+            :rotate="360"
+            :size="40"
+            :width="8"
+            :value="(DownloadProgress / DownloadTotal) * 100"
+            color="primary"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>
+              mdi-arrow-down
+            </v-icon>
+          </v-progress-circular>
+        </template>
+        <span style="font-family: 'Michroma', sans-serif;">{{Math.round((DownloadProgress / DownloadTotal) * 100)}} <a style="font-family: 'Aldrich', sans-serif;">%</a></span>
+      </v-tooltip>
       <v-toolbar-title v-if="!DownloadState" v-text="title"/>
       <v-spacer/>
 
@@ -311,3 +313,6 @@
     }
   }
 </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Aldrich&family=Michroma&display=swap');
+</style>
