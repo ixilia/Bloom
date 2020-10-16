@@ -95,12 +95,14 @@
                     <v-row style="width: 100%" justify-content="end" align-content="end">
                       <v-col>
                         <v-switch
+                          v-if="!DownloadState"
                           style="align-self: end; justify-self: end;"
                           v-model="DownloadAll"
                           label="Download All"
                           :disabled="DownloadState"
                           @change="DownloadChange"
                         ></v-switch>
+                        <h2 v-if="DownloadState" style="font-family: 'Michroma', sans-serif;">{{Math.round((DownloadProgress / DownloadTotal) * 100)}} <a style="font-family: 'Aldrich', sans-serif;">%</a></h2>
                       </v-col>
                       <v-tooltip top>
                         <template v-slot:activator="{ on, attrs }">
@@ -261,12 +263,14 @@
                 <v-row style="width: 100%" justify-content="end" align-content="end">
                   <v-col>
                     <v-switch
+                      v-if="!DownloadState"
                       style="align-self: end; justify-self: end;"
                       v-model="DownloadAll"
                       label="Download All"
                       :disabled="DownloadState"
                       @change="DownloadChange"
                     ></v-switch>
+                    <h2 v-if="DownloadState" style="font-family: 'Michroma', sans-serif;">{{Math.round((DownloadProgress / DownloadTotal) * 100)}} <a style="font-family: 'Aldrich', sans-serif;">%</a></h2>
                   </v-col>
                   <v-tooltip top>
                     <template v-slot:activator="{ on, attrs }">
@@ -609,7 +613,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Aldrich&family=Michroma&display=swap');
 
 .fade {
   background: -webkit-linear-gradient(0deg, rgba(18, 18, 18, 1) 0%, rgba(18, 18, 18, 1) 80%, rgba(18, 18, 18, 1) 90%, rgba(18, 18, 18, 0.9) 94%, rgba(18, 18, 18, 0.8) 95%, rgba(18, 18, 18, 0.0449930313922444) 98%, rgba(18, 18, 18, 0.001) 100%);

@@ -36,7 +36,23 @@
       >
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
-      <v-toolbar-title v-text="title"/>
+      <v-btn
+        v-if="DownloadState"
+        icon
+      >
+        <v-progress-circular
+          :rotate="360"
+          :size="40"
+          :width="8"
+          :value="(DownloadProgress / DownloadTotal) * 100"
+          color="primary"
+        >
+          <v-icon>
+            mdi-arrow-down
+          </v-icon>
+        </v-progress-circular>
+      </v-btn>
+      <v-toolbar-title v-if="!DownloadState" v-text="title"/>
       <v-spacer/>
 
       <!--  User Account menu   -->
@@ -242,6 +258,9 @@
     computed: {
       ...mapGetters({
         RecentViews: 'history/GET_HISTORY_DATA',
+        DownloadState: 'download/GET_DOWNLOAD_STATE',
+        DownloadProgress: 'download/GET_DOWNLOAD_PROGRESS',
+        DownloadTotal: 'download/GET_DOWNLOAD_TOTAL'
       }),
 
 
