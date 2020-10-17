@@ -1,12 +1,12 @@
 <template>
   <div style="height: 100vw;">
     <div v-if="!Check43Ratio()" class="bottom disable-scrollbars"
-         style="   background-size: cover;"
-         :style="`background-image: url(${info.gliphs[1]});`">
+         style="background-size: cover; -webkit-transition: background-image 3s ease-in-out; transition: 3s;  background-blend-mode: darken;"
+         :style="`background-image: url(${BgImage});`">
 
 
       <!-- Medium Meta -->
-      <v-col style="margin-top: 6rem; margin-left: 8rem; position: fixed; z-index: -1; width: 100vw">
+      <v-col style="margin-top: 6rem; margin-left: 6rem; position: fixed; z-index: -1; width: 100vw">
         <v-row v-if="$vuetify.breakpoint.mdAndUp">
           <v-img width="264px"
                  height="318px"
@@ -429,9 +429,107 @@
           </v-badge>
 
           <div style="align-self: center; padding-bottom: 2rem; padding-top: 1rem;">
-            <v-btn dark color="rgba(255, 242, 0, 0.84)">
-              DOWNLOAD
-            </v-btn>
+            <v-dialog
+              v-model="DownloadDialog"
+              persistent
+              width="500"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  dark
+                  depressed
+                  color="rgba(255, 242, 0, 0.79)"
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  DOWNLOAD
+                </v-btn>
+              </template>
+
+              <v-card>
+                <v-card-title class="headline blue lighten-2">
+                  <v-row justify="space-between">
+                    <h3>
+                      Download
+                    </h3>
+                    <v-btn flat depressed color="rgba(0,0,0,0)" @click="DownloadDialog = !DownloadDialog">
+                      <v-icon size="1.5rem">mdi-close-circle</v-icon>
+                    </v-btn>
+                  </v-row>
+                </v-card-title>
+
+                <v-container fluid>
+                  <v-row style="width: 100%" justify-content="end" align-content="end">
+                    <v-col>
+                      <v-switch
+                        v-if="!DownloadState"
+                        style="align-self: end; justify-self: end;"
+                        v-model="DownloadAll"
+                        label="Download All"
+                        :disabled="DownloadState"
+                        @change="DownloadChange"
+                      ></v-switch>
+                      <h2 v-if="DownloadState" style="font-family: 'Michroma', sans-serif;">{{Math.round((DownloadProgress / DownloadTotal) * 100)}} <a style="font-family: 'Aldrich', sans-serif;">%</a></h2>
+                    </v-col>
+                    <v-tooltip top>
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-icon
+                          dark
+                          size="3rem"
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          mdi-vpn
+                        </v-icon>
+                      </template>
+                      <span>Bloom Secure Proxy</span>
+                    </v-tooltip>
+                  </v-row>
+                  <v-select
+                    v-if="!DownloadState"
+                    v-model="selvalues"
+                    :items="elvalues"
+                    label="Select Images"
+                    multiple
+                  >
+                    <template v-slot:selection="{ item, index }">
+                      <v-chip v-if="index === 0">
+                        <span>{{ item }}</span>
+                      </v-chip>
+                      <span
+                        v-if="index === 1"
+                        class="grey--text caption"
+                      >
+          (+{{ items.length - 1 }} other pictures.)
+        </span>
+                    </template>
+                  </v-select>
+
+                  <v-progress-linear
+                    v-if="DownloadState"
+                    :buffer-value="DownloadProgress+1"
+                    color="success"
+                    stream
+                    :value="(DownloadProgress / DownloadTotal) * 100"
+                  />
+                </v-container>
+
+                <v-divider></v-divider>
+
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    :disabled="DownloadState"
+                    :loading="DownloadState"
+                    color="primary"
+                    text
+                    @click="$store.dispatch('download/DOWNLOAD',{en: info, indexes: selvalues})"
+                  >
+                    Download
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           </div>
         </v-col>
       </v-row>
@@ -458,7 +556,12 @@
         </div>
       </div>
     </div>
+
+    <!-- Image viewer -->
     <img-viewer ref="viewer"/>
+
+    <!-- Preload Background image -->
+    <div style="width: 0; height: 0;" :style="`background-image: url(${NBGImage});`"></div>
   </div>
 </template>
 
@@ -490,6 +593,8 @@ export default {
   components: { ImgViewer },
   data() {
     return {
+      BgImage: '',
+      NBGImage: '',
       items: [],
       DownloadAll: true,
       DownloadDialog: false,
@@ -514,7 +619,15 @@ export default {
     }),
   },
 
+  timers: {
+    ChangeBg: { time: 17000, autostart: true, repeat: true }
+  },
+
   watch: {},
+
+  beforeMount() {
+    this.BgImage = this.info.gliphs[1]
+  },
 
   mounted() {
     this.items = Array.from({ length: this.info.gliphs.length }, (_, index) => ({
@@ -524,17 +637,22 @@ export default {
     this.elvalues = Array.from({ length: this.info.gliphs.length }, (_, index) => (index+1))
     this.selvalues = this.elvalues
 
-
     for (let i = 0; i < STANDARD_ASPECT_RATIOS.length; i++) {
       LOOKUP[STANDARD_ASPECT_RATIOS[i][0]] = STANDARD_ASPECT_RATIOS[i][1]
     }
 
     this.el = this.$el.getElementsByClassName('overlay')[0]
+
+    //preload next BG
+    this.NBGImage = this.info.gliphs[Math.floor((Math.random() * this.info.gliphs.length) + 1)]
   },
 
   methods: {
-    logdsc() {
-      console.log(this.estimateAspectRatio(this.$vuetify.breakpoint.width, this.$vuetify.breakpoint.height))
+    ChangeBg() {
+      //Set Preloaded Image
+      this.BgImage = this.NBGImage
+      //Preload Image
+      this.NBGImage = this.info.gliphs[Math.floor((Math.random() * this.info.gliphs.length) + 1)]
     },
 
     DownloadChange()
