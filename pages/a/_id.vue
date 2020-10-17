@@ -1,5 +1,5 @@
 <template>
-  <v-responsive>
+  <div style="height: 100vw;">
     <div v-if="!Check43Ratio()" class="bottom disable-scrollbars"
          style="   background-size: cover;"
          :style="`background-image: url(${info.gliphs[1]});`">
@@ -178,7 +178,7 @@
 
       <!-- Mobile Meta -->
       <v-col v-if="$vuetify.breakpoint.smAndDown"
-             style="margin-top: 4.4rem; margin-left: 1rem; position: fixed; z-index: -1; ">
+             style="margin-top: 1.2rem; margin-left: 1rem; position: fixed; z-index: -1; ">
         <v-img width="164px"
                height="218px"
                max-height="218px"
@@ -345,8 +345,8 @@
       <!-- Body -->
       <div id="overlay" ref="overlay" class="overlay fade">
         <div class="scrollbox-fm"/>
-        <div class="disable-scrollbars scrollbox"
-             style="margin-top: 7rem; padding-top: 1rem; overflow: scroll; height: inherit;">
+        <div class="disable-scrollbars"
+             style="margin-top: 14rem; padding-top: 1rem; overflow: scroll; height: inherit;">
           <v-row justify="space-around" style="">
             <div>
               <masonry
@@ -459,7 +459,7 @@
       </div>
     </div>
     <img-viewer ref="viewer"/>
-  </v-responsive>
+  </div>
 </template>
 
 <script>
@@ -616,10 +616,10 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Aldrich&family=Michroma&display=swap');
 
 .fade {
-  background: -webkit-linear-gradient(0deg, rgba(18, 18, 18, 1) 0%, rgba(18, 18, 18, 1) 80%, rgba(18, 18, 18, 1) 90%, rgba(18, 18, 18, 0.9) 94%, rgba(18, 18, 18, 0.8) 95%, rgba(18, 18, 18, 0.0449930313922444) 98%, rgba(18, 18, 18, 0.001) 100%);
-  background-image: -o-linear-gradient(0deg, rgba(18, 18, 18, 1) 0%, rgba(18, 18, 18, 1) 80%, rgba(18, 18, 18, 1) 90%, rgba(18, 18, 18, 0.9) 94%, rgba(18, 18, 18, 0.8) 95%, rgba(18, 18, 18, 0.0449930313922444) 98%, rgba(18, 18, 18, 0.001) 100%);
-  background-image: linear-gradient(0deg, rgba(18, 18, 18, 1) 0%, rgba(18, 18, 18, 1) 80%, rgba(18, 18, 18, 1) 90%, rgba(18, 18, 18, 0.9) 94%, rgba(18, 18, 18, 0.8) 95%, rgba(18, 18, 18, 0.0449930313922444) 98%, rgba(18, 18, 18, 0.001) 100%);
-  background-image: -moz-linear-gradient(0deg, rgba(18, 18, 18, 1) 0%, rgba(18, 18, 18, 1) 80%, rgba(18, 18, 18, 1) 90%, rgba(18, 18, 18, 0.9) 94%, rgba(18, 18, 18, 0.8) 95%, rgba(18, 18, 18, 0.0449930313922444) 98%, rgba(18, 18, 18, 0.001) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(18, 18, 18, 1) 0%, rgba(18, 18, 18, 1) 80%, rgba(18, 18, 18, 1) 90%, rgba(18, 18, 18, 0.9) 94%, rgba(18, 18, 18, 0.8) 95%, rgba(18, 18, 18, 0.7449930313922444) 96%, rgba(18, 18, 18, 0.001) 100%);
+  background-image: -o-linear-gradient(0deg, rgba(18, 18, 18, 1) 0%, rgba(18, 18, 18, 1) 80%, rgba(18, 18, 18, 1) 90%, rgba(18, 18, 18, 0.9) 94%, rgba(18, 18, 18, 0.8) 95%, rgba(18, 18, 18, 0.7449930313922444) 96%, rgba(18, 18, 18, 0.001) 100%);
+  background-image: linear-gradient(0deg, rgba(18, 18, 18, 1) 0%, rgba(18, 18, 18, 1) 80%, rgba(18, 18, 18, 1) 90%, rgba(18, 18, 18, 0.9) 94%, rgba(18, 18, 18, 0.8) 95%, rgba(18, 18, 18, 0.7449930313922444) 96%, rgba(18, 18, 18, 0.001) 100%);
+  background-image: -moz-linear-gradient(0deg, rgba(18, 18, 18, 1) 0%, rgba(18, 18, 18, 1) 80%, rgba(18, 18, 18, 1) 90%, rgba(18, 18, 18, 0.9) 94%, rgba(18, 18, 18, 0.8) 95%, rgba(18, 18, 18, 0.7449930313922444) 96%, rgba(18, 18, 18, 0.001) 100%);
 }
 
 .fade-diag {
@@ -644,18 +644,17 @@ export default {
   overflow: scroll;
   overscroll-behavior: auto;
   overflow-scrolling: touch;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  height: 100vh;
 }
 
 .overlay {
-  margin-top: 85vh;
+  position: sticky;
+  margin-top: 39.2rem;
   margin-bottom: 0;
   width: 100vw;
-  padding: 30px;
-  height: 80rem;
+  padding: 0px;
+  bottom: 0;
+  height: 120rem;
   overflow: hidden;
 //min-height: 80vh;
 }
@@ -781,7 +780,7 @@ export default {
   width: 100vw;
   transform: translateX(-1rem);
   height: 2rem;
-  top: 9rem;
+  top: 15rem;
   filter: opacity(1) blur(0.4%);
   background: linear-gradient(180deg, rgba(18, 18, 18, 1) 0%, rgba(18, 18, 18, 1) 45%, rgba(18, 18, 18, 0.9475140397956058) 71%, rgba(18, 18, 18, 0.8858893899356618) 86%, rgba(18, 18, 18, 0.7738445720084909) 93%, rgba(18, 18, 18, 0.6449930313922444) 98%, rgba(18, 18, 18, 0.1065743172) 100%);
 }
