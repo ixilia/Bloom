@@ -1,5 +1,6 @@
 <template>
   <v-app dark>
+    <Snackbar />
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -54,9 +55,24 @@
         </template>
         <span style="font-family: 'Michroma', sans-serif;">{{Math.round((DownloadProgress / DownloadTotal) * 100)}} <a style="font-family: 'Aldrich', sans-serif;">%</a></span>
       </v-tooltip>
-      <v-toolbar-title v-if="!DownloadState" v-text="title"/>
-      <v-spacer/>
 
+      <!--  Search   -->
+      <v-container>
+        <v-text-field class="search-field" placeholder="Search" >
+          <v-icon
+            class="search-field-icon"
+            slot="prepend"
+            size="1.5rem;"
+            style="width: 3rem!important; height: 2.3rem!important;"
+            @click="search_overlay =!search_overlay"
+          >
+            mdi-magnify
+          </v-icon>
+        </v-text-field>
+      </v-container>
+
+
+      <v-spacer/>
       <!--  User Account menu   -->
       <v-menu
         :close-on-content-click="true"
@@ -217,15 +233,20 @@
 <script>
 
   import { mapGetters, mapState } from 'vuex'
+  import Search from '@/layouts/Global/Search'
+  import Snackbar from '@/components/Snackbar'
 
   export default {
+    components: { Snackbar, Search },
     data() {
       return {
+        search_overlay: false,
         clipped: false,
         drawer: false,
-        fixed: false,
+        fixed: true,
         fixers: [],
         userImage: 'https://i.imgur.com/43Etwuz.jpg',
+
         rules: {
           email: value => {
             const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -262,7 +283,8 @@
         RecentViews: 'history/GET_HISTORY_DATA',
         DownloadState: 'download/GET_DOWNLOAD_STATE',
         DownloadProgress: 'download/GET_DOWNLOAD_PROGRESS',
-        DownloadTotal: 'download/GET_DOWNLOAD_TOTAL'
+        DownloadTotal: 'download/GET_DOWNLOAD_TOTAL',
+        SearchSources: 'search/GET_SOURCES_DATA'
       }),
 
 
@@ -280,6 +302,7 @@
 
     beforeMount() {
       this.$store.dispatch("history/LOAD_HISTORY")
+      this.$store.dispatch("search/LOAD_SOURCES_DATA")
     },
 
     watch: {},
@@ -315,4 +338,22 @@
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Aldrich&family=Michroma&display=swap');
+
+.search-field{
+  width: 0em;
+  transition: width linear .3s;
+  margin-top: 0.7rem !important;
+}
+.search-field:hover{
+  width: 30rem;
+}
+.search-field:focus-within{
+  width: 30rem;
+}
+
+.search-field-icon:hover{
+  transform: translateY(-1px);
+  cursor:pointer;
+}
+
 </style>

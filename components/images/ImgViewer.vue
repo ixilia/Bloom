@@ -3,6 +3,7 @@
     <viewer
       :images="images"
       :options="options"
+
       class="viewer"
       ref="viewer"
       @inited="inited"
@@ -10,8 +11,8 @@
     >
       <img
         v-for="{data} in images"
-        :src="data"
-        :data-source="data"
+        :src="`https://proxy.ixil.cc/ren?method=cover&width=200&height=300&image=`+data"
+        :data-source="`https://proxy.ixil.cc/prox?image=`+data"
         :key="data"
         class="image"
       >

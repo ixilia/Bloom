@@ -1,196 +1,215 @@
 <template>
-  <div style="height: 100vw;">
+  <div style="height: 100vh;" class="Album-Parent">
     <div v-if="!Check43Ratio()" class="bottom disable-scrollbars"
          style="background-size: cover; -webkit-transition: background-image 3s ease-in-out; transition: 3s;  background-blend-mode: darken;"
-         :style="`background-image: url(${BgImage});`">
-
+         :style="`background-image: url(https://proxy.ixil.cc/prox?image=${BgImage});`">
 
       <!-- Medium Meta -->
-      <v-col style="margin-top: 6rem; margin-left: 6rem; position: fixed; z-index: -1; width: 100vw">
-        <v-row v-if="$vuetify.breakpoint.mdAndUp">
-          <v-img width="264px"
-                 height="318px"
-                 max-height="318px"
-                 max-width="264px"
-                 style="border-radius: 5px; box-shadow:  0 0.9px 2.2px rgba(0, 0, 0, 0.051),  0 2.1px 5.3px rgba(0, 0, 0, 0.073),  0 3.9px 10px rgba(0, 0, 0, 0.09),  0 6.9px 17.9px rgba(0, 0, 0, 0.107),  0 13px 33.4px rgba(0, 0, 0, 0.129),  0 31px 80px rgba(0, 0, 0, 0.18);"
-                 :src="info.thumb"/>
-          <v-col style="margin-left: 4rem;">
-            <h1 v-if="$vuetify.breakpoint.mdAndUp"
-                style="width: 40rem;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-              {{ info.name }}</h1>
-            <h2 v-if="$vuetify.breakpoint.smAndDown"
-                style="width: 20rem;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-              {{ info.name }}</h2>
-            <v-row justify="start" class="pl-3">
-              <v-icon>mdi-account-circle</v-icon>
-              <h4 style="padding-left: 0.5rem; width: 10rem;  overflow: hidden; text-overflow: ellipsis;">
-                {{ info.idol }}</h4>
-            </v-row>
-            <div>
-              <v-badge
-                color="green"
-                content="168+"
-                icon="mdi-thumb-up"
-                overlap
-                offset-y="29px"
-                offset-x="23px"
-              >
-                <v-col>
-                  <v-avatar class="paper"
-                            :size=" $vuetify.breakpoint.smAndDown? `2.0rem`: `2.7rem`"
-                            v-for="(item, i) in 5"
-                            :key="i"
-                            :style=" i > 0  ? 'margin-left: -9px; transform: rotateY(11deg)' : 'margin-left: 0;' "
-                            style="box-shadow: -2px 1px 4px -3px #000000, -5px 2px 6px -2px rgba(0,0,0,0.74);">
-                    <v-img size="2.2rem"
-                           src="https://cdn.discordapp.com/attachments/488810702190936075/761234831304556554/unknown.png"/>
-                  </v-avatar>
-                </v-col>
-              </v-badge>
+      <div class="meta" v-if="$vuetify.breakpoint.mdAndUp">
+        <v-col>
+          <v-row style="padding-left: 4rem;">
+            <v-img width="264px"
+                   height="318px"
+                   max-height="318px"
+                   max-width="264px"
+                   style="border-radius: 5px; box-shadow:  0 0.9px 2.2px rgba(0, 0, 0, 0.051),  0 2.1px 5.3px rgba(0, 0, 0, 0.073),  0 3.9px 10px rgba(0, 0, 0, 0.09),  0 6.9px 17.9px rgba(0, 0, 0, 0.107),  0 13px 33.4px rgba(0, 0, 0, 0.129),  0 31px 80px rgba(0, 0, 0, 0.18);"
+                   :src="`https://proxy.ixil.cc/prox?image=`+info.thumb"/>
+            <v-col style="margin-left: 4rem;">
+              <h1 class="unselectable" v-if="$vuetify.breakpoint.mdAndUp"
+                  style="width: 40rem;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-shadow: 0 0 3px #000000;">
+                {{ info.name }}</h1>
+              <h2 class="unselectable" v-if="$vuetify.breakpoint.smAndDown"
+                  style="width: 20rem;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-shadow: 0 0 3px #000000;">
+                {{ info.name }}</h2>
+              <v-row justify="start" class="pl-3">
+                <v-icon>mdi-account-circle</v-icon>
+                <h4 style="padding-left: 0.5rem; width: 10rem;  overflow: hidden; text-overflow: ellipsis; text-shadow: 0 0 3px #000000;">
+                  {{ info.idol }}</h4>
+              </v-row>
+              <div>
+                <v-badge
+                  color="green"
+                  content="168+"
+                  icon="mdi-thumb-up"
+                  overlap
+                  offset-y="29px"
+                  offset-x="23px"
+                >
+                  <v-col>
+                    <v-avatar class="paper"
+                              :size=" $vuetify.breakpoint.smAndDown? `2.0rem`: `2.7rem`"
+                              v-for="(item, i) in 5"
+                              :key="i"
+                              :style=" i > 0  ? 'margin-left: -9px; transform: rotateY(11deg)' : 'margin-left: 0;' "
+                              style="box-shadow: -2px 1px 4px -3px #000000, -5px 2px 6px -2px rgba(0,0,0,0.74);">
+                      <v-img size="2.2rem"
+                             src="https://cdn.discordapp.com/attachments/488810702190936075/761234831304556554/unknown.png"/>
+                    </v-avatar>
+                  </v-col>
+                </v-badge>
 
-              <v-rating
-                empty-icon="mdi-star-outline"
-                full-icon="mdi-star"
-                half-icon="mdi-star-half-full"
-                hover
-                :length="5"
-                size="24"
-                :value="3"
-              />
-            </div>
+                <v-rating
+                  empty-icon="mdi-star-outline"
+                  full-icon="mdi-star"
+                  half-icon="mdi-star-half-full"
+                  hover
+                  :length="5"
+                  size="24"
+                  :value="3"
+                />
+              </div>
 
 
-            <!-- Download Dialog  -->
-            <div style="align-self: center; padding-bottom: 2rem; padding-top: 1rem;">
-              <v-dialog
-                v-model="DownloadDialog"
-                persistent
-                width="500"
-              >
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    dark
-                    depressed
-                    color="rgba(255, 242, 0, 0.79)"
-                    v-bind="attrs"
-                    v-on="on"
-                  >
-                    DOWNLOAD
-                  </v-btn>
-                </template>
-
-                <v-card>
-                  <v-card-title class="headline blue lighten-2">
-                    <v-row justify="space-between">
-                      <h3>
-                        Download
-                      </h3>
-                      <v-btn flat depressed color="rgba(0,0,0,0)" @click="DownloadDialog = !DownloadDialog">
-                        <v-icon size="1.5rem">mdi-close-circle</v-icon>
-                      </v-btn>
-                    </v-row>
-                  </v-card-title>
-
-                  <v-container fluid>
-                    <v-row style="width: 100%" justify-content="end" align-content="end">
-                      <v-col>
-                        <v-switch
-                          v-if="!DownloadState"
-                          style="align-self: end; justify-self: end;"
-                          v-model="DownloadAll"
-                          label="Download All"
-                          :disabled="DownloadState"
-                          @change="DownloadChange"
-                        ></v-switch>
-                        <h2 v-if="DownloadState" style="font-family: 'Michroma', sans-serif;">{{Math.round((DownloadProgress / DownloadTotal) * 100)}} <a style="font-family: 'Aldrich', sans-serif;">%</a></h2>
-                      </v-col>
-                      <v-tooltip top>
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-icon
-                            dark
-                            size="3rem"
-                            v-bind="attrs"
-                            v-on="on"
-                          >
-                            mdi-vpn
-                          </v-icon>
-                        </template>
-                        <span>Bloom Secure Proxy</span>
-                      </v-tooltip>
-                    </v-row>
-                    <v-select
-                      v-if="!DownloadState"
-                      v-model="selvalues"
-                      :items="elvalues"
-                      label="Select Images"
-                      multiple
-                    >
-                      <template v-slot:selection="{ item, index }">
-                        <v-chip v-if="index === 0">
-                          <span>{{ item }}</span>
-                        </v-chip>
-                        <span
-                          v-if="index === 1"
-                          class="grey--text caption"
-                        >
-          (+{{ items.length - 1 }} other pictures.)
-        </span>
-                      </template>
-                    </v-select>
-
-                    <v-progress-linear
-                      v-if="DownloadState"
-                      :buffer-value="DownloadProgress+1"
-                      color="success"
-                      stream
-                      :value="(DownloadProgress / DownloadTotal) * 100"
-                    />
-                  </v-container>
-
-                  <v-divider></v-divider>
-
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
+              <!-- Download Dialog  -->
+              <div style="align-self: center; padding-bottom: 2rem; padding-top: 1rem;">
+                <v-dialog
+                  v-model="DownloadDialog"
+                  persistent
+                  width="500"
+                >
+                  <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                      :disabled="DownloadState"
-                      :loading="DownloadState"
-                      color="primary"
-                      text
-                      @click="$store.dispatch('download/DOWNLOAD',{en: info, indexes: selvalues})"
+                      dark
+                      depressed
+                      color="rgba(255, 242, 0, 0.79)"
+                      v-bind="attrs"
+                      v-on="on"
                     >
-                      Download
+                      DOWNLOAD
                     </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
+                  </template>
+
+                  <v-card>
+                    <v-card-title class="headline blue lighten-2">
+                      <v-row justify="space-between">
+                        <h3>
+                          Download
+                        </h3>
+                        <v-btn flat depressed color="rgba(0,0,0,0)" @click="DownloadDialog = !DownloadDialog">
+                          <v-icon size="1.5rem">mdi-close-circle</v-icon>
+                        </v-btn>
+                      </v-row>
+                    </v-card-title>
+
+                    <v-container fluid>
+                      <v-row style="width: 100%" justify-content="end" align-content="end">
+                        <v-col>
+                          <v-switch
+                            v-if="!DownloadState"
+                            style="align-self: end; justify-self: end;"
+                            v-model="DownloadMeta"
+                            label="Download Petal Only"
+                            :disabled="DownloadState"
+                          ></v-switch>
+                          <h2 v-if="DownloadState" style="font-family: 'Michroma', sans-serif;">{{Math.round((DownloadProgress / DownloadTotal) * 100)}} <a style="font-family: 'Aldrich', sans-serif;">%</a></h2>
+                        </v-col>
+                        <v-tooltip top>
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-icon
+                              dark
+                              size="3rem"
+                              v-bind="attrs"
+                              v-on="on"
+                            >
+                              mdi-vpn
+                            </v-icon>
+                          </template>
+                          <span>Bloom Secure Proxy</span>
+                        </v-tooltip>
+                      </v-row>
+                      <v-select
+                        v-if="!DownloadState"
+                        v-model="selvalues"
+                        :items="elvalues"
+                        label="Select Images"
+                        multiple
+                      >
+                        <template v-slot:prepend-item>
+                          <v-list-item
+                            ripple
+                            @click="DownloadChange"
+                          >
+                            <v-list-item-action>
+                              <v-icon :color="selvalues.length > 0 ? 'indigo darken-4' : ''">
+                                {{ icon }}
+                              </v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                              <v-list-item-title>
+                                Select All
+                              </v-list-item-title>
+                            </v-list-item-content>
+                          </v-list-item>
+                          <v-divider class="mt-2"></v-divider>
+                        </template>
+
+                        <template v-slot:selection="{ item, index }">
+                          <v-chip v-if="index === 0">
+                            <span>{{ item }}</span>
+                          </v-chip>
+                          <span
+                            v-if="index === 1"
+                            class="grey--text caption"
+                          >
+          (+{{ selvalues.length - 1 }} other pictures.)
+        </span>
+                        </template>
+                      </v-select>
+
+                      <v-progress-linear
+                        v-if="DownloadState"
+                        :buffer-value="DownloadProgress+1"
+                        color="success"
+                        stream
+                        :value="(DownloadProgress / DownloadTotal) * 100"
+                      />
+                    </v-container>
+
+                    <v-divider></v-divider>
+
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        :disabled="DownloadState"
+                        :loading="DownloadState"
+                        color="primary"
+                        text
+                        @click="Download"
+                      >
+                        Download
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </div>
+            </v-col>
+          </v-row>
+          <div v-if="$vuetify.breakpoint.mdAndUp" style="padding-left: 47%; padding-top: 5rem; width: fit-content; height: fit-content">
+            <div style=" width: 2rem; margin-top: 4rem; height: 0.1em;" class="mouse_wave" @mouseenter="ScrollToImages()">
+              <span class="scroll_arrows one"></span>
+              <span class="scroll_arrows two"></span>
+              <span class="scroll_arrows three"></span>
             </div>
-          </v-col>
-        </v-row>
-        <div v-if="$vuetify.breakpoint.mdAndUp" style="padding-left: 43%; padding-top: 5rem; width: fit-content; height: fit-content">
-          <div style=" width: 2rem; margin-top: 4rem; height: 0.1em;" class="mouse_wave" @mouseenter="ScrollToImages()">
-            <span class="scroll_arrows one"></span>
-            <span class="scroll_arrows two"></span>
-            <span class="scroll_arrows three"></span>
           </div>
-        </div>
-      </v-col>
+        </v-col>
+      </div>
 
 
       <!-- Mobile Meta -->
       <v-col v-if="$vuetify.breakpoint.smAndDown"
-             style="margin-top: 1.2rem; margin-left: 1rem; position: fixed; z-index: -1; ">
+             style="margin-top: 3.8rem; margin-left: 1rem; position: fixed; z-index: 0; ">
         <v-img width="164px"
                height="218px"
                max-height="218px"
                max-width="194px"
                style="border-radius: 5px; box-shadow:  0 0.9px 2.2px rgba(0, 0, 0, 0.051),  0 2.1px 5.3px rgba(0, 0, 0, 0.073),  0 3.9px 10px rgba(0, 0, 0, 0.09),  0 6.9px 17.9px rgba(0, 0, 0, 0.107),  0 13px 33.4px rgba(0, 0, 0, 0.129),  0 31px 80px rgba(0, 0, 0, 0.18);"
-               :src="info.thumb"/>
+               :src="`https://proxy.ixil.cc/prox?image=`+info.thumb"/>
         <div style="padding-top: 1rem;">
-          <h2 style="width: 18rem;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+          <h2 style="width: 18rem;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-shadow: 0 0 3px #000000;">
             {{ info.name }}</h2>
           <v-row justify="start" class="pl-3">
             <v-icon>mdi-account-circle</v-icon>
-            <h4 style="padding-left: 0.5rem; width: 16rem;  overflow: hidden; text-overflow: ellipsis;">
+            <h4 style="padding-left: 0.5rem; width: 16rem;  overflow: hidden; text-overflow: ellipsis; text-shadow: 0 0 3px #000000;">
               {{ info.idol }}</h4>
           </v-row>
         </div>
@@ -265,10 +284,9 @@
                     <v-switch
                       v-if="!DownloadState"
                       style="align-self: end; justify-self: end;"
-                      v-model="DownloadAll"
-                      label="Download All"
+                      v-model="DownloadMeta"
+                      label="Download Petal Only"
                       :disabled="DownloadState"
-                      @change="DownloadChange"
                     ></v-switch>
                     <h2 v-if="DownloadState" style="font-family: 'Michroma', sans-serif;">{{Math.round((DownloadProgress / DownloadTotal) * 100)}} <a style="font-family: 'Aldrich', sans-serif;">%</a></h2>
                   </v-col>
@@ -293,6 +311,25 @@
                   label="Select Images"
                   multiple
                 >
+                  <template v-slot:prepend-item>
+                    <v-list-item
+                      ripple
+                      @click="DownloadChange"
+                    >
+                      <v-list-item-action>
+                        <v-icon :color="selvalues.length > 0 ? 'indigo darken-4' : ''">
+                          {{ icon }}
+                        </v-icon>
+                      </v-list-item-action>
+                      <v-list-item-content>
+                        <v-list-item-title>
+                          Select All
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-divider class="mt-2"></v-divider>
+                  </template>
+
                   <template v-slot:selection="{ item, index }">
                     <v-chip v-if="index === 0">
                       <span>{{ item }}</span>
@@ -301,7 +338,7 @@
                       v-if="index === 1"
                       class="grey--text caption"
                     >
-          (+{{ items.length - 1 }} other pictures.)
+          (+{{ selvalues.length - 1 }} other pictures.)
         </span>
                   </template>
                 </v-select>
@@ -324,7 +361,7 @@
                   :loading="DownloadState"
                   color="primary"
                   text
-                  @click="$store.dispatch('download/DOWNLOAD',{en: info, indexes: selvalues})"
+                  @click="Download"
                 >
                   Download
                 </v-btn>
@@ -332,7 +369,7 @@
             </v-card>
           </v-dialog>
         </div>
-        <div style="transform: translateY(-4.5rem); padding-left: 43%; width: fit-content; height: fit-content">
+        <div style="transform: rotateZ(180deg) translateY(-.5rem) translateX(-10rem); width: fit-content; height: fit-content">
           <div style=" width: 2rem; margin-top: 4rem; height: 0.1em;" class="mouse_wave">
             <span class="scroll_arrows one"></span>
             <span class="scroll_arrows two"></span>
@@ -340,42 +377,136 @@
           </div>
         </div>
       </v-col>
+    </div>
+
+    <!-- Body for PC/Mobile  16:9 -->
+    <div v-if="!Check43Ratio()" id="overlay" ref="overlay" class="overlay fade">
+      <v-banner
+        single-line
+        v-if="info.pollen && PollenNotify"
+        @click:icon="alert"
+      >
+        <v-icon
+          slot="icon"
+          color="warning"
+          size="36"
+        >
+          mdi-image-filter-vintage
+        </v-icon>
+        Pollen - AI Enchased Images Available
+
+        <template v-slot:actions>
+          <v-btn
+            color="blue darken-4"
+            text
+            @click="GetPollen"
+          >
+            Access Pollen Service
+          </v-btn>
+        </template>
+      </v-banner>
+      <div class="scrollbox-fm"/>
+      <div class="disable-scrollbars"
+           style="margin-top: 14rem; padding-top: 1rem; overflow: scroll; height: inherit;">
+        <v-row justify="space-around" style="padding-bottom: 19rem">
+          <v-container>
+            <masonry
+              :cols="{default: 4, 1000: 3, 700: 2, 400: 2}"
+              :gutter="{default: '30px', 700: '15px'}"
+            >
+              <v-img v-if="$vuetify.breakpoint.mdAndUp && !dist" v-for="(item, index) in items" :key="index"
+                     @click="show(index)" width="17rem" max-height="20rem;"
+                     style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
+                     lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
+                     :src="`https://proxy.ixil.cc/ren?method=cover&width=200&height=300&image=`+item.data" @error="dist = true">
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-progress-circular
+                      indeterminate
+                      color="red"
+                    ></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
 
 
-      <!-- Body -->
-      <div id="overlay" ref="overlay" class="overlay fade">
-        <div class="scrollbox-fm"/>
-        <div class="disable-scrollbars"
-             style="margin-top: 14rem; padding-top: 1rem; overflow: scroll; height: inherit;">
-          <v-row justify="space-around" style="">
-            <div>
-              <masonry
-                :cols="{default: 4, 1000: 3, 700: 2, 400: 1}"
-                :gutter="{default: '30px', 700: '15px'}"
-              >
-                <v-img v-if="$vuetify.breakpoint.mdAndUp" v-for="(item, index) in items" :key="index"
-                       @click="show(index)" width="17rem" max-height="20rem;"
-                       style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
-                       :src="item.data"/>
-                <v-img v-if="$vuetify.breakpoint.smAndDown" v-for="(item, index) in items" :key="index"
-                       @click="show(index)" width="10rem" max-height="20rem;"
-                       style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
-                       :src="item.data"/>
-              </masonry>
-            </div>
-          </v-row>
-        </div>
+              <v-img v-if="$vuetify.breakpoint.smAndDown && !dist" v-for="(item, index) in items" :key="index"
+                     @click="show(index)" width="10rem" max-height="20rem;"
+                     style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
+                     lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
+                     :src="`https://proxy.ixil.cc/ren?method=cover&width=200&height=300&image=`+item.data" @error="dist = true">
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-progress-circular
+                      indeterminate
+                      color="red"
+                    ></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
+
+
+              <v-img v-if="$vuetify.breakpoint.mdAndUp && dist" v-for="(item, index) in items" :key="index"
+                     @click="show(index)" width="17rem" max-height="20rem;"
+                     style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
+                     lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
+                     :src="`https://proxy.ixil.cc/ren?method=cover&width=200&height=300&image=`+item.data">
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-progress-circular
+                      indeterminate
+                      color="red"
+                    ></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
+
+
+              <v-img v-if="$vuetify.breakpoint.smAndDown && dist" v-for="(item, index) in items" :key="index"
+                     @click="show(index)" width="10rem" max-height="20rem;"
+                     style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
+                     lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
+                     :src="`https://proxy.ixil.cc/ren?method=cover&width=200&height=300&image=`+item.data">
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-progress-circular
+                      indeterminate
+                      color="red"
+                    ></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
+            </masonry>
+          </v-container>
+        </v-row>
       </div>
     </div>
+    <!-- END 16:9 Page -->
 
 
     <!-- 4:3 Page -->
     <div v-if="Check43Ratio()" class="bottom disable-scrollbars"
-         style="background-size: cover; background-position: right center"
-         :style="`background-image: url(${info.gliphs[1]});`">
+         style="background-size: cover; background-position: center center; -webkit-transition: background-image 3s ease-in-out; transition: 3s;  background-blend-mode: darken;"
+         :style="`background-image: url(https://proxy.ixil.cc/prox?image=${BgImage});`">
 
       <v-row class="bottom" justify="space-around"
-             style=" padding-left: 6rem; padding-top: 20rem; z-index: -1; width: 100vw;">
+             style=" padding-left: 6rem; padding-top: 20rem; z-index: -1; width: 100vw; overflow: hidden">
         <v-col style="padding-right: 0; margin-right: 0;">
           <v-row justify="space-between" style="width: 40rem;" no-gutters>
             <v-img width="264px"
@@ -383,153 +514,180 @@
                    max-height="318px"
                    max-width="264px"
                    style="border-radius: 5px; box-shadow:  0 0.9px 2.2px rgba(0, 0, 0, 0.051),  0 2.1px 5.3px rgba(0, 0, 0, 0.073),  0 3.9px 10px rgba(0, 0, 0, 0.09),  0 6.9px 17.9px rgba(0, 0, 0, 0.107),  0 13px 33.4px rgba(0, 0, 0, 0.129),  0 31px 80px rgba(0, 0, 0, 0.18);"
-                   :src="info.thumb"/>
+                   :src="`https://proxy.ixil.cc/prox?image=`+info.thumb"/>
             <div>
               <v-col>
-                <h2 style="width: 18rem;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                <h2 style="width: 18rem;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-shadow: 0 0 3px #000000;">
                   {{ info.name }}</h2>
                 <v-row justify="start" class="pl-3">
                   <v-icon>mdi-account-circle</v-icon>
-                  <h4 style="padding-left: 0.5rem; width: 16rem;  overflow: hidden; text-overflow: ellipsis;">
+                  <h4 style="padding-left: 0.5rem; width: 16rem;  overflow: hidden; text-overflow: ellipsis; text-shadow: 0 0 3px #000000;">
                     {{ info.idol }}</h4>
                 </v-row>
+                <div style="transform:  rotateZ(90deg) translateY(-36rem); padding-top: 25rem; width: fit-content; height: fit-content">
+                  <div style=" width: 2rem; margin-top: 4rem; height: 0.1em;" class="mouse_wave">
+                    <span class="scroll_arrows one"></span>
+                    <span class="scroll_arrows two"></span>
+                    <span class="scroll_arrows three"></span>
+                  </div>
+                </div>
               </v-col>
             </div>
           </v-row>
-          <v-rating
-            class="pt-6"
-            empty-icon="mdi-star-outline"
-            full-icon="mdi-star"
-            half-icon="mdi-star-half-full"
-            hover
-            :length="5"
-            size="24"
-            :value="3"
-          />
-          <v-badge
-            class="pt-5 pb-5"
-            color="green"
-            content="168+"
-            icon="mdi-thumb-up"
-            overlap
-            offset-y="47px"
-            offset-x="29px"
-          >
-            <v-col>
-              <v-avatar class="paper"
-                        :size=" $vuetify.breakpoint.smAndDown? `2.0rem`: `2.7rem`"
-                        v-for="(item, i) in 5"
-                        :key="i"
-                        :style=" i > 0  ? 'margin-left: -9px; transform: rotateY(11deg)' : 'margin-left: 0;' "
-                        style="box-shadow: -2px 1px 4px -3px #000000, -5px 2px 6px -2px rgba(0,0,0,0.74);">
-                <v-img size="2.2rem"
-                       src="https://cdn.discordapp.com/attachments/488810702190936075/761234831304556554/unknown.png"/>
-              </v-avatar>
-            </v-col>
-          </v-badge>
-
-          <div style="align-self: center; padding-bottom: 2rem; padding-top: 1rem;">
-            <v-dialog
-              v-model="DownloadDialog"
-              persistent
-              width="500"
+          <div style="transform: translateY(-10rem)">
+            <v-rating
+              class=""
+              empty-icon="mdi-star-outline"
+              full-icon="mdi-star"
+              half-icon="mdi-star-half-full"
+              hover
+              :length="5"
+              size="24"
+              :value="3"
+            />
+            <v-badge
+              class="pt-5 pb-5"
+              color="green"
+              content="168+"
+              icon="mdi-thumb-up"
+              overlap
+              offset-y="47px"
+              offset-x="29px"
             >
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  dark
-                  depressed
-                  color="rgba(255, 242, 0, 0.79)"
-                  v-bind="attrs"
-                  v-on="on"
-                >
-                  DOWNLOAD
-                </v-btn>
-              </template>
+              <v-col>
+                <v-avatar class="paper"
+                          :size=" $vuetify.breakpoint.smAndDown? `2.0rem`: `2.7rem`"
+                          v-for="(item, i) in 5"
+                          :key="i"
+                          :style=" i > 0  ? 'margin-left: -9px; transform: rotateY(11deg)' : 'margin-left: 0;' "
+                          style="box-shadow: -2px 1px 4px -3px #000000, -5px 2px 6px -2px rgba(0,0,0,0.74);">
+                  <v-img size="2.2rem"
+                         src="https://cdn.discordapp.com/attachments/488810702190936075/761234831304556554/unknown.png"/>
+                </v-avatar>
+              </v-col>
+            </v-badge>
 
-              <v-card>
-                <v-card-title class="headline blue lighten-2">
-                  <v-row justify="space-between">
-                    <h3>
-                      Download
-                    </h3>
-                    <v-btn flat depressed color="rgba(0,0,0,0)" @click="DownloadDialog = !DownloadDialog">
-                      <v-icon size="1.5rem">mdi-close-circle</v-icon>
-                    </v-btn>
-                  </v-row>
-                </v-card-title>
-
-                <v-container fluid>
-                  <v-row style="width: 100%" justify-content="end" align-content="end">
-                    <v-col>
-                      <v-switch
-                        v-if="!DownloadState"
-                        style="align-self: end; justify-self: end;"
-                        v-model="DownloadAll"
-                        label="Download All"
-                        :disabled="DownloadState"
-                        @change="DownloadChange"
-                      ></v-switch>
-                      <h2 v-if="DownloadState" style="font-family: 'Michroma', sans-serif;">{{Math.round((DownloadProgress / DownloadTotal) * 100)}} <a style="font-family: 'Aldrich', sans-serif;">%</a></h2>
-                    </v-col>
-                    <v-tooltip top>
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-icon
-                          dark
-                          size="3rem"
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          mdi-vpn
-                        </v-icon>
-                      </template>
-                      <span>Bloom Secure Proxy</span>
-                    </v-tooltip>
-                  </v-row>
-                  <v-select
-                    v-if="!DownloadState"
-                    v-model="selvalues"
-                    :items="elvalues"
-                    label="Select Images"
-                    multiple
-                  >
-                    <template v-slot:selection="{ item, index }">
-                      <v-chip v-if="index === 0">
-                        <span>{{ item }}</span>
-                      </v-chip>
-                      <span
-                        v-if="index === 1"
-                        class="grey--text caption"
-                      >
-          (+{{ items.length - 1 }} other pictures.)
-        </span>
-                    </template>
-                  </v-select>
-
-                  <v-progress-linear
-                    v-if="DownloadState"
-                    :buffer-value="DownloadProgress+1"
-                    color="success"
-                    stream
-                    :value="(DownloadProgress / DownloadTotal) * 100"
-                  />
-                </v-container>
-
-                <v-divider></v-divider>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
+            <div style="align-self: center; padding-bottom: 2rem; padding-top: 1rem;">
+              <v-dialog
+                v-model="DownloadDialog"
+                persistent
+                width="500"
+              >
+                <template v-slot:activator="{ on, attrs }">
                   <v-btn
-                    :disabled="DownloadState"
-                    :loading="DownloadState"
-                    color="primary"
-                    text
-                    @click="$store.dispatch('download/DOWNLOAD',{en: info, indexes: selvalues})"
+                    dark
+                    depressed
+                    color="rgba(255, 242, 0, 0.79)"
+                    v-bind="attrs"
+                    v-on="on"
                   >
-                    Download
+                    DOWNLOAD
                   </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+                </template>
+
+                <v-card>
+                  <v-card-title class="headline blue lighten-2">
+                    <v-row justify="space-between">
+                      <h3>
+                        Download
+                      </h3>
+                      <v-btn flat depressed color="rgba(0,0,0,0)" @click="DownloadDialog = !DownloadDialog">
+                        <v-icon size="1.5rem">mdi-close-circle</v-icon>
+                      </v-btn>
+                    </v-row>
+                  </v-card-title>
+
+                  <v-container fluid>
+                    <v-row style="width: 100%" justify-content="end" align-content="end">
+                      <v-col>
+                        <v-switch
+                          v-if="!DownloadState"
+                          style="align-self: end; justify-self: end;"
+                          v-model="DownloadMeta"
+                          label="Download Petal Only"
+                          :disabled="DownloadState"
+                        ></v-switch>
+                        <h2 v-if="DownloadState" style="font-family: 'Michroma', sans-serif;">{{Math.round((DownloadProgress / DownloadTotal) * 100)}} <a style="font-family: 'Aldrich', sans-serif;">%</a></h2>
+                      </v-col>
+                      <v-tooltip top>
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-icon
+                            dark
+                            size="3rem"
+                            v-bind="attrs"
+                            v-on="on"
+                          >
+                            mdi-vpn
+                          </v-icon>
+                        </template>
+                        <span>Bloom Secure Proxy</span>
+                      </v-tooltip>
+                    </v-row>
+                    <v-select
+                      v-if="!DownloadState"
+                      v-model="selvalues"
+                      :items="elvalues"
+                      label="Select Images"
+                      multiple
+                    >
+                      <template v-slot:prepend-item>
+                        <v-list-item
+                          ripple
+                          @click="DownloadChange"
+                        >
+                          <v-list-item-action>
+                            <v-icon :color="selvalues.length > 0 ? 'indigo darken-4' : ''">
+                              {{ icon }}
+                            </v-icon>
+                          </v-list-item-action>
+                          <v-list-item-content>
+                            <v-list-item-title>
+                              Select All
+                            </v-list-item-title>
+                          </v-list-item-content>
+                        </v-list-item>
+                        <v-divider class="mt-2"></v-divider>
+                      </template>
+
+                      <template v-slot:selection="{ item, index }">
+                        <v-chip v-if="index === 0">
+                          <span>{{ item }}</span>
+                        </v-chip>
+                        <span
+                          v-if="index === 1"
+                          class="grey--text caption"
+                        >
+          (+{{ selvalues.length - 1 }} other pictures.)
+        </span>
+                      </template>
+                    </v-select>
+
+                    <v-progress-linear
+                      v-if="DownloadState"
+                      :buffer-value="DownloadProgress+1"
+                      color="success"
+                      stream
+                      :value="(DownloadProgress / DownloadTotal) * 100"
+                    />
+                  </v-container>
+
+                  <v-divider></v-divider>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      :disabled="DownloadState"
+                      :loading="DownloadState"
+                      color="primary"
+                      text
+                      @click="Download"
+                    >
+                      Download
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </div>
           </div>
         </v-col>
       </v-row>
@@ -537,20 +695,90 @@
 
       <!-- 4:3 Body -->
       <div class="overlay-daig fade-diag" style="">
-        <div style="padding-left: 10rem; padding-top: 5rem; height: fit-content;">
+        <div style="padding-left: 12rem; padding-right: 2rem; padding-top: 5rem; height: fit-content;">
           <v-col style="height: fit-content;">
             <masonry
-              :cols="{default: 3, 1000: 3, 700: 2, 400: 1}"
+              :cols="{default: 2}"
               :gutter="{default: '30px', 700: '15px'}"
             >
-              <v-img v-if="$vuetify.breakpoint.mdAndUp" v-for="(item, index) in items" :key="index" @click="show(index)"
+              <v-img v-if="$vuetify.breakpoint.mdAndUp && !dist" v-for="(item, index) in items" :key="index" @click="show(index)"
                      width="30rem" max-height="18rem;"
                      style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
-                     :src="item.data"/>
-              <v-img v-if="$vuetify.breakpoint.smAndDown" v-for="(item, index) in items" :key="index"
+                     lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
+                     :src="`https://proxy.ixil.cc/ren?method=cover&width=500&height=400&image=`+item.data" @error="dist = true">
+              <template v-slot:placeholder>
+                <v-row
+                  class="fill-height ma-0"
+                  align="center"
+                  justify="center"
+                >
+                  <v-progress-circular
+                    indeterminate
+                    color="red"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
+              </v-img>
+
+
+              <v-img v-if="$vuetify.breakpoint.smAndDown && !dist" v-for="(item, index) in items" :key="index"
                      @click="show(index)" width="10rem" max-height="16rem;"
                      style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
-                     :src="item.data"/>
+                     lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
+                     :src="`https://proxy.ixil.cc/ren?method=cover&width=300&height=200&image=`+item.data" @error="dist = true">
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-progress-circular
+                      indeterminate
+                      color="red"
+                    ></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
+
+
+              <v-img v-if="$vuetify.breakpoint.mdAndUp && !dist" v-for="(item, index) in items" :key="index" @click="show(index)"
+                     width="30rem" max-height="18rem;"
+                     style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
+                     lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
+                     :src="`https://proxy.ixil.cc/ren?method=cover&width=500&height=400&image=`+item.data">
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-progress-circular
+                      indeterminate
+                      color="red"
+                    ></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
+
+
+              <v-img v-if="$vuetify.breakpoint.smAndDown && !dist" v-for="(item, index) in items" :key="index"
+                     @click="show(index)" width="10rem" max-height="16rem;"
+                     style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
+                     lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
+                     :src="`https://proxy.ixil.cc/ren?method=cover&width=300&height=200&image=`+item.data">
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-progress-circular
+                      indeterminate
+                      color="red"
+                    ></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
             </masonry>
           </v-col>
         </div>
@@ -561,7 +789,7 @@
     <img-viewer ref="viewer"/>
 
     <!-- Preload Background image -->
-    <div style="width: 0; height: 0;" :style="`background-image: url(${NBGImage});`"></div>
+    <div style="width: 0; height: 0;" :style="`background-image: url(https://proxy.ixil.cc/prox?image=${NBGImage});`"></div>
   </div>
 </template>
 
@@ -569,7 +797,7 @@
 //import WaterfallSlot from 'vue-waterfall/lib/waterfall-slot'
 import axios from 'axios'
 import ImgViewer from '../../components/images/ImgViewer'
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 
 let ERROR_ALLOWED = 0.05
 let STANDARD_ASPECT_RATIOS = [
@@ -596,10 +824,14 @@ export default {
       BgImage: '',
       NBGImage: '',
       items: [],
-      DownloadAll: true,
+      PollenNotify: true,
       DownloadDialog: false,
+      DSnackbar: false,
+      Alerttext: '',
       elvalues: [],
       selvalues: [],
+      DownloadMeta: false,
+      dist: false,
       el: null
     }
   },
@@ -615,8 +847,24 @@ export default {
     ...mapGetters({
       DownloadState: 'download/GET_DOWNLOAD_STATE',
       DownloadProgress: 'download/GET_DOWNLOAD_PROGRESS',
-      DownloadTotal: 'download/GET_DOWNLOAD_TOTAL'
+      DownloadTotal: 'download/GET_DOWNLOAD_TOTAL',
     }),
+
+    ...mapMutations({
+      setSnack: 'snackbar/SET_SNACK_STATE'
+    }),
+
+    SelectedAll () {
+      return this.selvalues.length === this.elvalues.length
+    },
+    SelectedFew () {
+      return this.selvalues.length > 0 && !this.likesAllFruit
+    },
+    icon () {
+      if (this.SelectedAll) return 'mdi-close-box'
+      if (this.SelectedFew) return 'mdi-minus-box'
+      return 'mdi-checkbox-blank-outline'
+    },
   },
 
   timers: {
@@ -655,10 +903,55 @@ export default {
       this.NBGImage = this.info.gliphs[Math.floor((Math.random() * this.info.gliphs.length) + 1)]
     },
 
+    GetPollen(){
+      console.log('Accessing Pollen Service')
+      axios
+        .get('https://api.ixil.cc/bloom/hina/pollen?id=' + this.info.id)
+        .then(response => {
+          console.log('Accessing Pollen Data')
+          console.log(response.data.DMZs)
+          console.log(response.data)
+          this.items = Array.from({ length: response.data.DMZs.length }, (_, index) => ({
+            data: response.data.DMZs[index],
+            id: index,
+          }))
+        })
+        .catch(function (error) {
+          console.log(error)
+          this.PollenNotify = false
+        })
+        .finally(() => {
+          this.PollenNotify = false
+        })
+    },
+    Download()
+    {
+      if(this.DownloadMeta) {
+        this.$store.dispatch('download/DOWNLOAD_META', {en: this.info, indexes: this.selvalues})
+        this.DownloadDialog = false
+        this.$store.dispatch('snackbar/POP_SNACKBAR', 'Downloading Meta File.')
+      }
+
+      else {
+        this.$store.dispatch('download/DOWNLOAD',{en: this.info, indexes: this.selvalues})
+        this.DownloadDialog = false
+        this.$store.dispatch('snackbar/POP_SNACKBAR', 'Downloading Zip.')
+      }
+    },
+
     DownloadChange()
     {
-      if(this.DownloadAll) this.selvalues = this.elvalues
-      else this.selvalues = []
+      this.$nextTick(() => {
+        if (this.SelectedAll) {
+          this.selvalues = []
+        } else {
+          this.selvalues = this.elvalues.slice()
+        }
+      })
+    },
+
+    snackTime: function (snack) {
+      this.setSnack(snack)
     },
 
     ScrollToImages() {
@@ -747,6 +1040,13 @@ export default {
   background-image: -moz-linear-gradient(270deg, rgba(18, 18, 18, 1) 0%, rgba(18, 18, 18, 1) 80%, rgba(18, 18, 18, 0.9475140397956058) 90%, rgba(18, 18, 18, 0.8858893899356618) 94%, rgba(18, 18, 18, 0.8038445720084909) 95%, rgba(18, 18, 18, 0.0449930313922444) 98%, rgba(18, 18, 18, 0.001) 100%);
 }
 
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .disable-scrollbars::-webkit-scrollbar {
   width: 0;
   background: transparent; /* Chrome/Safari/Webkit */
@@ -756,25 +1056,42 @@ export default {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */
 }
-
-.bottom {
-  position: fixed;
-  overflow: scroll;
-  overscroll-behavior: auto;
-  overflow-scrolling: touch;
+.Album-Parent{
+  overflow: paged-y-controls;
   height: 100vh;
 }
-
+.bottom {
+  position: fixed;
+  overflow: auto;
+  overscroll-behavior: auto;
+  overflow-scrolling: touch;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+}
+.meta {
+  margin-top: 6rem;
+  margin-left: 0rem;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
 .overlay {
-  position: sticky;
-  margin-top: 39.2rem;
+  position: relative;
+  top: 38.2rem;
+  //transform: translateY(40rem);
+
   margin-bottom: 0;
   width: 100vw;
-  padding: 0px;
+  //padding: 0px;
   bottom: 0;
   height: 120rem;
   overflow: hidden;
-//min-height: 80vh;
+  min-height: 80vh;
 }
 
 .overlay-daig {
@@ -894,7 +1211,7 @@ export default {
 
 .scrollbox-fm {
   position: relative;
-  z-index: 999;
+  z-index: 1;
   width: 100vw;
   transform: translateX(-1rem);
   height: 2rem;

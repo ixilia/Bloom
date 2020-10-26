@@ -3563,6 +3563,11 @@ eslint-scope@^4.0.3:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
+esm@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.1.0.tgz#89eb950b3f04b691b12f96a0d9c8de93039a1a26"
+  integrity sha512-r4Go7Wh7Wh0WPinRXeeM9PIajRsUdt8SAyki5R1obVc0+BwtqvtjbngVSSdXg0jCe2xZkY8hyBMx6q/uymUkPw==
+
 esm@^3.2.25:
   version "3.2.25"
   resolved "https://registry.yarnpkg.com/esm/-/esm-3.2.25.tgz#342c18c29d56157688ba5ce31f8431fbb795cc10"
@@ -8048,6 +8053,13 @@ uuid@^3.3.2:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
+
+v-img-fallback@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/v-img-fallback/-/v-img-fallback-0.1.5.tgz#07c3b78a7a7d9f744d055a1a2f94c08589e21862"
+  integrity sha512-ss1agMlZY0QnLfUfEcT2scZgrqB3fQhVZL4ZIRr3SulkEGDLzRg2QayxNtDOG4Uu+qvmPpkJP1OTrvLr7DPJtA==
+  dependencies:
+    esm "3.1.0"
 
 v-viewer@^1.5.1:
   version "1.5.1"

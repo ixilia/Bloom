@@ -30,42 +30,43 @@ export const actions = {
       vuexContext.commit('SET_DOWNLOAD_STATE', true)
       vuexContext.commit('SET_DOWNLOAD_TOTAL', data.indexes.length)
       let zip = new JSZip()
-      zip.file("bloom.petal", JSON.stringify({data: data, errors: errors }));
-      let img = zip.folder('images')
-      //img.file("smile.gif", imgData, {ArrayBuffer: true});
-      console.log(data.indexes)
+      zip.file("bloom.petal", JSON.stringify({data: data, errors: errors }, null, "\t"));
+      let img = zip.folder('Petals')
       let i = 0
       for (i; i < data.indexes.length; i++) {
         let downloadurl = data.en.gliphs[data.indexes[i]-1]
-        if(downloadurl === undefined) console.log({I: i,Index: data.indexes[i], Indexes: data.indexes.length, Images: data.en.gliphs.length, current: data.en.gliphs[data.indexes[i]-1]})
-        let ext = data.en.gliphs[data.indexes[i]-1].match(/^.*?\/\/.*?\/(.*?)(\..*?)$/)[2]  // get file extension
-        if (downloadurl.includes('https://')) downloadurl = downloadurl.replace('https://', '')
-        else if (downloadurl.includes('http://')) downloadurl = downloadurl.replace('http://', '')
-
         await axios
-          .get('https://bloom-proxy.herokuapp.com/' + downloadurl, {  // uses proxy
+          .get('https://proxy.ixil.cc/prox?dd=true&image=' + downloadurl, {  // uses proxy
             responseType: 'arraybuffer'
           })
           .then(response => {
-            img.file(`petal-${i}${ext}`, response.data, { arraybuffer: true })
+            img.file(`petal-${i}.jpg`, response.data, { arraybuffer: true })
           }).catch(function (error) {
-            errors.push(error)
-            zip.file("bloom.petal", JSON.stringify({data: data, errors: errors }));
+            errors.push({image: downloadurl, exception: {message: error.message, type: name}})
+            zip.file("bloom.petal", JSON.stringify({data: data, errors: errors }, null, "\t"));
           }).finally(() => {
             vuexContext.commit('SET_DOWNLOAD_PROGRESS', i)
           })
       }
 
-      while (i < data.indexes.length) {
-        await sleep(100);
-      }
-      zip.generateAsync({type:"blob"})
+      while (i < data.indexes.length) {}
+      zip.generateAsync({type:"blob", comment: `Downloaded from Bloom  [https://app.ixil.cc/a/${data.en.id}]`, compression: "DEFLATE",
+        compressionOptions: {
+          level: 1  // compression level - store
+        }})
         .then(function(content) {
           saveAs(content, `petals-${data.en.id}.zip`);
         }).finally(function() {
         vuexContext.commit('SET_DOWNLOAD_STATE', false)
       });
     }
+  },
+
+  async DOWNLOAD_META(vuexContext, data) {
+    vuexContext.commit('SET_DOWNLOAD_STATE', true)
+    let petal = new Blob([JSON.stringify({data: data}, null, "\t")], {type: "petal/bloom;charset=utf-8"});
+    saveAs(petal, `bloom-${data.en.id}.hina.petal`);
+    vuexContext.commit('SET_DOWNLOAD_STATE', false);
   },
 }
 

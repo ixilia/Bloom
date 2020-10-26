@@ -62,10 +62,17 @@
     },
 
     beforeMount() {  // Below code gets color palate of picture
-      this.$axios.get(`https://bloom-dist.herokuapp.com/color?image=${this.album.thumb}`)
+      this.$axios.get(`https://bloom-diste.herokuapp.com/color?image=${this.album.thumb}`)
         .then((res) => {
           this.album.color = res.data
-        })
+        }).catch(function (error) {
+        this.$axios.get(`https://bloom-dist.herokuapp.com/color?image=${this.album.thumb}`)
+          .then((res) => {
+            this.album.color = res.data
+          }).catch(function (error) {
+
+        });
+      });
     },
 
     methods: {
