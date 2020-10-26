@@ -60,7 +60,7 @@
         </v-row>
       </v-container>
     </v-form>
-    <v-divider/>
+    <v-divider class="TopView"/>
     <v-row v-if="$vuetify.breakpoint.mdAndUp & SearchState" justify="space-between" style="overflow: hidden; flex-wrap: wrap; height: 4rem;">
       <v-chip
         v-for="(item, i) in 20"
@@ -98,10 +98,10 @@
           >
             <n-link v-for="(item, index) in Search" :key="index"
                     :to="`/a/${item.id}`" prefetch>
-              <v-img  max-width="17rem" max-height="20rem;"
-                      style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
-                      lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
-                      :src="`https://proxy.ixil.cc/`+item.thumb">
+              <v-img max-width="17rem" max-height="20rem;"
+                     style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
+                     lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
+                     :src="`https://proxy.ixil.cc/prox?dd=true&image=`+item.thumb">
                 <template v-slot:placeholder>
                   <v-row
                     class="fill-height ma-0"
@@ -123,9 +123,10 @@
     </div>
     <v-divider v-if="SearchState" />
     <v-pagination v-if="SearchState"
-      v-model="Page"
-      :length="Pagination"
-      :total-visible="7"
+                  v-model="Page"
+                  :length="Pagination"
+                  :total-visible="7"
+                  @input="SearchUp"
     ></v-pagination>
   </v-col>
 </template>
@@ -167,7 +168,8 @@ export default {
         'blueviolet',
         'darkorange',
         'darkyellow'
-      ]
+      ],
+      el: null
     }
   },
 
@@ -193,17 +195,33 @@ export default {
     this.idols_state = this.SelIdol
     this.Page = this.SelPage
     this.QueryTerm = this.SelQuery
+
+
+    this.el = this.$el.getElementsByClassName('TopView')[0]
   },
 
   methods: {
-    SearchUp()
-    {
-      this.$store.dispatch('search/LOAD_SEARCH_DATA',{source: this.source_state, idol: this.idols_state, term: this.QueryTerm, page: 1})
+
+    HeadSearchUp() {
+      this.SearchUp()
+      if (this.el) {
+        this.el.scrollIntoView({
+          behavior: 'smooth'
+        })
+      }
+    },
+    SearchUp() {
+      this.$store.dispatch('search/LOAD_SEARCH_DATA', {
+        source: this.source_state,
+        idol: this.idols_state,
+        term: this.QueryTerm,
+        page: this.Page
+      })
     },
 
     GetColor() {
       return this.colors[Math.floor((Math.random() * this.colors.length))]
-    },
+    }
   }
 }
 </script>

@@ -114,8 +114,8 @@ export const actions = {
       data.page
     )
 
-    if(data.source.includes('ALL') && data.idol.length === 0)
-    {
+    if (data.term !== '') data.term = `"${data.term}"`
+    if (data.source.includes('ALL') && data.idol.length === 0) {
       axios.get(`https://api.ixil.cc/bloom/hina/search?query=${data.term}&op=20&page=${data.page}`)
         .then(function(response) {
           console.log(response.data)
