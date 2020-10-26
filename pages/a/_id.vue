@@ -913,8 +913,10 @@ export default {
           console.log(response.data)
           this.items = Array.from({ length: response.data.DMZs.length }, (_, index) => ({
             data: response.data.DMZs[index],
-            id: index,
+            id: index
           }))
+
+          this.info.gliphs = response.data.DMZs
         })
         .catch(function (error) {
           console.log(error)
