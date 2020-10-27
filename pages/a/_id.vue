@@ -6,7 +6,7 @@
 
       <!-- Medium Meta -->
       <div class="meta" v-if="$vuetify.breakpoint.mdAndUp">
-        <v-col>
+        <v-col style="padding-top: 2rem">
           <v-row style="padding-left: 4rem;">
             <v-img width="264px"
                    height="318px"
@@ -393,15 +393,42 @@
         >
           mdi-image-filter-vintage
         </v-icon>
-        Pollen - AI Enchased Images Available
+        {{ $vuetify.breakpoint.smAndDown ? '' : 'Pollen - A.I 4X Images Available' }}
 
         <template v-slot:actions>
           <v-btn
             color="blue darken-4"
             text
+            style="font-size: 1rem; font-weight: 500;"
             @click="GetPollen"
           >
             Access Pollen Service
+          </v-btn>
+        </template>
+      </v-banner>
+
+      <v-banner
+        single-line
+        v-if="!info.pollen && PollenNotify"
+        @click:icon="alert"
+      >
+        <v-icon
+          slot="icon"
+          color="error"
+          size="36"
+        >
+          mdi-exclamation-thick
+        </v-icon>
+        {{ $vuetify.breakpoint.smAndDown ? '' : 'Pollen - No AI 4X Images Available' }}
+
+        <template v-slot:actions>
+          <v-btn
+            color="blue darken-4"
+            text
+            style="font-size: 1rem; font-weight: 500;"
+            @click="RequestPollen"
+          >
+            Request
           </v-btn>
         </template>
       </v-banner>
@@ -903,8 +930,17 @@ export default {
       this.NBGImage = this.info.gliphs[Math.floor((Math.random() * this.info.gliphs.length) + 1)]
     },
 
-    GetPollen(){
-      console.log('Accessing Pollen Service')
+    RequestPollen() {
+      axios
+        .get('https://api.ixil.cc/bloom/hina/pollen/request?id=' + this.info.id)
+        .then(response => {
+          this.$store.dispatch('snackbar/POP_SNACKBAR', 'Requested A.I 4X Image processing, Come back in 24 Hours.')
+        }).catch(function(error) {
+        this.$store.dispatch('snackbar/POP_SNACKBAR', 'Failed to Request A.I 4X Images, try later.')
+      })
+    },
+    GetPollen() {
+      this.$store.dispatch('snackbar/POP_SNACKBAR', 'Welcome to Bloom Pollen, A.I 4X Image Service')
       axios
         .get('https://api.ixil.cc/bloom/hina/pollen?id=' + this.info.id)
         .then(response => {
@@ -1075,7 +1111,7 @@ export default {
   width: 100vw;
 }
 .meta {
-  margin-top: 6rem;
+  margin-top: 4rem;
   margin-left: 0rem;
   position: fixed;
   width: 100vw;
@@ -1084,13 +1120,10 @@ export default {
 }
 .overlay {
   position: relative;
-  top: 38.2rem;
-  //transform: translateY(40rem);
-
-  margin-bottom: 0;
+  top: 37rem;
+//transform: translateY(40rem); margin-bottom: 0;
   width: 100vw;
-  //padding: 0px;
-  bottom: 0;
+//padding: 0px; bottom: 0;
   height: 120rem;
   overflow: hidden;
   min-height: 80vh;
