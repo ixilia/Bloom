@@ -13,6 +13,7 @@ export const state = () => ({
   Sources: [],
   Domains: [],
   ResultAny: false,
+  Bags: [],
   Loading: false
 })
 
@@ -39,17 +40,23 @@ export const mutations = {
   SET_SELECTED_PAGE_DATA(state, Data) {
     state.SelPage = Data
   },
+  SET_SELECTED_BAGS_DATA(state, Data) {
+    state.Bags = Data
+  },
   SET_RESULT_DATA(state, post) {
-     if(post.data.length > 0){
-        state.ResultAny = true
-       state.Result = post.data
-       state.Pagination = post.maxres
-       state.Page = post.maxctr
-     }
-     else state.ResultAny = false
+    if (post.data.length > 0) {
+      state.ResultAny = true
+      state.Result = post.data
+      state.Pagination = post.maxres
+      state.Page = post.maxctr
+      state.Bags = post.word_bag
+    } else state.ResultAny = false
   },
   SET_RESULT_STATUS(state, Data) {
     state.Domains.push(Data)
+  },
+  SET_SEARCH_STATUS(state, Data) {
+    state.Loading = Data
   },
   SAVE_HISTORY_DATA(state) {
     localStorage.setItem('recent_views', JSON.stringify(state.loadedPosts))
@@ -104,7 +111,7 @@ export const actions = {
 
 
   LOAD_SEARCH_DATA(vuexContext, data) {
-    vuexContext.commit('SET_RESULT_STATUS',
+    vuexContext.commit('SET_SEARCH_STATUS',
       false
     )
     vuexContext.commit('SET_QUERY_DATA',
@@ -114,18 +121,16 @@ export const actions = {
       data.page
     )
 
+
     if (data.term !== '') data.term = `"${data.term}"`
-    if (data.source.includes('ALL') && data.idol.length === 0) {
-      axios.get(`https://api.ixil.cc/bloom/hina/search?query=${data.term}&op=20&page=${data.page}`)
+    if (data.source.includes('ALL') && data.idol.length === 0 && data.term !== '') {
+      axios.get(`https://api.ixil.cc/bloom/hina/search?query=${data.term}&op=30&page=${data.page}`)
         .then(function(response) {
-          console.log(response.data)
           vuexContext.commit('SET_RESULT_DATA',
             response.data
           )
         })
-    }
-    else if(!data.source.includes('ALL') && data.idol.length > 0)
-    {
+    } else if (!data.source.includes('ALL') && data.idol.length > 0) {
       vuexContext.commit('SET_SELECTED_SOURCES_DATA',
         data.source
       )
@@ -133,9 +138,8 @@ export const actions = {
         data.idol
       )
       console.log("searching All")
-      axios.get(`https://api.ixil.cc/bloom/hina/search?query=${data.term}&op=20&page=${data.page}&source=${data.source.join(',')}&idol=${data.idol.join(',')}`)
+      axios.get(`https://api.ixil.cc/bloom/hina/search?query=${data.term}&op=30&page=${data.page}&source=${data.source.join(',')}&idol=${data.idol.join(',')}`)
         .then(function(response) {
-          console.log(response.data)
           vuexContext.commit('SET_RESULT_DATA',
             response.data
           )
@@ -145,9 +149,8 @@ export const actions = {
       vuexContext.commit('SET_SELECTED_SOURCES_DATA',
         data.source
       )
-      axios.get(`https://api.ixil.cc/bloom/hina/search?query=${data.term}&op=20&page=${data.page}&source=${data.source.join(',')}`)
+      axios.get(`https://api.ixil.cc/bloom/hina/search?query=${data.term}&op=30&page=${data.page}&source=${data.source.join(',')}`)
         .then(function(response) {
-          console.log(response.data)
           vuexContext.commit('SET_RESULT_DATA',
             response.data
           )
@@ -157,14 +160,24 @@ export const actions = {
       vuexContext.commit('SET_SELECTED_IDOL_DATA',
         data.idol
       )
-      axios.get(`https://api.ixil.cc/bloom/hina/search?query=${data.term}&op=20&page=${data.page}&idol=${data.idol.join(',')}`)
+      axios.get(`https://api.ixil.cc/bloom/hina/search?query=${data.term}&op=30&page=${data.page}&idol=${data.idol.join(',')}`)
         .then(function(response) {
-          console.log(response.data)
+          vuexContext.commit('SET_RESULT_DATA',
+            response.data
+          )
+        })
+    } else {
+      axios.get(`https://api.ixil.cc/bloom/hina?op=30&page=${data.page}`)
+        .then(function(response) {
           vuexContext.commit('SET_RESULT_DATA',
             response.data
           )
         })
     }
+
+    vuexContext.commit('SET_SEARCH_STATUS',
+      true
+    )
   }
 }
 
@@ -173,6 +186,9 @@ export const getters = {
     return state.Sources
   },
   GET_SEARCH_STATE(state) {
+    return state.Loading
+  },
+  GET_SEARCH_RESULT_STATE(state) {
     return state.ResultAny
   },
   GET_SEARCH_DATA(state) {
@@ -186,6 +202,9 @@ export const getters = {
   },
   GET_PAGE_DATA(state) {
     return state.Pagination
+  },
+  GET_BAGS_DATA(state) {
+    return state.Bags
   },
 
 

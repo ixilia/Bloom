@@ -29,17 +29,19 @@
 </template>
 
 <script>
-  import HomePromote from '../Carousel/HomePromote'
-  import VueHorizontalList from 'vue-horizontal-list';
+import HomePromote from '../Carousel/HomePromote'
+import VueHorizontalList from 'vue-horizontal-list'
+import axios from 'axios'
 
-  export default {
-    name: "HomePromotionList",
-    components: { HomePromote },
-    data() {
-      return {
-        options: {
-          responsive: [
-            { end: 546, size: 2 },
+
+export default {
+  name: 'HomePromotionList',
+  components: { HomePromote },
+  data() {
+    return {
+      options: {
+        responsive: [
+          { end: 546, size: 2 },
             { start: 530, end: 673, size: 2 },
             { start: 673, end: 817, size: 2 },
             { start: 817, end: 823, size: 2 },
@@ -61,63 +63,24 @@
             // padding between each item
             padding: 23
           },
-          navigation: {
-            // when to show navigation
-            start: 1025,
-            color: '#000'
-          }
-        },
+        navigation: {
+          // when to show navigation
+          start: 1025,
+          color: '#000'
+        }
+      },
 
-        items: [{
-          "name": "曉美媽",
-          "idol": "Unknown",
-          "thumb": "https://www.mymypic.net/data/attachment/forum/threadcover/9f/8c/ae7cc7a2.jpg",
-          "source": "www.jkforum.net",
-          "images": ["https://i.imgur.com/43Etwuz.jpg", "https://i.imgur.com/BztWida.jpeg", "https://www.mymypic.net/data/attachment/forum/threadcover/9f/8c/ae7cc7a2.jpg"]
-        },
-          {
-            "id": "vMwxOLp7",
-            "name": "惡墮★",
-            "idol": "Unknown",
-            "thumb": "https://www.mymypic.net/data/attachment/forum/202006/25/080104ssjjyjzjyswkwxej.jpg",
-            "source": "www.jkforum.net",
-            "images": ["https://i.imgur.com/43Etwuz.jpg", "https://i.imgur.com/BztWida.jpeg", "https://www.mymypic.net/data/attachment/forum/threadcover/9f/8c/ae7cc7a2.jpg"]
-          },
-          {
-            "id": "vMwxOLp7",
-            "name": "快感之牢",
-            "idol": "Unknown",
-            "thumb": "https://i.imgur.com/BztWida.jpeg",
-            "source": "www.jkforum.net",
-            "images": ["https://i.imgur.com/43Etwuz.jpg", "https://i.imgur.com/BztWida.jpeg", "https://www.mymypic.net/data/attachment/forum/threadcover/9f/8c/ae7cc7a2.jpg"]
-          },
-          {
-            "id": "vMwxOLp7",
-            "name": "曉美媽",
-            "idol": "Unknown",
-            "thumb": "https://i.imgur.com/43Etwuz.jpg",
-            "source": "www.jkforum.net",
-            "images": ["https://i.imgur.com/43Etwuz.jpg", "https://i.imgur.com/BztWida.jpeg", "https://www.mymypic.net/data/attachment/forum/threadcover/9f/8c/ae7cc7a2.jpg"]
-          },
-          {
-            "id": "vMwxOLp7",
-            "name": "惡墮",
-            "idol": "Unknown",
-            "thumb": "https://i.imgur.com/BztWida.jpeg",
-            "source": "www.jkforum.net",
-            "images": ["https://i.imgur.com/43Etwuz.jpg", "https://i.imgur.com/BztWida.jpeg", "https://www.mymypic.net/data/attachment/forum/threadcover/9f/8c/ae7cc7a2.jpg"]
-          },
-          {
-            "id": "vMwxOLp7",
-            "name": "惡墮",
-            "idol": "Unknown",
-            "thumb": "https://i.imgur.com/BztWida.jpeg",
-            "source": "www.jkforum.net",
-            "images": ["https://i.imgur.com/43Etwuz.jpg", "https://i.imgur.com/BztWida.jpeg", "https://www.mymypic.net/data/attachment/forum/threadcover/9f/8c/ae7cc7a2.jpg"]
-          }],
-      }
+      items: []
     }
+  },
+
+  mounted() {
+    axios.get(`https://api.ixil.cc/bloom/hina/random?many=true`)
+      .then((res) => {
+        this.items = res.data
+      })
   }
+}
 </script>
 
 <style scoped>

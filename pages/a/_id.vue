@@ -53,9 +53,11 @@
                   full-icon="mdi-star"
                   half-icon="mdi-star-half-full"
                   hover
+                  v-model="marks"
                   :length="5"
                   size="24"
-                  :value="3"
+                  :value="0"
+                  @input="AddFav"
                 />
               </div>
 
@@ -241,9 +243,11 @@
             full-icon="mdi-star"
             half-icon="mdi-star-half-full"
             hover
+            v-model="marks"
             :length="5"
             size="24"
-            :value="3"
+            :value="0"
+            @input="AddFav"
           />
         </div>
 
@@ -384,7 +388,6 @@
       <v-banner
         single-line
         v-if="info.pollen && PollenNotify"
-        @click:icon="alert"
       >
         <v-icon
           slot="icon"
@@ -410,7 +413,6 @@
       <v-banner
         single-line
         v-if="!info.pollen && PollenNotify"
-        @click:icon="alert"
       >
         <v-icon
           slot="icon"
@@ -435,93 +437,93 @@
       <div class="scrollbox-fm"/>
       <div class="disable-scrollbars"
            style="margin-top: 14rem; padding-top: 1rem; overflow: scroll; height: inherit;">
-        <v-row justify="space-around" style="padding-bottom: 19rem">
-          <v-container>
-            <masonry
-              :cols="{default: 4, 1000: 3, 700: 2, 400: 2}"
-              :gutter="{default: '30px', 700: '15px'}"
-            >
-              <v-img v-if="$vuetify.breakpoint.mdAndUp && !dist" v-for="(item, index) in items" :key="index"
-                     @click="show(index)" width="17rem" max-height="20rem;"
-                     style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
-                     lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
-                     :src="`https://proxy.ixil.cc/ren?method=cover&width=200&height=300&image=`+item.data" @error="dist = true">
-                <template v-slot:placeholder>
-                  <v-row
-                    class="fill-height ma-0"
-                    align="center"
-                    justify="center"
-                  >
-                    <v-progress-circular
-                      indeterminate
-                      color="red"
-                    ></v-progress-circular>
-                  </v-row>
-                </template>
-              </v-img>
+        <v-container style="padding-bottom: 19rem;">
+          <masonry
+            :cols="{default: 4, 1000: 3, 700: 2, 400: 2}"
+            :gutter="{default: '30px', 700: '15px'}"
+          >
+            <v-img v-if="$vuetify.breakpoint.mdAndUp && !dist" v-for="(item, index) in items" :key="index"
+                   @click="show(index)" width="17rem" max-height="20rem;"
+                   style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
+                   lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
+                   :src="`https://proxy.ixil.cc/ren?method=cover&width=200&height=300&image=`+item.data"
+                   @error="dist = true">
+              <template v-slot:placeholder>
+                <v-row
+                  class="fill-height ma-0"
+                  align="center"
+                  justify="center"
+                >
+                  <v-progress-circular
+                    indeterminate
+                    color="red"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
+            </v-img>
 
 
-              <v-img v-if="$vuetify.breakpoint.smAndDown && !dist" v-for="(item, index) in items" :key="index"
-                     @click="show(index)" width="10rem" max-height="20rem;"
-                     style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
-                     lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
-                     :src="`https://proxy.ixil.cc/ren?method=cover&width=200&height=300&image=`+item.data" @error="dist = true">
-                <template v-slot:placeholder>
-                  <v-row
-                    class="fill-height ma-0"
-                    align="center"
-                    justify="center"
-                  >
-                    <v-progress-circular
-                      indeterminate
-                      color="red"
-                    ></v-progress-circular>
-                  </v-row>
-                </template>
-              </v-img>
+            <v-img v-if="$vuetify.breakpoint.smAndDown && !dist" v-for="(item, index) in items" :key="index"
+                   @click="show(index)" width="10rem" max-height="20rem;"
+                   style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
+                   lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
+                   :src="`https://proxy.ixil.cc/ren?method=cover&width=200&height=300&image=`+item.data"
+                   @error="dist = true">
+              <template v-slot:placeholder>
+                <v-row
+                  class="fill-height ma-0"
+                  align="center"
+                  justify="center"
+                >
+                  <v-progress-circular
+                    indeterminate
+                    color="red"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
+            </v-img>
 
 
-              <v-img v-if="$vuetify.breakpoint.mdAndUp && dist" v-for="(item, index) in items" :key="index"
-                     @click="show(index)" width="17rem" max-height="20rem;"
-                     style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
-                     lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
-                     :src="`https://proxy.ixil.cc/ren?method=cover&width=200&height=300&image=`+item.data">
-                <template v-slot:placeholder>
-                  <v-row
-                    class="fill-height ma-0"
-                    align="center"
-                    justify="center"
-                  >
-                    <v-progress-circular
-                      indeterminate
-                      color="red"
-                    ></v-progress-circular>
-                  </v-row>
-                </template>
-              </v-img>
+            <v-img v-if="$vuetify.breakpoint.mdAndUp && dist" v-for="(item, index) in items" :key="index"
+                   @click="show(index)" width="17rem" max-height="20rem;"
+                   style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
+                   lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
+                   :src="`https://proxy.ixil.cc/ren?method=cover&width=200&height=300&image=`+item.data">
+              <template v-slot:placeholder>
+                <v-row
+                  class="fill-height ma-0"
+                  align="center"
+                  justify="center"
+                >
+                  <v-progress-circular
+                    indeterminate
+                    color="red"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
+            </v-img>
 
 
-              <v-img v-if="$vuetify.breakpoint.smAndDown && dist" v-for="(item, index) in items" :key="index"
-                     @click="show(index)" width="10rem" max-height="20rem;"
-                     style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
-                     lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
-                     :src="`https://proxy.ixil.cc/ren?method=cover&width=200&height=300&image=`+item.data">
-                <template v-slot:placeholder>
-                  <v-row
-                    class="fill-height ma-0"
-                    align="center"
-                    justify="center"
-                  >
-                    <v-progress-circular
-                      indeterminate
-                      color="red"
-                    ></v-progress-circular>
-                  </v-row>
-                </template>
-              </v-img>
-            </masonry>
-          </v-container>
-        </v-row>
+            <v-img v-if="$vuetify.breakpoint.smAndDown && dist" v-for="(item, index) in items" :key="index"
+                   @click="show(index)" width="10rem" max-height="20rem;"
+                   style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
+                   lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
+                   :src="`https://proxy.ixil.cc/ren?method=cover&width=200&height=300&image=`+item.data">
+              <template v-slot:placeholder>
+                <v-row
+                  class="fill-height ma-0"
+                  align="center"
+                  justify="center"
+                >
+                  <v-progress-circular
+                    indeterminate
+                    color="red"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
+            </v-img>
+          </masonry>
+        </v-container>
       </div>
     </div>
     <!-- END 16:9 Page -->
@@ -563,14 +565,15 @@
           </v-row>
           <div style="transform: translateY(-10rem)">
             <v-rating
-              class=""
               empty-icon="mdi-star-outline"
               full-icon="mdi-star"
               half-icon="mdi-star-half-full"
               hover
+              v-model="marks"
               :length="5"
               size="24"
-              :value="3"
+              :value="0"
+              @input="AddFav"
             />
             <v-badge
               class="pt-5 pb-5"
@@ -854,6 +857,7 @@ export default {
       PollenNotify: true,
       DownloadDialog: false,
       DSnackbar: false,
+      marks: 0,
       Alerttext: '',
       elvalues: [],
       selvalues: [],
@@ -875,6 +879,7 @@ export default {
       DownloadState: 'download/GET_DOWNLOAD_STATE',
       DownloadProgress: 'download/GET_DOWNLOAD_PROGRESS',
       DownloadTotal: 'download/GET_DOWNLOAD_TOTAL',
+      Fav: 'history/GET_FAV_DATA'
     }),
 
     ...mapMutations({
@@ -898,16 +903,20 @@ export default {
     ChangeBg: { time: 17000, autostart: true, repeat: true }
   },
 
-  watch: {},
+  watch: {
+    Fav(newval, old) {
+      this.marks = newval
+    }
+  },
 
   beforeMount() {
     this.BgImage = this.info.gliphs[1]
   },
-
   mounted() {
+    this.$store.dispatch('history/ADD_HISTORY', { id: this.info.id })
     this.items = Array.from({ length: this.info.gliphs.length }, (_, index) => ({
       data: this.info.gliphs[index],
-      id: index,
+      id: index
     }))
     this.elvalues = Array.from({ length: this.info.gliphs.length }, (_, index) => (index+1))
     this.selvalues = this.elvalues
@@ -930,6 +939,10 @@ export default {
       this.NBGImage = this.info.gliphs[Math.floor((Math.random() * this.info.gliphs.length) + 1)]
     },
 
+    AddFav() {
+      if (this.marks > 0) this.$store.dispatch('history/ADD_FAV', { id: this.info.id, marks: this.marks })
+    },
+
     RequestPollen() {
       axios
         .get('https://api.ixil.cc/bloom/hina/pollen/request?id=' + this.info.id)
@@ -940,27 +953,29 @@ export default {
       })
     },
     GetPollen() {
-      this.$store.dispatch('snackbar/POP_SNACKBAR', 'Welcome to Bloom Pollen, A.I 4X Image Service')
-      axios
-        .get('https://api.ixil.cc/bloom/hina/pollen?id=' + this.info.id)
-        .then(response => {
-          console.log('Accessing Pollen Data')
-          console.log(response.data.DMZs)
-          console.log(response.data)
-          this.items = Array.from({ length: response.data.DMZs.length }, (_, index) => ({
-            data: response.data.DMZs[index],
-            id: index
-          }))
-
-          this.info.gliphs = response.data.DMZs
-        })
-        .catch(function (error) {
-          console.log(error)
-          this.PollenNotify = false
-        })
-        .finally(() => {
-          this.PollenNotify = false
-        })
+      if (this.$auth.loggedIn) {
+        axios
+          .get('https://api.ixil.cc/bloom/hina/pollen?id=' + this.info.id, {
+            headers: {
+              Authorization: this.$auth.getToken('auth0') //the token is a variable which holds the token
+            }
+          })
+          .then(response => {
+            this.items = Array.from({ length: response.data.DMZs.length }, (_, index) => ({
+              data: response.data.DMZs[index],
+              id: index
+            }))
+            this.info.gliphs = response.data.DMZs
+            this.$store.dispatch('snackbar/POP_SNACKBAR', 'Welcome To Bloom Pollen, A.I 4X Image Service')
+          })
+          .catch(function(error) {
+            this.$store.dispatch('snackbar/POP_SNACKBAR', 'Failed To Access Bloom Pollen Image Service')
+            this.PollenNotify = false
+          })
+          .finally(() => {
+            this.PollenNotify = false
+          })
+      } else this.$store.dispatch('snackbar/POP_SNACKBAR', 'Login to access Bloom Pollen Image Service')
     },
     Download()
     {
@@ -1121,10 +1136,8 @@ export default {
 .overlay {
   position: relative;
   top: 37rem;
-//transform: translateY(40rem); margin-bottom: 0;
-  width: 100vw;
-//padding: 0px; bottom: 0;
-  height: 120rem;
+//transform: translateY(40rem); margin-bottom: 0; width: fit-content;
+//padding: 0px; bottom: 0; height: 120rem;
   overflow: hidden;
   min-height: 80vh;
 }
@@ -1248,7 +1261,6 @@ export default {
   position: relative;
   z-index: 1;
   width: 100vw;
-  transform: translateX(-1rem);
   height: 2rem;
   top: 15rem;
   filter: opacity(1) blur(0.4%);

@@ -4,7 +4,7 @@
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
-      :clipped="clipped"
+      :clipped="false"
       temporary
       app
     >
@@ -33,9 +33,8 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
       <v-btn
         icon
-        @click.stop="miniVariant = !miniVariant"
       >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
+        <v-icon>mdi-chevron-left</v-icon>
       </v-btn>
       <v-tooltip bottom v-if="DownloadState">
         <template v-slot:activator="{ on, attrs }">
@@ -58,17 +57,15 @@
 
       <!--  Search   -->
       <v-container>
-        <v-text-field class="search-field" placeholder="Search" >
+        <v-btn icon to="/sagasu">
           <v-icon
             class="search-field-icon"
-            slot="prepend"
             size="1.5rem;"
             style="width: 3rem!important; height: 2.3rem!important;"
-            @click="search_overlay =!search_overlay"
           >
             mdi-magnify
           </v-icon>
-        </v-text-field>
+        </v-btn>
       </v-container>
 
 
@@ -125,14 +122,10 @@
           <v-divider/>
 
           <v-list
+            v-if="$auth.loggedIn"
             style="background: linear-gradient(180deg, rgba(8,6,6,0.81) 0%, rgba(0,0,0,0.6946008745294993) 100%);">
             <v-list-item>
-              <v-btn  text style="width: 115%; right: 7%">
-                PROFILE
-              </v-btn>
-            </v-list-item>
-            <v-list-item>
-              <v-btn text  style="width: 115%; right: 7%">
+              <v-btn text style="width: 115%; right: 7%" to="/u/favourite">
                 FAVOURITES
               </v-btn>
             </v-list-item>
@@ -141,7 +134,8 @@
           <v-card-actions>
             <v-spacer/>
 
-            <v-btn text  ripple @click="$auth.login(/* .... */).then(() => this.$toast.success('Logged In!'))">
+            <v-btn text v-if="!$auth.loggedIn" ripple
+                   @click="$auth.login(/* .... */).then(() => this.$toast.success('Logged In!'))">
               Login
             </v-btn>
             <v-btn v-if="$auth.loggedIn" text  ripple @click="$auth.logout()">
@@ -177,25 +171,27 @@
         cols="12"
         v-if="$vuetify.breakpoint.mdAndUp"
       >
-        <div
-          class="pl-3"
-          style="height: 10rem; background-size: 50% 100%; border-radius: 5px;"
-          :style="`background: linear-gradient(286deg, ${hexToRgb(item.color[1], 0.4553571770505077)} 3%, ${hexToRgb(item.color[1], 0.010343171448266806)} 19%, ${hexToRgb(item.color[0], 0.819502835313813)} 52%, ${hexToRgb(item.color[0], 1)} 64%,  ${hexToRgb(item.color[0], 0.9699230033810399)} 80%, ${hexToRgb(item.color[0], 1)} 99%), url(${item.thumb}) right no-repeat`">
+        <nuxt-link style="text-decoration: none;" :to="`/a/`+item.id">
+          <div
+            class="pl-3"
+            style="height: 10rem; background-size: 50% 100%; border-radius: 5px; text-decoration: none;"
+            :style="`background: linear-gradient(286deg, ${hexToRgb(item.color[1], 0.4553571770505077)} 3%, ${hexToRgb(item.color[1], 0.010343171448266806)} 19%, ${hexToRgb(item.color[0], 0.819502835313813)} 52%, ${hexToRgb(item.color[0], 1)} 64%,  ${hexToRgb(item.color[0], 0.9699230033810399)} 80%, ${hexToRgb(item.color[0], 1)} 99%), url(https://proxy.ixil.cc/ren?image=${item.thumb}&width=700&height=400&method=cover) right no-repeat`">
 
-          <v-col no-gutters>
-            <div
-              class="flex-nowrap"
-              style="text-shadow: 2px 2px 8px #4b4a4b;  font-size: large; height: 28px;  width: 325px; overflow: hidden;  position: relative;  display: inline-block; text-overflow: ellipsis; white-space: nowrap;"
-              v-text="item.name"
-              align="start"
-            ></div>
+            <v-col no-gutters style="text-decoration: none !important;">
+              <div
+                class="flex-nowrap"
+                style="text-shadow: 2px 2px 8px #4b4a4b;  font-size: large; height: 28px;  width: 325px; overflow: hidden;  position: relative;  display: inline-block; text-overflow: ellipsis; white-space: nowrap; color: white;"
+                v-text="item.name"
+                align="start"
+              ></div>
 
-            <p style="padding-top: 0.5rem; font-weight: lighter;" v-text="item.idol"></p>
-            <p align="start" style="padding-top: 1.4rem; font-weight: lighter;"
-               v-text="item.source.replace('www.','')"></p>
-          </v-col>
+              <p style="padding-top: 0.5rem; font-weight: lighter; color: white;" v-text="item.idol"></p>
+              <p align="start" style="padding-top: 1.4rem; font-weight: lighter; user-select: none; color: white;"
+                 v-text="item.source.replace('www.','')"></p>
+            </v-col>
 
-        </div>
+          </div>
+        </nuxt-link>
       </v-col>
       <v-col
         v-for="(item, i) in this.RecentViews"
@@ -210,7 +206,7 @@
           <v-img
             class="white--text align-end"
             height="200px"
-            :src="item.thumb"
+            :src="'https://proxy.ixil.cc/prox?image='+item.thumb"
           >
           </v-img>
           <v-card-subtitle class="pb-0">{{item.idol}}</v-card-subtitle>
@@ -233,11 +229,10 @@
 <script>
 
   import { mapGetters, mapState } from 'vuex'
-  import Search from '@/layouts/Global/Search'
   import Snackbar from '@/components/Snackbar'
 
   export default {
-    components: { Snackbar, Search },
+    components: { Snackbar },
     data() {
       return {
         search_overlay: false,
@@ -245,7 +240,6 @@
         drawer: false,
         fixed: true,
         fixers: [],
-        userImage: 'https://i.imgur.com/43Etwuz.jpg',
 
         rules: {
           email: value => {

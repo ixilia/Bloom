@@ -1,13 +1,14 @@
 <template>
   <v-col>
-    <v-form>
+    <v-form v-if="OptionsShow">
       <v-container>
         <v-row>
           <v-col
             cols="12"
             sm="6"
           >
-            <v-text-field v-model="QueryTerm" clearable placeholder="Search"  append-icon="mdi-magnify"  @click:append="SearchUp">
+            <v-text-field v-model="QueryTerm" clearable placeholder="Search" append-icon="mdi-magnify"
+                          v-on:keyup.enter="SearchUp" @click:append="SearchUp">
             </v-text-field>
           </v-col>
 
@@ -61,24 +62,29 @@
       </v-container>
     </v-form>
     <v-divider class="TopView"/>
-    <v-row v-if="$vuetify.breakpoint.mdAndUp & SearchState" justify="space-between" style="overflow: hidden; flex-wrap: wrap; height: 4rem;">
-      <v-chip
-        v-for="(item, i) in 20"
-        :key="i"
-        class="ma-5"
-        :color="GetColor()"
-        label
-        text-color="white"
-      >
-        <v-icon left>
-          mdi-label
-        </v-icon>
-        Tags
-      </v-chip>
+    <v-row v-if="$vuetify.breakpoint.mdAndUp & SearchState" justify="space-between"
+           style="overflow: hidden; flex-wrap: wrap; height: 4rem;">
+      <n-link v-for="(item, i) in Bags"
+              :key="i"
+              :to="{ path: '/sagasu', query: { query: item.name}}" style="text-decoration:none !important;" replace
+              no-prefetch>
+        <v-chip
+          class="ma-5"
+          :color="item.color"
+          label
+          text-color="white"
+          style="cursor:pointer !important;"
+        >
+          <v-icon style="cursor:pointer !important;" left>
+            mdi-label
+          </v-icon>
+          {{ item.name }}
+        </v-chip>
+      </n-link>
     </v-row>
     <v-divider v-if="$vuetify.breakpoint.smAndUp"/>
 
-    <div style="width: 100vw">
+    <div style="">
 
       <v-row v-if="!SearchState" justify="center" style="margin-top: 5rem;">
         <v-progress-circular
@@ -92,7 +98,9 @@
 
       <v-row v-if="SearchState" justify="space-around" style="padding-bottom: 9rem">
         <v-container style="padding-left: 2rem; padding-right: 2rem;">
+          <h1 v-if="SearchState && !NoContent">No Result</h1>
           <masonry
+            v-if="NoContent"
             :cols="{default: 4, 1000: 3, 700: 2, 400: 2}"
             :gutter="{default: '30px', 700: '15px'}"
           >
@@ -121,7 +129,7 @@
       </v-row>
 
     </div>
-    <v-divider v-if="SearchState" />
+    <v-divider v-if="SearchState"/>
     <v-pagination v-if="SearchState"
                   v-model="Page"
                   :length="Pagination"
@@ -137,9 +145,17 @@ import axios from 'axios'
 
 export default {
   name: 'sagasu',
-
+  watchQuery(newQuery, oldQuery) {
+    // Only execute component methods if the old query string contained `bar`
+    // and the new query string contains `foo`
+    if (newQuery.query !== undefined) {
+      this.QueryTerm = newQuery.query
+      this.SearchUp()
+    }
+  },
   data() {
     return {
+      OptionsShow: true,
       QueryTerm: '',
       search_crumbs: [
         {
@@ -179,9 +195,11 @@ export default {
       Sources: 'search/GET_SOURCES_DATA',
       Domains: 'search/GET_DOMAINS_DATA',
       SearchState: 'search/GET_SEARCH_STATE',
+      NoContent: 'search/GET_SEARCH_RESULT_STATE',
       Search: 'search/GET_SEARCH_DATA',
       Idols: 'search/GET_IDOLS_DATA',
       Pagination: 'search/GET_PAGE_DATA',
+      Bags: 'search/GET_BAGS_DATA',
 
       SelPage: 'search/GET_SELECTED_PAGE_DATA',
       SelIdol: 'search/GET_SELECTED_IDOL_DATA',
@@ -190,12 +208,25 @@ export default {
     })
   },
 
+  watch: {},
+
   mounted() {
+    console.log(this.$route.query.qp)
+
+
     this.source_state = this.SelSource
     this.idols_state = this.SelIdol
     this.Page = this.SelPage
     this.QueryTerm = this.SelQuery
-
+    if (this.$route.query.qp !== undefined) this.OptionsShow = JSON.parse(this.$route.query.qp.toLowerCase())
+    if (this.$route.query.query !== undefined) this.QueryTerm = this.$route.query.query
+    if (this.$route.query.idol !== undefined) {
+      this.idols_state = this.$route.query.idol.split(',')
+    }
+    if (this.$route.query.source !== undefined) {
+      this.source_state = this.$route.query.source.split(',')
+    }
+    this.SearchUp()
 
     this.el = this.$el.getElementsByClassName('TopView')[0]
   },
@@ -210,6 +241,8 @@ export default {
         })
       }
     },
+
+
     SearchUp() {
       this.$store.dispatch('search/LOAD_SEARCH_DATA', {
         source: this.source_state,
@@ -221,6 +254,7 @@ export default {
 
     GetColor() {
       return this.colors[Math.floor((Math.random() * this.colors.length))]
+
     }
   }
 }

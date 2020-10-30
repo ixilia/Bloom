@@ -4,11 +4,13 @@
         <v-row style="padding-left: 1.5rem; padding-top: 1rem;">
           <v-avatar size="4.5rem"
                     style="box-shadow:  0 0.9px 2.2px rgba(0, 0, 0, 0.051),  0 2.1px 5.3px rgba(0, 0, 0, 0.073),  0 3.9px 10px rgba(0, 0, 0, 0.09),  0 6.9px 17.9px rgba(0, 0, 0, 0.107),  0 13px 33.4px rgba(0, 0, 0, 0.129),  0 31px 80px rgba(0, 0, 0, 0.18);">
-            <v-img :src="data.thumb"></v-img>
+            <v-img :src="`https://proxy.ixil.cc/ren?width=500&height=500&method=cover&image=`+data.thumb"></v-img>
           </v-avatar>
           <div class="" style="justify-self: self-start">
             <v-col>
-              <h1 style="align-self: self-start" v-text="data.name"></h1>
+              <h1
+                style="align-self: self-start; width: 17rem; height: 3rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+                v-text="data.name"></h1>
               <h5>Hina</h5>
             </v-col>
           </div>
@@ -25,10 +27,11 @@
             style="width: 30rem; height: 30rem"
           >
             <v-carousel-item
-              v-for="(imager, i) in data.images"
+              v-for="(imager, i) in data.gliphs"
               :key="i"
             >
-              <v-img :src='imager' position="90% 60%" aspect-ratio="1.0001"/>
+              <v-img :src='`https://proxy.ixil.cc/ren?width=600&height=500&method=cover&image=`+imager'
+                     position="90% 60%" aspect-ratio="1.0001"/>
             </v-carousel-item>
           </v-carousel>
         </v-sheet>
@@ -40,11 +43,13 @@
         <v-row style="padding-left: 1.5rem; padding-top: 1rem;">
           <v-avatar size="2.5rem"
                     style="box-shadow:  0 0.9px 2.2px rgba(0, 0, 0, 0.051),  0 2.1px 5.3px rgba(0, 0, 0, 0.073),  0 3.9px 10px rgba(0, 0, 0, 0.09),  0 6.9px 17.9px rgba(0, 0, 0, 0.107),  0 13px 33.4px rgba(0, 0, 0, 0.129),  0 31px 80px rgba(0, 0, 0, 0.18);">
-            <v-img :src="data.thumb"></v-img>
+            <v-img :src="`https://proxy.ixil.cc/ren?width=200&height=200&method=cover&image=`+data.thumb"></v-img>
           </v-avatar>
           <div class="" style="">
             <v-col>
-              <h1 style="font-size: 1rem" v-text="data.name"></h1>
+              <h1
+                style="font-size: 0.8rem; width: 10rem; height: 1.2rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+                v-text="data.name"></h1>
               <v-row>
                 <v-icon>mdi-semantic-web</v-icon>
                 <h5 style="align-self: center">:</h5>
@@ -65,10 +70,11 @@
             style="width: 15rem; height: 10rem"
           >
             <v-carousel-item
-              v-for="(imager, i) in data.images"
+              v-for="(imager, i) in data.gliphs"
               :key="i"
             >
-              <v-img :src='imager' position="90% 60%" aspect-ratio="1.0001"/>
+              <v-img :src='`https://proxy.ixil.cc/ren?width=500&height=500&method=cover&image=`+imager'
+                     position="90% 60%" aspect-ratio="1.0001"/>
             </v-carousel-item>
           </v-carousel>
         </v-sheet>
@@ -78,7 +84,9 @@
       <v-sheet v-if="$vuetify.breakpoint.xsOnly" width="10rem" elevation="5">
         <div class="pl-3" style="">
           <v-col>
-            <h1 style="font-size: 1rem" v-text="data.name"></h1>
+            <h1
+              style="font-size: 1rem; width: 7rem; height: 1.3rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+              v-text="data.name"></h1>
             <v-row class="pl-2">
               <v-icon>mdi-semantic-web</v-icon>
               <h5 style="align-self: center">:</h5>
@@ -98,10 +106,11 @@
             style="width: 10rem; height: 7rem"
           >
             <v-carousel-item
-              v-for="(imager, i) in data.images"
+              v-for="(imager, i) in data.gliphs"
               :key="i"
             >
-              <v-img :src='imager' position="90% 60%" aspect-ratio="1.0001"/>
+              <v-img :src='`https://proxy.ixil.cc/ren?width=300&height=300&method=cover&image=`+imager'
+                     position="90% 60%" aspect-ratio="1.0001"/>
             </v-carousel-item>
           </v-carousel>
         </v-sheet>
