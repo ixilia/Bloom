@@ -1,68 +1,98 @@
-const colors = require('vuetify/es5/util/colors').default
+import colors from 'vuetify/es5/util/colors'
 
-module.exports = {
-  mode: 'universal',
-  /*
-  ** Headers of the page
-  */
+export default {
+  loading: '~/components/Loading.vue',
+  // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
+    titleTemplate: '%s - bloom',
+    title: 'bloom',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'robots', content: 'index, follow' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: 'Advert Free Porno/Idol Image Gallery sourced from 50+ websites'
-      }
+      { hid: 'description', name: 'description', content: '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  /*
-  ** Customize the progress-bar color
-  */
-  loading: { color: '#fff' },
-  /*
-  ** Global CSS
-  */
-  css: [],
-  /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-    { src: '~plugins/3DCOR', ssr: false }
-  ],
-  /*
-  ** Nuxt.js dev-modules
-  */
-  buildModules: [
-    '@nuxtjs/vuetify',
-    ['@nuxtjs/google-analytics', {
-      id: 'UA-171149582-1'
-    }]
 
+  // Global CSS (https://go.nuxtjs.dev/config-css)
+  css: [
   ],
-  /*
-  ** Nuxt.js modules
-  */
+
+  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
+  plugins: [
+    { src: '~/plugins/virtual-coll', ssr: true },
+    { src: '~/plugins/timer', mode: 'client' }
+  ],
+
+  // Auto import components (https://go.nuxtjs.dev/config-components)
+  components: true,
+
+  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
+  buildModules: [
+    // https://go.nuxtjs.dev/vuetify
+    '@nuxtjs/vuetify',
+  ],
+
+  // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
+    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    ['@nuxtjs/google-tag-manager', { id: 'GTM-M5725Q3' }]
+
+    '@nuxtjs/auth',
+
+    'vue-scrollto/nuxt',
   ],
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
+
+  router: {
+    routes: [
+      {
+        name: 'album-id',
+        path: '/a/:id?',
+        component: 'pages/a/_id.vue'
+      }
+    ]
+  },
+
+  auth: {
+    redirect: {
+      login: '/', // redirect user when not connected
+      callback: '/auth/signed-in'
+    },
+    strategies: {
+      local: false,
+      auth0: {
+        domain: 'hina.eu.auth0.com',
+        client_id: 'ogbETWao1GnRRYE7yzl5ZzD1ZMGbxD5q',
+        audience: 'https://hina.eu.auth0.com/api/v2/'
+      },
+      github: {
+        client_id: '5fc566f5603780ac8ab4',
+        client_secret: '2a381784d2ee08f76ae559abf15e6ce215c3cd04'
+      }
+    }
+  },
+
+
+  pwa: {
+    // disable the modules you don't need
+    // if you omit a module key form configuration sensible defaults will be applied
+    // manifest: false,
+
+    //workbox: {
+      // by default the workbox module will not install the service worker in dev environment to avoid conflicts with HMR
+      // only set this true for testing and remember to always clear your browser cache in development
+    //  dev: false
+    //}
+  },
+
+  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
-  /*
-  ** vuetify module configuration
-  ** https://github.com/nuxt-community/vuetify-module
-  */
+
+  // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
@@ -81,21 +111,7 @@ module.exports = {
     }
   },
 
-  /*
-  ** Router configuration
-  */
-  //router: {
-  //  mode: 'hash'
-  //},
-
-  /*
-  ** Build configuration
-  */
+  // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend(config, ctx) {
-    }
   }
 }
