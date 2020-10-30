@@ -1,0 +1,26 @@
+name: test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    name: setup
+    steps:
+      - uses: actions/checkout@v1      
+      - uses: bahmutov/npm-install@v1
+      - run: yarn install --frozen-lockfile
+  Build:
+    runs-on: ubuntu-latest
+    name: Build
+    needs: install
+    steps:
+      - uses: actions/checkout@v1      
+      - uses: bahmutov/npm-install@v1
+      - run: yarn build
