@@ -43,20 +43,20 @@ export default {
       type: Object,
       default: null
     },
-      shadow: {
-        type: Boolean,
-        default: false
-      }
-    },
+    shadow: {
+      type: Boolean,
+      default: false
+    }
+  },
 
-    data() {
-      return {
-        previous: 'n',
-        item: {
-          color: ['#fc1c64', '#f87a75', '#760624', '#974c4c', '#bc796e', '#5c3c34']
-        }
+  data() {
+    return {
+      previous: 'n',
+      item: {
+        color: ['#fc1c64', '#f87a75', '#760624', '#974c4c', '#bc796e', '#5c3c34']
       }
-    },
+    }
+  },
 
   beforeMount() {  // Below code gets color palate of picture
 
@@ -77,22 +77,23 @@ export default {
     /**
      * @return {string}
      */
-    GetShadow()
-      {
-        return `box-shadow:  0 1.9px 1.6px ${this.hexToRgb(this.item.color[0], 0.04)},  0 2.9px 3.9px ${this.hexToRgb(this.item.color[0], 0.14)},  0 3.0px 7.3px ${this.hexToRgb(this.item.color[0], 0.15)},  0 4px 13px ${this.hexToRgb(this.item.color[0], 0.15)},  0 5px 24.2px ${this.hexToRgb(this.item.color[0], 0.14)},  0 6px 38px ${this.hexToRgb(this.item.color[1], 0.07)};`
-      }
+    GetShadow() {
+      return `box-shadow:  0 1.9px 1.6px ${this.hexToRgb(this.item.color[0], 0.04)},  0 2.9px 3.9px ${this.hexToRgb(this.item.color[0], 0.14)},  0 3.0px 7.3px ${this.hexToRgb(this.item.color[0], 0.15)},  0 4px 13px ${this.hexToRgb(this.item.color[0], 0.15)},  0 5px 24.2px ${this.hexToRgb(this.item.color[0], 0.14)},  0 6px 38px ${this.hexToRgb(this.item.color[1], 0.07)};`
     }
   }
+}
 </script>
 
 <style scoped>
-  .ccard-md:hover{
-    transform: translateY(-1.5px) translateX(-1px);
-  }
-  .ccard-sm{
+.ccard-md:hover {
+  transform: translateY(-1.5px) translateX(-1px);
+}
 
-  }
-  .ccard-xs{
+.ccard-sm {
 
-  }
+}
+
+.ccard-xs {
+
+}
 </style>

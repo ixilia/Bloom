@@ -69,7 +69,7 @@ export const actions = {
       'ALL'
     )
 
-    axios.get('https://api.ixil.cc/bloom/hina/sources')
+    axios.get('https://app.ixil.cc/api/bloom/hina/sources')
       .then(function(response) {
         vuexContext.commit('SET_SOURCES_DATA',
           'ALL'
@@ -101,11 +101,12 @@ export const actions = {
         })
       })
 
-    axios.get('https://api.ixil.cc/bloom/hina/idols')
+    axios.get('https://app.ixil.cc/api/bloom/hina/idols')
       .then(function(response) {
           vuexContext.commit('SET_IDOLS_DATA',
             response.data
-          )}
+          )
+        }
       )
   },
 
@@ -137,15 +138,14 @@ export const actions = {
       vuexContext.commit('SET_SELECTED_IDOL_DATA',
         data.idol
       )
-      console.log("searching All")
+      console.log('searching All')
       axios.get(`https://api.ixil.cc/bloom/hina/search?query=${data.term}&op=30&page=${data.page}&source=${data.source.join(',')}&idol=${data.idol.join(',')}`)
         .then(function(response) {
           vuexContext.commit('SET_RESULT_DATA',
             response.data
           )
         })
-    }
-    else if(!data.source.includes('ALL')){
+    } else if (!data.source.includes('ALL')) {
       vuexContext.commit('SET_SELECTED_SOURCES_DATA',
         data.source
       )
@@ -155,8 +155,7 @@ export const actions = {
             response.data
           )
         })
-    }
-    else if(data.idol.length > 0){
+    } else if (data.idol.length > 0) {
       vuexContext.commit('SET_SELECTED_IDOL_DATA',
         data.idol
       )

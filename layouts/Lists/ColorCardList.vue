@@ -33,7 +33,7 @@
               <v-img
                 :src="`https://proxy.ixil.cc/ren?width=500&height=500&method=cover&image=`+image"></v-img>
             </v-avatar>
-            <h1 v-text="artist"/>
+            <h1 v-text="artist" />
             <div class="" style="align-self: center">
               <v-btn color="rgba(0,0,0,0)" depressed large :to="`/a/`+iid">
                 <v-row>
@@ -50,7 +50,7 @@
           <v-col>
             <h1
               style="align-self: center; font-family: 'Playfair Display', serif; font-size: 5rem;  text-shadow: -2px 5px 9px rgba(0,0,0,0.42);"
-              v-text="GetNS(source)"/>
+              v-text="GetNS(source)" />
             <v-row justify="end">
               <v-btn color="rgba(0,0,0,0)" depressed large :to="`/sagasu?source=`+source">
                 <v-row style="width: inherit" justify="space-around">
@@ -77,7 +77,7 @@
             <v-img contain
                    :src="`https://proxy.ixil.cc/ren?width=500&height=500&method=cover&image=${image}`"></v-img>
           </v-avatar>
-          <h1 v-text="artist"/>
+          <h1 v-text="artist" />
           <div class="" style="align-self: center">
             <v-btn color="rgba(0,0,0,0)" depressed large :to="`/a/`+iid">
               <v-row>
@@ -96,7 +96,7 @@
           <v-col>
             <h1
               style="align-self: center; font-family: 'Playfair Display', serif; font-size: 4rem;  text-shadow: -2px 5px 9px rgba(0,0,0,0.42);"
-              v-text="GetNS(source)"/>
+              v-text="GetNS(source)" />
             <v-row justify="end">
               <v-btn color="rgba(0,0,0,0)" depressed large :to="`/sagasu?source=`+source">
                 <v-row style="width: inherit" justify="space-around">
@@ -139,14 +139,14 @@
       <vue-horizontal-list v-if="parax" style="" :items="data" :options="options">
         <template v-slot:default="{item}">
           <color-card class="pb-5" :shadow="parax" :album="{thumb: item, color: ['#fc1c64','#fc1c64','#fc1c64']}"
-                      style=""/>
+                      style="" />
         </template>
       </vue-horizontal-list>
       <vue-horizontal-list v-if="!parax" style="" :items="items" :options="options">
         <template v-slot:default="{item}">
           <nuxt-link :to="`/a/`+item.id">
             <color-card class="pb-5" :shadow="parax"
-                        :album="{thumb: item.thumb, color: ['#fc1c64','#fc1c64','#fc1c64']}" style=""/>
+                        :album="{thumb: item.thumb, color: ['#fc1c64','#fc1c64','#fc1c64']}" style="" />
           </nuxt-link>
         </template>
       </vue-horizontal-list>
@@ -184,7 +184,7 @@
   import VueHorizontalList from 'vue-horizontal-list';
 
   export default {
-    name: "ColorCardList",
+    name: 'ColorCardList',
     components: { ColorCard, VueHorizontalList },
 
     props: {
@@ -246,7 +246,7 @@
             { start: 823, end: 1452, size: 2 },
             { start: 1452, end: 2352, size: 3 },
             { start: 1452, end: 2452, size: 4 },
-            { start: 2452,  size: 5 }
+            { start: 2452, size: 5 }
           ],
           list: {
             // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
@@ -257,9 +257,8 @@
           },
           item: {
             // css class to inject into each individual item
-            class: 'ccardl',
             // padding between each item
-            padding: 23
+            padding: 20
           },
           navigation: {
             // when to show navigation
@@ -267,11 +266,12 @@
             color: '#000'
           }
         },
-
-
       }
     },
 
+    mounted() {
+      this.options.item.padding = 25
+    },
     methods: {
       /**
        * @return {string}
@@ -288,10 +288,10 @@
 </script>
 
 <style scoped>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
-  .cc-list {
-    overflow-x: scroll;
-    white-space: nowrap;
-  }
+.cc-list {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
 </style>

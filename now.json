@@ -3,22 +3,65 @@
   "builds": [
     {
       "src": "nuxt.config.js",
-      "use": "@nuxtjs/now-builder",
+      "use": "@nuxtjs/vercel-builder",
       "config": {
-        "serverFiles": ["package.json"]
+        "serverFiles": [
+          "package.json"
+        ]
       }
     }
   ],
   "routes": [
-    { "src": "/_nuxt/.+", "headers": { "Cache-Control": "max-age=31557600" } },
+    {
+      "src": "/_nuxt/.+",
+      "headers": {
+        "Cache-Control": "max-age=31557600"
+      }
+    },
     {
       "src": "/sw.js",
-      "dest": "/_nuxt/static/sw.js",
+      "dest": "/sw.js",
       "headers": {
         "cache-control": "public, max-age=43200, immutable",
         "Service-Worker-Allowed": "/"
       }
     },
-    { "src": "/(.*)", "dest": "/" }
+    {
+      "src": "/OneSignalSDKWorker.js",
+      "dest": "/OneSignalSDKWorker.js",
+      "headers": {
+        "cache-control": "public, max-age=43200, immutable",
+        "Service-Worker-Allowed": "/"
+      }
+    },
+    {
+      "src": "/OneSignalSDKUpdaterWorker.js",
+      "dest": "/OneSignalSDKUpdaterWorker.js",
+      "headers": {
+        "cache-control": "public, max-age=43200, immutable"
+      }
+    },
+    {
+      "src": "/icon.png",
+      "dest": "/icon.png",
+      "headers": {
+        "cache-control": "public, max-age=43200"
+      }
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/favicon.ico",
+      "headers": {
+        "cache-control": "public, max-age=43200"
+      }
+    },
+    {
+      "src": "/README.md",
+      "dest": "/README.md"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
   ]
 }

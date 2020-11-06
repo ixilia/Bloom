@@ -20,7 +20,7 @@
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title"/>
+            <v-list-item-title v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -30,7 +30,7 @@
       fixed
       app
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn
         icon
       >
@@ -52,7 +52,8 @@
             </v-icon>
           </v-progress-circular>
         </template>
-        <span style="font-family: 'Michroma', sans-serif;">{{Math.round((DownloadProgress / DownloadTotal) * 100)}} <a style="font-family: 'Aldrich', sans-serif;">%</a></span>
+        <span style="font-family: 'Michroma', sans-serif;">{{ Math.round((DownloadProgress / DownloadTotal) * 100) }} <a
+          style="font-family: 'Aldrich', sans-serif;">%</a></span>
       </v-tooltip>
 
       <!--  Search   -->
@@ -69,7 +70,7 @@
       </v-container>
 
 
-      <v-spacer/>
+      <v-spacer />
       <!--  User Account menu   -->
       <v-menu
         :close-on-content-click="true"
@@ -84,8 +85,8 @@
             size="35px"
           >
             <img v-if="$auth.loggedIn"
-              :src="$auth.user.picture"
-              alt="Kyro"
+                 :src="$auth.user.picture"
+                 alt="Kyro"
             >
             <v-icon v-if="!$auth.loggedIn">mdi-account-circle</v-icon>
           </v-avatar>
@@ -104,8 +105,10 @@
 
               <v-list-item-content>
                 <v-list-item-title>{{ $auth.loggedIn ? $auth.user.name : 'Anon' }}</v-list-item-title>
-                <v-list-item-subtitle v-if="$auth.loggedIn && !$auth.user.email_verified">Unverified ✗</v-list-item-subtitle>
-                <v-list-item-subtitle v-if="$auth.loggedIn && $auth.user.email_verified">Verified ✓</v-list-item-subtitle>
+                <v-list-item-subtitle v-if="$auth.loggedIn && !$auth.user.email_verified">Unverified ✗
+                </v-list-item-subtitle>
+                <v-list-item-subtitle v-if="$auth.loggedIn && $auth.user.email_verified">Verified ✓
+                </v-list-item-subtitle>
               </v-list-item-content>
 
               <v-list-item-action>
@@ -119,7 +122,7 @@
             </v-list-item>
           </v-list>
 
-          <v-divider/>
+          <v-divider />
 
           <v-list
             v-if="$auth.loggedIn"
@@ -132,13 +135,13 @@
           </v-list>
 
           <v-card-actions>
-            <v-spacer/>
+            <v-spacer />
 
             <v-btn text v-if="!$auth.loggedIn" ripple
                    @click="$auth.login(/* .... */).then(() => this.$toast.success('Logged In!'))">
               Login
             </v-btn>
-            <v-btn v-if="$auth.loggedIn" text  ripple @click="$auth.logout()">
+            <v-btn v-if="$auth.loggedIn" text ripple @click="$auth.logout()">
               Logout
             </v-btn>
           </v-card-actions>
@@ -149,7 +152,7 @@
 
     </v-app-bar>
     <v-main>
-      <nuxt/>
+      <nuxt />
     </v-main>
     <v-navigation-drawer
       v-model="rightDrawer"
@@ -171,7 +174,7 @@
         cols="12"
         v-if="$vuetify.breakpoint.mdAndUp"
       >
-        <nuxt-link style="text-decoration: none;" :to="`/a/`+item.id">
+        <nuxt-link style="text-decoration: none;" :to="item.source === 'HINA'? `/a/${item.id}` : `/i/${item.id}`">
           <div
             class="pl-3"
             style="height: 10rem; background-size: 50% 100%; border-radius: 5px; text-decoration: none;"
@@ -202,6 +205,7 @@
         <v-card
           :color="item.color[2]"
           dark
+          :to="item.source === 'HINA'? `/a/${item.id}` : `/i/${item.id}`"
         >
           <v-img
             class="white--text align-end"
@@ -209,10 +213,10 @@
             :src="'https://proxy.ixil.cc/prox?image='+item.thumb"
           >
           </v-img>
-          <v-card-subtitle class="pb-0">{{item.idol}}</v-card-subtitle>
+          <v-card-subtitle class="pb-0">{{ item.idol }}</v-card-subtitle>
 
           <v-card-text class="text--primary">
-            {{item.name}}
+            {{ item.name }}
           </v-card-text>
         </v-card>
       </v-col>
@@ -228,126 +232,158 @@
 
 <script>
 
-  import { mapGetters, mapState } from 'vuex'
-  import Snackbar from '@/components/Snackbar'
+import { mapGetters, mapState } from 'vuex'
+import Snackbar from '@/components/Snackbar'
+import axios from 'axios'
 
-  export default {
-    components: { Snackbar },
-    data() {
-      return {
-        search_overlay: false,
-        clipped: false,
-        drawer: false,
-        fixed: true,
-        fixers: [],
+export default {
+  components: { Snackbar },
+  data() {
+    return {
+      search_overlay: false,
+      clipped: false,
+      drawer: false,
+      fixed: true,
+      fixers: [],
+      notific: true,
 
-        rules: {
-          email: value => {
-            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            return pattern.test(value) || 'Invalid e-mail.'
-          }
+      rules: {
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        }
+      },
+      items: [
+        {
+          icon: 'mdi-apps',
+          title: 'Bloom',
+          to: '/'
         },
-        items: [
-          {
-            icon: 'mdi-apps',
-            title: 'Bloom',
-            to: '/'
-          },
-          {
-            icon: 'mdi-spa',
-            title: 'HINA',
-            to: '/hina'
-          }
-          ,
-          {
-            icon: 'mdi-leaf',
-            title: 'MISHA',
-            to: '/misha'
-          }
-        ],
-        miniVariant: false,
-        right: true,
-        rightDrawer: false,
-        title: 'Bloom -  B.A-0.3'
-      }
-    },
-
-    computed: {
-      ...mapGetters({
-        RecentViews: 'history/GET_HISTORY_DATA',
-        DownloadState: 'download/GET_DOWNLOAD_STATE',
-        DownloadProgress: 'download/GET_DOWNLOAD_PROGRESS',
-        DownloadTotal: 'download/GET_DOWNLOAD_TOTAL',
-        SearchSources: 'search/GET_SOURCES_DATA'
-      }),
-
-
-      progress() {
-        return Math.min(100, this.pwvalue1.length * 10)
-      },
-      color() {
-        return ['error', 'warning', 'success'][Math.floor(this.progress / 40)]
-      },
-    },
-
-    created() {
-
-    },
-
-    beforeMount() {
-      this.$store.dispatch("history/LOAD_HISTORY")
-      this.$store.dispatch("search/LOAD_SOURCES_DATA")
-    },
-
-    watch: {},
-
-    mounted() {
-    },
-
-    beforeDestroy() {
-    },
-
-    methods: {
-      hexToRgb(hex, opacity) {
-        return 'rgba(' + (hex = hex.replace('#', '')).match(new RegExp('(.{' + hex.length / 3 + '})', 'g')).map(function(l) {
-          return parseInt(hex.length % 2 ? l + l : l, 16)
-        }).concat(opacity || 1).join(',') + ')';
-      },
-
-      /**
-       * @return {string}
-       */
-      ESize() {
-        if (this.$vuetify.breakpoint.smAndDown) return '20rem';
-        else return '48rem';
-      },
-
-      RegDialog() {
-        this.dialog = !this.dialog
-        this.dialog2 = !this.dialog2
-      },
-
+        {
+          icon: 'mdi-spa',
+          title: 'HINA',
+          to: '/hina'
+        }
+        ,
+        {
+          icon: 'mdi-leaf',
+          title: 'MISHA',
+          to: '/misha'
+        }
+      ],
+      miniVariant: false,
+      right: true,
+      rightDrawer: false,
+      title: 'Bloom -  B.A-0.3'
     }
+  },
+
+  computed: {
+    ...mapGetters({
+      RecentViews: 'history/GET_HISTORY_DATA',
+      DownloadState: 'download/GET_DOWNLOAD_STATE',
+      DownloadProgress: 'download/GET_DOWNLOAD_PROGRESS',
+      DownloadTotal: 'download/GET_DOWNLOAD_TOTAL',
+      SearchSources: 'search/GET_SOURCES_DATA'
+    }),
+
+
+    progress() {
+      return Math.min(100, this.pwvalue1.length * 10)
+    },
+    color() {
+      return ['error', 'warning', 'success'][Math.floor(this.progress / 40)]
+    }
+  },
+
+  created() {
+
+  },
+
+  beforeMount() {
+    this.$store.dispatch('history/LOAD_HISTORY')
+    this.$store.dispatch('search/LOAD_SOURCES_DATA')
+  },
+
+  watch: {},
+
+  mounted() {
+    this.$OneSignal.push(() => {
+      this.$OneSignal.showNativePrompt()
+    })
+
+    if (this.$auth.loggedIn) {
+      // Inside page components
+      this.$OneSignal.push(() => {
+        this.$OneSignal.isPushNotificationsEnabled((isEnabled) => {
+          if (isEnabled) {
+            axios.get(`https://api.ixil.cc/bloom/strat/user/get/emailhash?email=` + this.$auth.user.email, {
+              headers: {
+                Authorization: this.$auth.getToken('auth0') //the token is a variable which holds the token
+              }
+            })
+              .then((res) => {
+                OneSignal.setExternalUserId(res.data.hash)
+                console.log('PUSHED NOTIFICATION ID:  ' + res.data.hash)
+              })
+          } else {
+            this.$OneSignal.showNativePrompt()
+          }
+        })
+      })
+    }
+  },
+
+  beforeDestroy() {
+  },
+
+  methods: {
+    hexToRgb(hex, opacity) {
+      return 'rgba(' + (hex = hex.replace('#', '')).match(new RegExp('(.{' + hex.length / 3 + '})', 'g')).map(function(l) {
+        return parseInt(hex.length % 2 ? l + l : l, 16)
+      }).concat(opacity || 1).join(',') + ')'
+    },
+
+    GetNotified() {
+
+    },
+
+    /**
+     * @return {string}
+     */
+    ESize() {
+      if (this.$vuetify.breakpoint.smAndDown) return '20rem'
+      else return '48rem'
+    },
+
+    RegDialog() {
+      this.dialog = !this.dialog
+      this.dialog2 = !this.dialog2
+    }
+
   }
+}
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Aldrich&family=Michroma&display=swap');
 
-.search-field{
+.search-field {
   width: 0em;
   transition: width linear .3s;
   margin-top: 0.7rem !important;
 }
-.search-field:hover{
-  width: 30rem;
-}
-.search-field:focus-within{
+
+.search-field:hover {
   width: 30rem;
 }
 
-.search-field-icon:hover{
+.search-field:focus-within {
+  width: 30rem;
+}
+
+.search-field-icon:hover {
   transform: translateY(-1px);
-  cursor:pointer;
+  cursor: pointer;
 }
 
 </style>

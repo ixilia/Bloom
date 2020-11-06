@@ -31,20 +31,26 @@ export default {
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
+    '@nuxtjs/proxy',
+    '@nuxtjs/onesignal',
+    '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/google-analytics'
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
+    '@nuxtjs/proxy',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
+    '@nuxtjs/onesignal',
     '@nuxtjs/pwa',
 
     '@nuxtjs/auth',
-
-    'vue-scrollto/nuxt',
+    '@nuxtjs/google-analytics',
+    'vue-scrollto/nuxt'
   ],
 
   router: {
@@ -55,6 +61,10 @@ export default {
         component: 'pages/a/_id.vue'
       }
     ]
+  },
+
+  googleAnalytics: {
+    id: 'G-3RLBZGMMZP'
   },
 
   auth: {
@@ -76,22 +86,52 @@ export default {
     }
   },
 
+  oneSignal: {
+    init: {
+      appId: '669e9631-22a6-4f83-bb42-8665ec81fa85',
+      allowLocalhostAsSecureOrigin: true,
+      requiresUserPrivacyConsent: false,
+      autoResubscribe: false,
+      welcomeNotification: {
+        disable: true
+      },
+      autoRegister: true
+    },
 
-  pwa: {
-    // disable the modules you don't need
-    // if you omit a module key form configuration sensible defaults will be applied
-    // manifest: false,
+    // Use CDN
+    cdn: true,
 
-    //workbox: {
-      // by default the workbox module will not install the service worker in dev environment to avoid conflicts with HMR
-      // only set this true for testing and remember to always clear your browser cache in development
-    //  dev: false
-    //}
+    // Use any custom URL
+    OneSignalSDK: 'https://cdn.discordapp.com/attachments/488810702190936075/772335011407986718/OneSignalSDK.js'
   },
 
+  pwa: {
+    manifest: {
+      name: 'Bloom - Hina',
+      lang: 'en',
+      useWebmanifestExtension: false
+    },
+    workbox: {
+      autoRegister: true,
+      dev: false,
+      clientsClaim: true,
+      skipWaiting: true,
+      offlineAnalytics: false,
+      cleanupOutdatedCaches: true,
+      cacheAssets: true
+    }
+  },
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
 
+  proxy: {
+    '/api': {
+      target: 'https://api.ixil.cc',
+      pathRewrite: {
+        '^/api': '/'
+      }
+    }
+  },
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
     customVariables: ['~/assets/variables.scss'],

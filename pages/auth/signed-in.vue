@@ -16,9 +16,9 @@
 </template>
 
 <script>
-  export default {
-    name: "signed-in"
-  }
+export default {
+  name: 'signed-in'
+}
 </script>
 
 <style scoped>

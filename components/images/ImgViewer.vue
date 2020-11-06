@@ -21,30 +21,31 @@
 </template>
 
 <script>
-import Vue from "vue";
-import Viewer from "v-viewer";
-import "viewerjs/dist/viewer.css";
-Vue.use(Viewer);
+import Vue from 'vue'
+import Viewer from 'v-viewer'
+import 'viewerjs/dist/viewer.css'
+
+Vue.use(Viewer)
 export default {
   data() {
     return {
       options: {
-        url: "data-source"
+        url: 'data-source'
       },
       index: 0,
       images: []
-    };
+    }
   },
   methods: {
-    inited (viewer) {
-      this.$viewer = viewer;
-      this.$viewer.view(this.index);
+    inited(viewer) {
+      this.$viewer = viewer
+      this.$viewer.view(this.index)
     },
-    view (index) {
+    view(index) {
       this.index = index
-      this.$viewer.view(this.index);
+      this.$viewer.view(this.index)
     },
-    show (images, index = 0) {
+    show(images, index = 0) {
       if (this.images === images) {
         this.view(index)
         return
@@ -53,7 +54,7 @@ export default {
       this.index = index
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -64,13 +65,13 @@ export default {
 </style>
 <style>
 .viewer-loading > img {
-  display: none;  /* hide big images when it is loading */
+  display: none; /* hide big images when it is loading */
   width: 0;
   background: transparent; /* Chrome/Safari/Webkit */
 }
 
 
-.viewer-container{
+.viewer-container {
   backdrop-filter: blur(5px) opacity(0.9) brightness(0.2);
 }
 </style>

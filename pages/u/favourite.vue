@@ -1,6 +1,6 @@
 <template>
   <v-col>
-    <v-divider class="TopView"/>
+    <v-divider class="TopView" />
     <div style="">
       <v-row justify="space-around" style="padding-bottom: 9rem">
         <v-container style="padding-left: 2rem; padding-right: 2rem;">
@@ -9,7 +9,9 @@
             :gutter="{default: '30px', 700: '15px'}"
           >
             <n-link v-for="(item, index) in datan.data" :key="index"
-                    :to="`/a/${item.id}`" prefetch>
+                    :to="item.source === 'HINA'? `/a/${item.id}` : `/i/${item.id}`"
+                    style="text-decoration: none;"
+                    prefetch>
               <v-img max-width="17rem" max-height="20rem;"
                      style="border-radius: 5px; margin-left: 1rem; margin-right: 1rem; margin-bottom: 2rem;"
                      lazy-src="https://cdn.discordapp.com/attachments/488810702190936075/768945580038160394/unknown.png"
@@ -26,6 +28,11 @@
                     ></v-progress-circular>
                   </v-row>
                 </template>
+                <v-row style="padding-left: 0.7rem">
+                  <v-icon style="text-shadow: 2px 1px 0 black; text-decoration: none;">
+                    {{ item.source === 'HINA' ? 'mdi-alpha-h-box-outline' : 'mdi-alpha-m-box-outline' }}
+                  </v-icon>
+                </v-row>
               </v-img>
             </n-link>
           </masonry>
@@ -33,7 +40,7 @@
       </v-row>
 
     </div>
-    <v-divider/>
+    <v-divider />
     <v-pagination
       v-model="Page"
       :length="datan.maxres"
@@ -83,7 +90,7 @@ export default {
   methods: {
 
     HeadSearchUp() {
-      return axios.get(`http://localhost:3001/bloom/strat/user/get/favs?page=${this.Page}&op=30&email=${this.$auth.user.email}`, {
+      return axios.get(`https://api.ixil.cc/bloom/strat/user/get/favs?page=${this.Page}&op=30&email=${this.$auth.user.email}`, {
         headers: {
           Authorization: this.$auth.getToken('auth0') //the token is a variable which holds the token
         }

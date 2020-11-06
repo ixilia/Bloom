@@ -3,7 +3,7 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_SNACK_STATE (state, snack) {
+  SET_SNACK_STATE(state, snack) {
     state.snack = snack
   }
 }
@@ -17,5 +17,5 @@ export const actions = {
 export const getters = {
   GET_SNACK_STATE(state) {
     return state.snack
-  },
+  }
 }

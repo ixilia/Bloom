@@ -1,6 +1,6 @@
 <template>
   <v-snackbar timeout="2000" v-model="show" onclose="">
-    {{message}}
+    {{ message }}
     <template v-slot:action="{ attrs }">
       <v-btn
         color="pink"
@@ -19,7 +19,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Snackbar',
-  data () {
+  data() {
     return {
       show: false,
       message: ''
@@ -27,8 +27,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      state_message: 'snackbar/GET_SNACK_STATE',
-    }),
+      state_message: 'snackbar/GET_SNACK_STATE'
+    })
   },
   watch: {
     state_message: 'PopSnack'
@@ -37,8 +37,7 @@ export default {
   },
 
   methods: {
-    PopSnack()
-    {
+    PopSnack() {
       this.message = this.state_message
       this.show = true
     }
