@@ -65,9 +65,19 @@
 | Swift                |   1.0       |   [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743380795854422066/swift-client-generated.zip)            | 
 | Swift 5              |   1.0       | [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743381030894960710/swift5-client-generated.zip)             |
 | Ruby                   |   1.0       | [:arrow_down:](https://cdn.discordapp.com/attachments/488810702190936075/743380481646788668/ruby-client-generated.zip)             |
-  
+ 
+ 
+ <h1 align="center">
+  MISHA  Supported Sources: 
+</h1>
+
+| Name                  |  Idol name  | Tags  |  Hina Server (Image) |
+| --------------------- |:-----------:| -----:|  -------------------:| 
+| Instagram             |   ✓         |   ✘  |           full  ✓    |
+ 
+ 
 <h1 align="center">
-  58 - Supported Sources: 
+  63 - HINA  Supported Sources: 
 </h1>
 
 | Name                  |  Idol name  | Tags  |  Hina Server (Image) |
