@@ -77,7 +77,7 @@
  
  
 <h1 align="center">
-  63 - HINA  Supported Sources: 
+  HINA  Supported Sources: 
 </h1>
 
 | Name                  |  Idol name  | Tags  |  Hina Server (Image) |
