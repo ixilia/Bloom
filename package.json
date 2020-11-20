@@ -18,7 +18,7 @@
     "@nuxtjs/vercel-builder": "^0.17.12",
     "@nuxtjs/vuetify": "^1.11.2",
     "core-js": "^3.6.5",
-    "file-saver": "^2.0.2",
+    "file-saver": "^2.0.5",
     "jszip": "^3.5.0",
     "nuxt": "^2.14.5",
     "v-img-fallback": "^0.1.5",
