@@ -42,7 +42,7 @@
   API:
 </h1>
   <h2 align="center">
-  <a href="https://www.apimatic.io/apidocs/bloom-api">API Documentation</a>   
+  <a href="https://rapidapi.com/Assintates/api/bloom-hina">API Documentation</a>   
   </h2>
   <h1>
     SDKs
