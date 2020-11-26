@@ -17,7 +17,7 @@
     "@nuxtjs/pwa": "^3.0.2",
     "@nuxtjs/vercel-builder": "^0.17.12",
     "@nuxtjs/vuetify": "^1.11.2",
-    "core-js": "^3.6.5",
+    "core-js": "^3.8.0",
     "file-saver": "^2.0.2",
     "jszip": "^3.5.0",
     "nuxt": "^2.14.5",
