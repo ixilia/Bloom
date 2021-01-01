@@ -8,7 +8,7 @@
 </a>
 
 <h1 align="center">
-  Hina APP/API
+  Bloom APP/API - Services 
   
 </h1>
 
@@ -37,6 +37,19 @@
 <h4 align="center">
   Please contribute to the Repository in fixing and adding features as I have 0 knowledge on Web Development 
 </h4>
+
+<h1 align="center">
+  A.I 4X Image Demo:
+  
+   <p align="center">
+  <a href="https://rapidapi.com/Assintates/api/bloom-hina">Create a bloom account through login, in the website and open this url, click on "Access Pollen" to open 4X images</a>   
+ <br> </br>
+  Original Image: <a href="https://www.mymypic.net/data/attachment/forum/202009/15/123044o374lgqn4n45bf2q.jpg">Open URL</a>
+  <br> </br>  4X AI Image: <a href="https://cdn.discordapp.com/attachments/739632358847676490/793951604738359326/shlyukha.webp">Open URL</a>
+  </p>
+  
+</h1>
+
 
 <h1 align="center">
   API:
